@@ -186,17 +186,17 @@
         <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-start">
             
             <!-- Column 1: Image Gallery -->
-            <div class="flex flex-col-reverse sm:flex-row gap-4">
-                <!-- Thumbnails -->
-                <div class="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0">
-                    <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+1" 
-                         alt="Moringa Powder - view 1" 
-                         class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent thumbnail-active"
-                         data-src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Moringa+Powder">
-                    <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+2" 
-                         alt="Moringa Powder - view 2" 
-                         class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
-                         data-src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Moringa+Leaf">
+            <!-- 
+              FIX: Added lg:sticky and lg:top-24 here.
+              This makes the entire image gallery "stick" to the top 
+              of the viewport (with 6rem padding for the header) 
+              as you scroll, but only on large screens.
+            -->
+            <div class="lg:sticky lg:top-24">
+                <div class="flex flex-col-reverse sm:flex-row gap-4">
+                    <!-- Thumbnails -->
+                    <div class="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0">
+                        <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+1" 
                     <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+3" 
                          alt="Moringa Powder - view 3" 
                          class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
@@ -210,8 +210,8 @@
                 <div class="flex-1">
                     <img id="main-product-image" 
                          src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Moringa+Powder" 
-                         alt="Organic Moringa Leaf Powder" 
-                         class="w-full h-auto object-cover rounded-lg shadow-md">
+                             class="w-full h-auto object-cover rounded-lg shadow-md">
+                    </div>
                 </div>
             </div>
             
