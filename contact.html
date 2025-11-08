@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -23,6 +24,15 @@
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
                         'heading': ['Lora', 'serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 20s linear infinite',
+                    },
+                    keyframes: {
+                        'marquee': {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
                     }
                 }
             }
@@ -43,12 +53,35 @@
         #toast.show { bottom: 30px; }
         .form-input { border: 1px solid #d1d5db; padding: 0.75rem 1rem; border-radius: 8px; transition: all 0.3s ease; }
         .form-input:focus { outline: none; border-color: #BFA160; box-shadow: 0 0 0 2px #fcfaf6; }
+        
+        .cart-qty-selector {
+            height: 36px;
+        }
+        .cart-qty-btn {
+            line-height: 1;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
     </style>
 </head>
 <body class="bg-theme-bg">
 
-    <div class="bg-gray-800 text-white text-sm text-center py-2 px-4">
-        Free shipping on orders over ₹500
+    <div class="bg-theme-green text-white text-sm py-2 overflow-hidden whitespace-nowrap font-medium">
+        <div class="inline-block animate-marquee">
+            <span class="mx-4 tracking-wider">FREE SHIPPING ON ALL ORDERS</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">PAN-INDIA DELIVERY</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">100% ORGANIC & NATURAL</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            
+            <span class="mx-4 tracking-wider">FREE SHIPPING ON ALL ORDERS</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">PAN-INDIA DELIVERY</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">100% ORGANIC & NATURAL</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+        </div>
     </div>
 
     <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
