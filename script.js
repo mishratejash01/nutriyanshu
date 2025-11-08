@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load cart from localStorage
     let cart = JSON.parse(localStorage.getItem('nutriyanshuCart')) || [];
 
-    // *** NEW FIX: CLEAN CART ON LOAD ***
+    // *** FIX: CLEAN CART ON LOAD ***
     // This removes any "bad" items (like the 'undefined' one)
     // that were saved in localStorage before the previous bug fix.
     const cleanCart = cart.filter(item => item.id && item.price);
@@ -114,15 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
             let subtotal = 0;
             cartBody.innerHTML = '';
             cart.forEach(item => {
-                subtotal += item.price * item.quantity;
+                // Ensure price and quantity are numbers before calculation
+                const itemPrice = parseFloat(item.price);
+                const itemQuantity = parseInt(item.quantity, 10);
+                
+                if (!isNaN(itemPrice) && !isNaN(itemQuantity)) {
+                    subtotal += itemPrice * itemQuantity;
+                }
+
                 const itemHtml = `
                     <div class="cart-item flex gap-4 mb-4" data-id="${item.id}">
                         <img src="${item.image}" alt="${item.name}" class="h-20 w-20 object-cover rounded-md border border-gray-200">
-                        <div class="flex-1">
-                            <h3 class="font-semibold text-gray-800">${item.name}</h3>
-                            <div class="flex justify-between items-center">
-                                <p class="text-sm text-gray-500">Qty: ${item.quantity}</p>
-                                <p class="text-md font-semibold mt-1">₹${item.price * item.quantity}</p>
+                        <div class="flex-1 flex flex-col justify-between py-1">
+                            <div>
+                                <h3 class="font-semibold text-gray-800 text-sm">${item.name}</h3>
+                                <p class="text-md font-semibold mt-1">₹${itemPrice * itemQuantity}</p>
+                            </div>
+                            <div class="cart-qty-selector flex items-center border border-gray-300 rounded-md w-max">
+                                <button class="cart-qty-btn cart-qty-decrease p-2 text-lg font-bold text-gray-700 hover:bg-gray-100 rounded-l-md">-</button>
+                                <span class="w-10 text-center text-md font-semibold">${itemQuantity}</span>
+                                <button class="cart-qty-btn cart-qty-increase p-2 text-lg font-bold text-gray-700 hover:bg-gray-100 rounded-r-md">+</button>
                             </div>
                         </div>
                         <button class="remove-from-cart p-1 text-gray-500 hover:text-red-600 self-start">
@@ -137,14 +148,47 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartIcon();
     }
     
-    function handleRemoveFromCart(event) {
+    // NEW: Combined function to handle all clicks inside the cart body
+    function handleCartClick(event) {
         const removeButton = event.target.closest('.remove-from-cart');
         if (removeButton) {
             const cartItemElement = removeButton.closest('.cart-item');
             const itemId = cartItemElement.dataset.id;
             cart = cart.filter(item => item.id !== itemId);
-            saveCart(); // Save changes
+            saveCart();
             renderCart();
+            return; // Stop execution
+        }
+
+        const increaseButton = event.target.closest('.cart-qty-increase');
+        if (increaseButton) {
+            const cartItemElement = increaseButton.closest('.cart-item');
+            const itemId = cartItemElement.dataset.id;
+            const item = cart.find(i => i.id === itemId);
+            if (item) {
+                item.quantity++;
+                saveCart();
+                renderCart();
+            }
+            return;
+        }
+
+        const decreaseButton = event.target.closest('.cart-qty-decrease');
+        if (decreaseButton) {
+            const cartItemElement = decreaseButton.closest('.cart-item');
+            const itemId = cartItemElement.dataset.id;
+            const item = cart.find(i => i.id === itemId);
+            if (item && item.quantity > 1) {
+                item.quantity--;
+                saveCart();
+                renderCart();
+            } else if (item && item.quantity === 1) {
+                // If quantity is 1, remove the item
+                cart = cart.filter(i => i.id !== itemId);
+                saveCart();
+                renderCart();
+            }
+            return;
         }
     }
 
@@ -244,7 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(openCartBtn) openCartBtn.addEventListener('click', openCart);
     if(closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
     if(cartOverlay) cartOverlay.addEventListener('click', closeCart);
-    if(cartBody) cartBody.addEventListener('click', handleRemoveFromCart);
+    // CHANGED: Replaced handleRemoveFromCart with handleCartClick
+    if(cartBody) cartBody.addEventListener('click', handleCartClick);
     
     // Pincode Check (only on index.html)
     if (pincodeCheckBtn) {
