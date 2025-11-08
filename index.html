@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nutriyanshu - Organic Moringa Powder</title>
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Load simple icon library (for cart, etc.) -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     
@@ -43,6 +41,18 @@
         .btn-secondary:hover {
             background-color: #f7f3ff;
         }
+        
+        /* NEW: Lighter secondary button for review form */
+        .btn-secondary-light {
+            background-color: #f9fafb;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            transition: background-color 0.3s ease;
+        }
+        .btn-secondary-light:hover {
+             background-color: #f3f4f6;
+        }
+
 
         /* Cart Modal styles */
         #cart-modal {
@@ -119,31 +129,54 @@
             padding: 2px 6px;
             border-radius: 4px;
         }
+        
+        /* NEW: Styles for "Write a Review" form */
+        #review-form {
+            display: none; /* Hidden by default */
+        }
+        #review-form.open {
+            display: block; /* Show when open */
+        }
+
+        /* NEW: Styles for star rating input */
+        .star-rating-input {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 4px;
+        }
+        .star-rating-input input {
+            display: none;
+        }
+        .star-rating-input label {
+            font-size: 2rem;
+            color: #d1d5db; /* Gray stars */
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star-rating-input input:checked ~ label,
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label {
+            color: #f59e0b; /* Yellow stars */
+        }
+        
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <!-- 
-      TOP ANNOUNCEMENT BAR
-    -->
     <div class="bg-gray-800 text-white text-sm text-center py-2 px-4">
         Free shipping on orders over ₹500
     </div>
 
-    <!-- 
-      HEADER / NAVIGATION
-    -->
     <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="#" class="text-2xl font-bold" style="color: var(--theme-green);">
                         Nutriyanshu
                     </a>
                 </div>
                 
-                <!-- Search, Account, and Cart Icons -->
                 <div class="flex items-center space-x-2 sm:space-x-4">
                     <button class="relative p-2 rounded-full text-gray-700 hover:bg-gray-100 focus:outline-none">
                         <span class="sr-only">Search</span>
@@ -166,9 +199,6 @@
         </nav>
     </header>
 
-    <!-- 
-      BREADCRUMBS
-    -->
     <nav class="container mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <ol class="flex items-center space-x-2 text-sm text-gray-500">
             <li><a href="#" class="hover:underline hover:text-gray-700">Home</a></li>
@@ -179,22 +209,11 @@
         </ol>
     </nav>
 
-    <!-- 
-      MAIN PRODUCT PAGE CONTENT
-    -->
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4 sm:mt-8 mb-12 sm:mb-16">
         <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-start">
             
-            <!-- Column 1: Image Gallery -->
-            <!-- 
-              FIX: Added lg:sticky and lg:top-24 here.
-              This makes the entire image gallery "stick" to the top 
-              of the viewport (with 6rem padding for the header) 
-              as you scroll, but only on large screens.
-            -->
             <div class="lg:sticky lg:top-24">
                 <div class="flex flex-col-reverse sm:flex-row gap-4">
-                    <!-- Thumbnails -->
                     <div class="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0">
                         <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+1" 
                              alt="Moringa Powder - main" 
@@ -207,20 +226,21 @@
                         <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+3" 
                              alt="Moringa Powder - view 3" 
                              class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
-                <div class="flex-1">
-                    <img id="main-product-image" 
-                         src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Moringa+Powder" 
+                             data-src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Nutrients">
+                    </div>
+                    <div class="flex-1">
+                        <img id="main-product-image" 
+                             src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Moringa+Powder" 
+                             alt="Organic Moringa Leaf Powder"
                              class="w-full h-auto object-cover rounded-lg shadow-md">
                     </div>
                 </div>
             </div>
             
-            <!-- Column 2: Product Info & Actions -->
             <div class="mt-8 lg:mt-0">
                 <p class="text-sm text-gray-500">Carbamide Forte</p>
                 <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">Organic Moringa Leaf Powder</h1>
                 
-                <!-- NEW: Key Benefit Icons -->
                 <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
                     <span class="flex items-center text-sm text-green-700">
                         <ion-icon name="checkmark-circle" class="h-5 w-5 mr-1"></ion-icon> Boosts Immunity
@@ -233,7 +253,6 @@
                     </span>
                 </div>
 
-                <!-- NEW: Star Rating & Reviews -->
                 <div class="mt-3 flex items-center gap-2">
                     <div class="flex text-yellow-400">
                         <ion-icon name="star"></ion-icon>
@@ -246,7 +265,6 @@
                     <span class="text-sm text-gray-600">(31 Reviews)</span>
                 </div>
                 
-                <!-- Price -->
                 <div class="mt-4 flex items-baseline gap-3">
                     <span class="text-2xl sm:text-3xl font-bold text-gray-900">₹249</span>
                     <span class="text-lg sm:text-xl text-gray-500 line-through">₹450</span>
@@ -254,7 +272,6 @@
                 </div>
                 <p class="text-sm text-gray-500 mt-1">Incl. of all taxes</p>
                 
-                <!-- NEW: Variant/Size -->
                 <div class="mt-6">
                     <span class="text-md font-semibold text-gray-700">Size:</span>
                     <div class="flex gap-3 mt-2">
@@ -266,9 +283,7 @@
                     </div>
                 </div>
 
-                <!-- Quantity & Cart Buttons -->
                 <div class="mt-8 space-y-4">
-                    <!-- Quantity Selector -->
                     <div class="flex items-center space-x-3">
                         <span class="text-md font-semibold text-gray-700">Qty:</span>
                         <div class="flex items-center border border-gray-300 rounded-md">
@@ -278,7 +293,6 @@
                         </div>
                     </div>
                     
-                    <!-- Action Buttons -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <button id="add-to-cart-btn" class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-secondary flex items-center justify-center gap-2">
                             <ion-icon name="cart-outline" class="h-6 w-6"></ion-icon>
@@ -291,7 +305,6 @@
                     </div>
                 </div>
 
-                <!-- NEW: Urgency & Delivery -->
                 <div class="mt-6 flex flex-wrap gap-4 items-center">
                     <div class="flex items-center gap-2">
                         <ion-icon name="flame" class="h-5 w-5 text-red-500"></ion-icon>
@@ -299,12 +312,10 @@
                         <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs font-bold rounded-md">Hurry, Few Left!</span>
                     </div>
                     <div class="flex items-center gap-2 text-sm text-gray-700">
-                        <ion-icon name="logo-electron" class="h-5 w-5 text-blue-500"></ion-icon> <!-- Placeholder for truck -->
-                        <span>Get it by <span class="font-bold">Nov 11</span></span>
+                        <ion-icon name="logo-electron" class="h-5 w-5 text-blue-500"></ion-icon> <span>Get it by <span class="font-bold">Nov 11</span></span>
                     </div>
                 </div>
 
-                <!-- NEW: Available Offers -->
                 <div class="mt-6">
                     <h3 class="text-md font-semibold text-gray-800 flex items-center gap-2">
                         <ion-icon name="pricetag-outline" class="h-5 w-5 text-gray-600"></ion-icon>
@@ -319,7 +330,6 @@
                     </div>
                 </div>
                 
-                <!-- Delivery Check -->
                 <div class="mt-6 p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
                     <p class="font-semibold text-gray-800">Select Delivery Location</p>
                     <div class="flex mt-2 gap-2">
@@ -329,9 +339,6 @@
                     <p id="pincode-message" class="text-xs text-gray-500 mt-2"></p>
                 </div>
                 
-                <!-- 
-                  TRUST BADGES
-                -->
                 <div class="mt-6 grid grid-cols-3 gap-4 text-center">
                     <div class="flex flex-col items-center p-2 bg-white rounded-lg border border-gray-200">
                         <ion-icon name="leaf-outline" class="h-8 w-8 text-green-600"></ion-icon>
@@ -347,7 +354,6 @@
                     </div>
                 </div>
 
-                <!-- Accordions -->
                 <div class="mt-8 space-y-2">
                     <div class="accordion-item border-b border-gray-200">
                         <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
@@ -392,12 +398,85 @@
 
             </div>
         </div>
+
+        <section class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-gray-200">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6 text-center">Frequently Bought Together</h2>
+            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class_name="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/f0f7f0/2a6f2b?text=Moringa" alt="Moringa Powder" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
+                        <p class="font-semibold mt-2">Moringa Powder</p>
+                        <p class="font-bold text-gray-800">₹249</p>
+                    </div>
+                    
+                    <ion-icon name="add-outline" class="text-3xl text-gray-600"></ion-icon>
+
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/f0f7f0/2a6f2b?text=Ashwagandha" alt="Ashwagandha" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
+                        <p class="font-semibold mt-2">Ashwagandha</p>
+                        <p class="font-bold text-gray-800">₹299</p>
+                    </div>
+
+                    <ion-icon name="add-outline" class="text-3xl text-gray-600 hidden sm:block"></ion-icon>
+                    
+                    <div class="flex flex-col items-center text-center mt-4 sm:mt-0">
+                        <img src="https://placehold.co/150x150/f0f7f0/2a6f2b?text=Turmeric" alt="Turmeric" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
+                        <p class="font-semibold mt-2">Turmeric Curcumin</p>
+                        <p class="font-bold text-gray-800">₹349</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                    <div class="flex items-center justify-center gap-4">
+                        <span class="text-lg text-gray-600">Total Price:</span>
+                        <span class="text-2xl font-bold text-gray-900">₹897</span>
+                    </div>
+                    <button class="mt-4 w-full sm:w-auto py-3 px-8 rounded-md text-lg font-semibold btn-primary flex items-center justify-center gap-2 mx-auto">
+                        <ion-icon name="cart-outline" class="h-6 w-6"></ion-icon>
+                        Add all three to Cart
+                    </button>
+                </div>
+            </div>
+        </section>
+
         
-        <!-- 
-          CUSTOMER REVIEWS SECTION (Hardcoded)
-        -->
         <div class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-gray-200">
-            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Customer Reviews</h2>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Customer Reviews</h2>
+                <button id="show-review-form-btn" class="py-2 px-4 rounded-md text-sm font-semibold btn-secondary-light flex items-center justify-center gap-1.5">
+                    <ion-icon name="create-outline" class="h-5 w-5"></ion-icon>
+                    Write a Review
+                </button>
+            </div>
+            
+            <div id="review-form" class="mb-8 p-4 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Write your review</h3>
+                <form id="submit-review-form" class="space-y-4">
+                    <div>
+                        <label for="review-name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                        <input type="text" id="review-name" required class="mt-1 block w-full sm:w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-300">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Your Rating</label>
+                        <div class="star-rating-input mt-1">
+                            <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="review-body" class="block text-sm font-medium text-gray-700">Review</label>
+                        <textarea id="review-body" rows="4" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-300" placeholder="What did you like or dislike?"></textarea>
+                    </div>
+                    <div class="flex gap-4">
+                        <button type="submit" class="py-2 px-5 rounded-md font-semibold btn-primary">Submit Review</button>
+                        <button type="button" id="cancel-review-btn" class="py-2 px-5 rounded-md font-semibold btn-secondary-light">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
             <div class="space-y-8">
                 <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
                     <div class="flex items-center mb-2">
@@ -405,7 +484,6 @@
                         <span class="ml-auto text-sm text-gray-500">Oct 28, 2025</span>
                     </div>
                     <div class="flex text-yellow-400">
-                        <!-- 5 Stars -->
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star"></ion-icon>
@@ -421,7 +499,6 @@
                         <span class="ml-auto text-sm text-gray-500">Oct 22, 2025</span>
                     </div>
                     <div class="flex text-yellow-400">
-                        <!-- 4 Stars -->
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star"></ion-icon>
@@ -435,14 +512,10 @@
 
     </main>
     
-    <!-- 
-      YOU MAY ALSO LIKE SECTION
-    -->
     <section class="bg-white border-t border-b border-gray-200 py-12 sm:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-8 text-center">You May Also Like</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Product 1 -->
                 <div class="bg-gray-50 rounded-lg shadow-sm border border-gray-200 p-4 text-center">
                     <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Ashwagandha" alt="Ashwagandha" class="w-full h-auto object-cover rounded-md mb-4">
                     <h3 class="font-semibold text-gray-800">Ashwagandha Capsules</h3>
@@ -451,7 +524,6 @@
                          <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
                     </button>
                 </div>
-                <!-- Product 2 -->
                 <div class="bg-gray-50 rounded-lg shadow-sm border border-gray-200 p-4 text-center">
                     <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Turmeric" alt="Turmeric" class="w-full h-auto object-cover rounded-md mb-4">
                     <h3 class="font-semibold text-gray-800">Turmeric Curcumin</h3>
@@ -460,7 +532,6 @@
                          <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
                     </button>
                 </div>
-                <!-- Product 3 -->
                 <div class="bg-gray-50 rounded-lg shadow-sm border border-gray-200 p-4 text-center">
                     <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Spirulina" alt="Spirulina" class="w-full h-auto object-cover rounded-md mb-4">
                     <h3 class="font-semibold text-gray-800">Organic Spirulina</h3>
@@ -469,7 +540,6 @@
                          <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
                     </button>
                 </div>
-                <!-- Product 4 -->
                 <div class="bg-gray-50 rounded-lg shadow-sm border border-gray-200 p-4 text-center">
                     <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Triphala" alt="Triphala" class="w-full h-auto object-cover rounded-md mb-4">
                     <h3 class="font-semibold text-gray-800">Triphala Powder</h3>
@@ -482,13 +552,9 @@
         </div>
     </section>
     
-    <!-- 
-      NEW: SITE-WIDE TRUST BADGES (from screenshot)
-    -->
     <section class="py-12 bg-white border-t border-b border-gray-200">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Badge 1 -->
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0 p-3 bg-purple-100 rounded-full">
                         <ion-icon name="cash-outline" class="h-8 w-8 text-purple-600"></ion-icon>
@@ -498,7 +564,6 @@
                         <p class="text-sm text-gray-600">Pan-India</routes>
                     </div>
                 </div>
-                <!-- Badge 2 -->
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0 p-3 bg-purple-100 rounded-full">
                         <ion-icon name="car-sport-outline" class="h-8 w-8 text-purple-600"></ion-icon>
@@ -508,7 +573,6 @@
                         <p class="text-sm text-gray-600">Above ₹500</p>
                     </div>
                 </div>
-                <!-- Badge 3 -->
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0 p-3 bg-purple-100 rounded-full">
                         <ion-icon name="ribbon-outline" class="h-8 w-8 text-purple-600"></ion-icon>
@@ -518,7 +582,6 @@
                         <p class="text-sm text-gray-600">Certified</p>
                     </div>
                 </div>
-                <!-- Badge 4 -->
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0 p-3 bg-purple-100 rounded-full">
                         <ion-icon name="document-text-outline" class="h-8 w-8 text-purple-600"></ion-icon>
@@ -532,22 +595,13 @@
         </div>
     </section>
 
-    <!-- 
-      TOAST NOTIFICATION (Hidden by default)
-    -->
     <div id="toast">
         Item added to cart!
     </div>
 
-    <!-- 
-      CART MODAL / SLIDE-OUT
-    -->
-    <!-- Overlay -->
     <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
     
-    <!-- Modal Content -->
     <div id="cart-modal" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white shadow-lg z-50 flex flex-col">
-        <!-- Cart Header -->
         <div class="flex justify-between items-center p-4 border-b border-gray-200">
             <h2 class="text-xl font-semibold">Your Cart</h2>
             <button id="close-cart-btn" class="p-2 rounded-full text-gray-700 hover:bg-gray-100">
@@ -555,10 +609,7 @@
             </button>
         </div>
         
-        <!-- Cart Body -->
         <div id="cart-body" class="flex-1 overflow-y-auto p-4">
-            <!-- Cart items will be dynamically inserted here -->
-            <!-- Example of empty cart -->
             <div id="empty-cart-message" class="text-center text-gray-500 pt-16">
                 <ion-icon name="cart-outline" class="h-20 w-20 mx-auto"></ion-icon>
                 <p class="mt-4 text-lg">Your cart is empty</p>
@@ -566,7 +617,6 @@
             </div>
         </div>
         
-        <!-- Cart Footer -->
         <div id="cart-footer" class="p-4 border-t border-gray-200 bg-gray-50 hidden">
             <div class="flex justify-between items-center mb-4">
                 <span class="text-lg font-semibold">Subtotal:</span>
@@ -578,19 +628,14 @@
         </div>
     </div>
 
-    <!-- 
-      FOOTER
-    -->
     <footer class="bg-gray-800 text-gray-300 pt-16 pb-8">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Column 1: Brand -->
                 <div>
                     <h3 class="text-xl font-bold text-white mb-4">Nutriyanshu</h3>
                     <p class="text-sm">Your one-stop shop for organic and natural supplements.</p>
                 </div>
                 
-                <!-- Column 2: Quick Links -->
                 <div>
                     <h4 class="font-semibold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
@@ -601,7 +646,6 @@
                     </ul>
                 </div>
                 
-                <!-- Column 3: Customer Service -->
                 <div>
                     <h4 class="font-semibold text-white mb-4">Customer Service</h4>
                     <ul class="space-y-2 text-sm">
@@ -612,7 +656,6 @@
                     </ul>
                 </div>
 
-                <!-- Column 4: Newsletter -->
                 <div>
                     <h4 class="font-semibold text-white mb-4">Newsletter</h4>
                     <p class="text-sm mb-2">Subscribe for updates and special offers.</p>
@@ -623,31 +666,20 @@
                 </div>
             </div>
             
-            <!-- Bottom Footer -->
             <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
                 <p>&copy; 2025 Nutriyanshu. All Rights Reserved.</p>
-                <!-- Payment icons can be added here -->
-            </div>
+                </div>
         </div>
     </footer>
 
 
-    <!-- 
-      JAVASCRIPT LOGIC
-    -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
             // --- STATE ---
             let cart = [];
             let quantity = 1;
-            let selectedVariant = '200g'; // NEW
-            const product = {
-                id: 'moringa-200g',
-                name: 'Organic Moringa Leaf Powder (200g)',
-                price: 249,
-                image: 'https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+1'
-            };
+            let selectedVariant = '200g'; 
             
             // Product data for variants
             const productData = {
@@ -680,7 +712,7 @@
             const pincodeInput = document.getElementById('pincode-input');
             const pincodeCheckBtn = document.getElementById('pincode-check-btn');
             const pincodeMessage = document.getElementById('pincode-message');
-            const variantButtons = document.querySelectorAll('.variant-btn'); // NEW
+            const variantButtons = document.querySelectorAll('.variant-btn');
 
             // Cart
             const openCartBtn = document.getElementById('open-cart-btn');
@@ -692,6 +724,13 @@
             const cartFooter = document.getElementById('cart-footer');
             const cartSubtotal = document.getElementById('cart-subtotal');
             const emptyCartMessage = document.getElementById('empty-cart-message');
+            
+            // NEW: Review Form
+            const showReviewFormBtn = document.getElementById('show-review-form-btn');
+            const reviewForm = document.getElementById('review-form');
+            const submitReviewForm = document.getElementById('submit-review-form');
+            const cancelReviewBtn = document.getElementById('cancel-review-btn');
+
 
             // --- FUNCTIONS ---
             
@@ -820,6 +859,12 @@
                     }
                 }, 500);
             }
+            
+            // NEW: Toggle Review Form
+            function toggleReviewForm() {
+                reviewForm.classList.toggle('open');
+            }
+
 
             // --- EVENT LISTENERS ---
             
@@ -895,16 +940,30 @@
                 });
             });
 
-            // NEW: Variant Selection
+            // Variant Selection
             variantButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     variantButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
-                    selectedVariant = button.textContent.trim().split(' ')[0]; // e.g., "100gm" or "200gm"
-                    // In a real app, you'd update price, image, etc., here.
-                    // For this demo, the JS `productData` handles the correct item in cart.
+                    selectedVariant = button.textContent.trim().split(' ')[0].toLowerCase(); // e.g., "100g" or "200g"
                 });
             });
+            
+            // NEW: Review Form Listeners
+            showReviewFormBtn.addEventListener('click', toggleReviewForm);
+            cancelReviewBtn.addEventListener('click', toggleReviewForm);
+            
+            submitReviewForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Stop form from actually submitting
+                
+                // In a real app, you'd send this data to a server.
+                // For now, we'll just show a toast and hide the form.
+                
+                showToast('Thank you for your review!');
+                toggleReviewForm();
+                submitReviewForm.reset(); // Clear the form fields
+            });
+
             
             // --- INITIALIZATION ---
             updateCartIcon(); // Set initial cart count (0)
