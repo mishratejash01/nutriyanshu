@@ -36,17 +36,15 @@
         /* Custom styles */
         body {
             font-family: 'Inter', sans-serif;
-            color: #333333; /* Softer than pure black */
+            color: #333333;
         }
         
-        /* Apply heading font */
         h1, h2, h3, h4, .font-heading {
             font-family: 'Lora', serif;
         }
 
-        /* NEW: Updated Premium Button Styles */
         .btn-primary {
-            background-color: #BFA160; /* Theme Gold */
+            background-color: #BFA160;
             color: white;
             border: 1px solid #BFA160;
             transition: all 0.3s ease;
@@ -58,12 +56,12 @@
         
         .btn-secondary {
             background-color: white;
-            color: #BFA160; /* Theme Gold */
+            color: #BFA160;
             border: 1px solid #BFA160;
             transition: all 0.3s ease;
         }
         .btn-secondary:hover {
-            background-color: #fcfaf6; /* Lightest beige */
+            background-color: #fcfaf6;
         }
         
         .btn-secondary-light {
@@ -76,7 +74,6 @@
              background-color: #f3f4f6;
         }
 
-        /* Cart Modal styles */
         #cart-modal {
             transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
@@ -95,14 +92,12 @@
             transition: opacity 0.3s ease-in-out;
         }
 
-        /* Accordion styles */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
         }
         
-        /* Toast Notification */
         #toast {
             position: fixed;
             bottom: -100px;
@@ -119,12 +114,10 @@
             bottom: 30px;
         }
 
-        /* Thumbnail border */
         .thumbnail-active {
-            border-color: #225723 !important; /* Theme Green */
+            border-color: #225723 !important;
         }
 
-        /* Variant button styles */
         .variant-btn {
             border: 1px solid #d1d5db;
             background-color: #f9fafb;
@@ -135,19 +128,18 @@
             transition: all 0.3s ease;
         }
         .variant-btn.active {
-            border-color: #BFA160; /* Theme Gold */
+            border-color: #BFA160;
             background-color: #fcfaf6;
-            color: #225723; /* CHANGED: Was theme-gold, now theme-green for readability */
+            color: #225723;
             font-weight: 600;
         }
         
-        /* CHANGED: Repositioned save-tag to top-right corner */
         .save-tag {
             position: absolute;
             top: -8px;
             right: -8px;
             transform: none;
-            background-color: #225723; /* Theme Green */
+            background-color: #225723;
             color: white;
             font-size: 10px;
             font-weight: bold;
@@ -155,7 +147,6 @@
             border-radius: 4px;
         }
         
-        /* Review Form styles */
         #review-form { display: none; }
         #review-form.open { display: block; }
         .star-rating-input {
@@ -177,12 +168,22 @@
             color: #f59e0b;
         }
         
+        /* NEW: Cart Quantity Selector Styles */
+        .cart-qty-selector {
+            height: 36px; /* Set a fixed height */
+        }
+        .cart-qty-btn {
+            line-height: 1; /* Aligns the + and - symbols vertically */
+            padding-left: 0.75rem; /* 12px */
+            padding-right: 0.75rem; /* 12px */
+        }
+        
     </style>
 </head>
 <body class="bg-theme-bg">
 
     <div class="bg-gray-800 text-white text-sm text-center py-2 px-4">
-        Free shipping on orders over ₹500
+        Free Shipping On All Orders | Pan-India Delivery
     </div>
 
     <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
@@ -579,8 +580,7 @@
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold font-heading text-gray-800">Free Delivery</h4>
-                        <p class="text-sm text-gray-600">Above ₹500</p>
-                    </div>
+                        <p class="text-sm text-gray-600">On All Orders</p> </div>
                 </div>
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
