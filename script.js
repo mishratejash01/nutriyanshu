@@ -3,8 +3,22 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- STATE ---
-    // Cart is loaded from localStorage to persist across pages
+    
+    // Load cart from localStorage
     let cart = JSON.parse(localStorage.getItem('nutriyanshuCart')) || [];
+
+    // *** NEW FIX: CLEAN CART ON LOAD ***
+    // This removes any "bad" items (like the 'undefined' one)
+    // that were saved in localStorage before the previous bug fix.
+    const cleanCart = cart.filter(item => item.id && item.price);
+    if (cleanCart.length !== cart.length) {
+        // If we found bad items, save the clean cart back to storage
+        cart = cleanCart;
+        localStorage.setItem('nutriyanshuCart', JSON.stringify(cart));
+    }
+    // Now, 'cart' is guaranteed to only have valid items.
+
+
     let quantity = 1;
     let selectedVariant = '200g'; 
     
@@ -137,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleAddToCart() {
         const productToAdd = productData[selectedVariant];
         
-        // This check prevents the 'undefined' error
         if (!productToAdd) {
             console.error('Invalid product variant selected:', selectedVariant);
             return;
@@ -279,10 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 variantButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 
-                // *** THIS IS THE FIX ***
-                // We use firstChild.textContent to get *only* the text ("200 gm")
-                // and ignore the <span> tag's text ("Save More").
-                // Then we format it to match the '200g' key in productData.
+                // This logic correctly gets the variant text (e.g., "200g")
                 selectedVariant = button.firstChild.textContent.trim().split(' ')[0] + 'g';
             });
         });
