@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns & Refunds - Nutriyanshu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'theme-green': '#225723',
+                        'theme-gold': '#BFA160',
+                        'theme-bg': '#FBFBF9',
+                        'theme-text': '#333333',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'heading': ['Lora', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; color: #333333; }
+        h1, h2, h3, h4, .font-heading { font-family: 'Lora', serif; }
+        .btn-primary { background-color: #BFA160; color: white; border: 1px solid #BFA160; transition: all 0.3s ease; }
+        .btn-primary:hover { background-color: #a68b50; border-color: #a68b50; }
+        .btn-secondary { background-color: white; color: #BFA160; border: 1px solid #BFA160; transition: all 0.3s ease; }
+        .btn-secondary:hover { background-color: #fcfaf6; }
+        #cart-modal { transition: transform 0.3s ease-in-out; transform: translateX(100%); }
+        #cart-modal.open { transform: translateX(0); }
+        #cart-overlay { opacity: 0; visibility: hidden; transition: opacity 0.3s ease-in-out, visibility 0s 0.3s; }
+        #cart-overlay.open { opacity: 1; visibility: visible; transition: opacity 0.3s ease-in-out; }
+        #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); padding: 1rem 2rem; background-color: #2d3748; color: white; border-radius: 8px; z-index: 100; transition: bottom 0.5s ease-in-out; }
+        #toast.show { bottom: 30px; }
+        /* Page-specific content styles */
+        .content-container p { margin-bottom: 1.5rem; }
+        .content-container h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; margin-top: 2rem; }
+    </style>
+</head>
+<body class="bg-theme-bg">
+
+    <div class="bg-gray-800 text-white text-sm text-center py-2 px-4">
+        Free shipping on orders over ₹500
+    </div>
+
+    <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html">
+                        <img class="h-10 w-auto" src="logo.WEBP" alt="Nutriyanshu">
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <button id="open-cart-btn" class="relative p-2 rounded-full text-gray-700 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open cart</span>
+                        <ion-icon name="cart-outline" class="h-7 w-7"></ion-icon>
+                        <span id="cart-item-count" class_name="hidden"
+                              class="absolute top-0 right-0 h-5 w-5 bg-theme-gold text-white text-xs font-bold rounded-full flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+                            0
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 my-12 sm:my-16">
+        <div class="max-w-3xl mx-auto bg-white p-8 sm:p-12 rounded-lg shadow-sm border border-gray-200 content-container">
+            <h1 class="text-3xl font-bold font-heading text-gray-900 mb-6">Returns & Refunds Policy</h1>
+            <p class="text-gray-700">We have a 30-day return policy, which means you have 30 days after receiving your item to request a return.</p>
+            <p class="text-gray-700">To be eligible for a return, your item must be in the same condition that you received it, unopened and unused, with tags, and in its original packaging. You’ll also need the receipt or proof of purchase.</p>
+
+            <h2 class="font-heading">How to Start a Return</h2>
+            <p class="text-gray-700">To start a return, you can contact us at <a href="mailto:support@nutriyanshu.com" class="text-theme-green hover:underline">support@nutriyanshu.com</a>. If your return is accepted, we’ll send you a return shipping label, as well as instructions on how and where to send your package. Items sent back to us without first requesting a return will not be accepted.</p>
+
+            <h2 class="font-heading">Damages and Issues</h2>
+            <p class="text-gray-700">Please inspect your order upon reception and contact us immediately if the item is defective, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.</p>
+
+            <h2 class="font-heading">Refunds</h2>
+            <p class="text-gray-700">We will notify you once we’ve received and inspected your return, and let you know if the refund was approved or not. If approved, you’ll be automatically refunded on your original payment method. Please remember it can take some time for your bank or credit card company to process and post the refund too.</p>
+        </div>
+    </main>
+
+    <div id="toast">
+        Item added to cart!
+    </div>
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+    <div id="cart-modal" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white shadow-lg z-50 flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b border-gray-200">
+            <h2 class="text-xl font-semibold font-heading">Your Cart</h2>
+            <button id="close-cart-btn" class="p-2 rounded-full text-gray-700 hover:bg-gray-100">
+                <ion-icon name="close-outline" class="h-6 w-6"></ion-icon>
+            </button>
+        </div>
+        <div id="cart-body" class="flex-1 overflow-y-auto p-4">
+            <div id="empty-cart-message" class="text-center text-gray-500 pt-16">
+                <ion-icon name="cart-outline" class="h-20 w-20 mx-auto"></ion-icon>
+                <p class="mt-4 text-lg">Your cart is empty</p>
+                <p class="text-sm">Looks like you haven't added anything yet.</p>
+            </div>
+        </div>
+        <div id="cart-footer" class="p-4 border-t border-gray-200 bg-gray-50 hidden">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-lg font-semibold">Subtotal:</span>
+                <span id="cart-subtotal" class="text-lg font-bold">₹0</span>
+            </div>
+            <button class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-primary">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-theme-green text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="index.html" class="mb-4 inline-block">
+                        <img class="h-10 w-auto" src="logo.WEBP" alt="Nutriyanshu">
+                    </a>
+                    <p class="text-sm">Your one-stop shop for organic and natural supplements.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold font-heading text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="shop-all.html" class="hover:text-white">Shop All</a></li>
+                        <li><a href="about-us.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold font-heading text-white mb-4">Customer Service</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="faq.html" class="hover:text-white">FAQ</a></li>
+                        <li><a href="shipping-policy.html" class="hover:text-white">Shipping Policy</a></li>
+                        <li><a href="returns-refunds.html" class="hover:text-white">Returns & Refunds</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold font-heading text-white mb-4">Newsletter</h4>
+                    <p class="text-sm mb-2">Subscribe for updates and special offers.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email" class="flex-1 p-2 border border-gray-600 bg-gray-100 text-gray-900 rounded-md text-sm focus:outline-none">
+                        <button class="px-4 py-2 bg-theme-gold text-white rounded-md text-sm hover:bg-theme-gold/90">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
+                <p>&copy; 2025 Nutriyanshu. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
