@@ -8,73 +8,77 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'theme-green': '#225723',
+                        'theme-gold': '#BFA160',
+                        'theme-bg': '#FBFBF9',
+                        'theme-text': '#333333',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'heading': ['Lora', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        /* --- PREMIUM DESIGN SYSTEM --- */
+        /* Custom styles */
         body {
-            font-family: 'Sora', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Inter', sans-serif;
+            color: #333333; /* Softer than pure black */
+        }
+        
+        /* Apply heading font */
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Lora', serif;
         }
 
-        :root {
-            --color-primary: #6d28d9; /* Deep, rich purple */
-            --color-primary-hover: #5b21b6;
-            --color-primary-light: #f5f3ff;
-            --color-green: #166534; /* Deeper, more sophisticated green */
-            --color-text-primary: #1f2937;
-            --color-text-secondary: #4b5563;
-            --color-border: #e5e7eb;
-            --color-background: #f9fafb;
-        }
-
-        /* --- Buttons --- */
-        .btn {
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            transform: translateY(0);
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
-        }
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
-
+        /* NEW: Updated Premium Button Styles */
         .btn-primary {
-            background-color: var(--color-primary);
+            background-color: #BFA160; /* Theme Gold */
             color: white;
+            border: 1px solid #BFA160;
+            transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: var(--color-primary-hover);
+            background-color: #a68b50;
+            border-color: #a68b50;
         }
         
         .btn-secondary {
             background-color: white;
-            color: var(--color-primary);
-            border: 1px solid var(--color-primary);
+            color: #BFA160; /* Theme Gold */
+            border: 1px solid #BFA160;
+            transition: all 0.3s ease;
         }
         .btn-secondary:hover {
-            background-color: var(--color-primary-light);
+            background-color: #fcfaf6; /* Lightest beige */
+        }
+        
+        .btn-secondary-light {
+            background-color: #f9fafb;
+            color: #374151;
+            border: 1px solid #d1d5db;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary-light:hover {
+             background-color: #f3f4f6;
         }
 
-        /* --- Header: Glassmorphism Effect --- */
-        .header-scrolled {
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom-color: rgba(230, 230, 230, 0.5);
-        }
-
-        /* --- Cart Modal --- */
+        /* Cart Modal styles */
         #cart-modal {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.3s ease-in-out;
             transform: translateX(100%);
         }
         #cart-modal.open {
@@ -83,344 +87,606 @@
         #cart-overlay {
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.3s ease-in-out, visibility 0s 0.3s;
         }
         #cart-overlay.open {
             opacity: 1;
             visibility: visible;
+            transition: opacity 0.3s ease-in-out;
         }
 
-        /* --- Accordion --- */
+        /* Accordion styles */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: max-height 0.3s ease-out;
         }
-
-        /* --- Toast Notification --- */
+        
+        /* Toast Notification */
         #toast {
             position: fixed;
             bottom: -100px;
             left: 50%;
             transform: translateX(-50%);
             padding: 1rem 2rem;
-            background-color: var(--color-text-primary);
+            background-color: #2d3748;
             color: white;
             border-radius: 8px;
             z-index: 100;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
+            transition: bottom 0.5s ease-in-out;
         }
         #toast.show {
             bottom: 30px;
-            transform: translateX(-50%) scale(1);
         }
 
-        /* --- Image Gallery --- */
-        .thumbnail-img {
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
+        /* Thumbnail border */
         .thumbnail-active {
-            border-color: var(--color-primary) !important;
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #225723 !important; /* Theme Green */
         }
 
-        /* --- Variant Buttons --- */
+        /* Variant button styles */
         .variant-btn {
-            border: 1px solid var(--color-border);
-            background-color: white;
-            padding: 10px 20px;
+            border: 1px solid #d1d5db;
+            background-color: #f9fafb;
+            padding: 8px 16px;
             border-radius: 8px;
             cursor: pointer;
             position: relative;
-            font-weight: 600;
-            color: var(--color-text-secondary);
             transition: all 0.3s ease;
         }
         .variant-btn.active {
-            border-color: var(--color-primary);
-            background-color: var(--color-primary-light);
-            color: var(--color-primary);
+            border-color: #BFA160; /* Theme Gold */
+            background-color: #fcfaf6;
+            color: #BFA160;
+            font-weight: 600;
         }
         .save-tag {
             position: absolute;
-            bottom: -12px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--color-green);
+            background-color: #225723; /* Theme Green */
             color: white;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 6px;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
         
-        /* --- General Premium Touches --- */
-        h1, h2, h3, h4 {
-            font-weight: 700;
-            color: var(--color-text-primary);
+        /* Review Form styles */
+        #review-form { display: none; }
+        #review-form.open { display: block; }
+        .star-rating-input {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 4px;
+        }
+        .star-rating-input input { display: none; }
+        .star-rating-input label {
+            font-size: 2rem;
+            color: #d1d5db;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star-rating-input input:checked ~ label,
+        .star-rating-input label:hover,
+        .star-rating-input label:hover ~ label {
+            color: #f59e0b;
         }
         
-        p, span, li, a {
-            color: var(--color-text-secondary);
-        }
-        
-        .premium-card {
-            background-color: white;
-            border: 1px solid var(--color-border);
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
-            transition: all 0.3s ease;
-        }
-        .premium-card:hover {
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            transform: translateY(-2px);
-        }
     </style>
 </head>
-<body class="bg-white">
+<body class="bg-theme-bg">
 
-    <div class="bg-gray-900 text-white text-sm text-center py-2.5 px-4 font-light">
-        Free Shipping on Orders Over ₹500
+    <div class="bg-gray-800 text-white text-sm text-center py-2 px-4">
+        Free shipping on orders over ₹500
     </div>
 
-    <header id="main-header" class="bg-white/80 border-b border-gray-200 sticky top-0 z-40 transition-all duration-300">
+    <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="#" class="text-3xl font-bold" style="color: var(--color-green);">
-                    Nutriyanshu
-                </a>
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-3xl font-bold font-heading text-theme-green">
+                        Nutriyanshu
+                    </a>
+                </div>
                 
-                <div class="flex items-center space-x-3">
-                    <button class="p-2 text-gray-600 hover:text-gray-900"><ion-icon name="search-outline" class="h-6 w-6"></ion-icon></button>
-                    <button class="p-2 text-gray-600 hover:text-gray-900"><ion-icon name="person-outline" class="h-6 w-6"></ion-icon></button>
-                    <button id="open-cart-btn" class="relative p-2 text-gray-600 hover:text-gray-900">
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <button class="relative p-2 rounded-full text-gray-700 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Search</span>
+                        <ion-icon name="search-outline" class="h-6 w-6"></ion-icon>
+                    </button>
+                    <button class="relative p-2 rounded-full text-gray-700 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">My Account</span>
+                        <ion-icon name="person-outline" class="h-6 w-6"></ion-icon>
+                    </button>
+                    <button id="open-cart-btn" class="relative p-2 rounded-full text-gray-700 hover:bg-gray-100 focus:outline-none">
+                        <span class="sr-only">Open cart</span>
                         <ion-icon name="cart-outline" class="h-7 w-7"></ion-icon>
-                        <span id="cart-item-count" class="absolute top-0 right-0 h-5 w-5 bg-red-600 text-white text-xs font-bold rounded-full flex items-center justify-center">0</span>
+                        <span id="cart-item-count" class_name="hidden"
+                              class="absolute top-0 right-0 h-5 w-5 bg-theme-gold text-white text-xs font-bold rounded-full flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+                            0
+                        </span>
                     </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 mb-16 sm:mb-24">
-        <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-start">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <ol class="flex items-center space-x-2 text-sm text-gray-500">
+            <li><a href="#" class="hover:underline hover:text-gray-700">Home</a></li>
+            <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
+            <li><a href="#" class="hover:underline hover:text-gray-700">Supplements</a></li>
+            <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
+            <li><span class="font-medium text-gray-700">Moringa Powder</span></li>
+        </ol>
+    </nav>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4 sm:mt-8 mb-12 sm:mb-16">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-start">
             
-            <div class="lg:sticky lg:top-28">
+            <div class="lg:sticky lg:top-24">
                 <div class="flex flex-col-reverse sm:flex-row gap-4">
-                    <div class="flex sm:flex-col gap-3">
-                        <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+1" alt="Moringa Powder - main" class="thumbnail-img h-20 w-20 object-cover rounded-lg cursor-pointer thumbnail-active" data-src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Moringa+Powder">
-                        <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+2" alt="Moringa Powder - view 2" class="thumbnail-img h-20 w-20 object-cover rounded-lg cursor-pointer" data-src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Moringa+Leaves">
-                        <img src="https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+3" alt="Moringa Powder - view 3" class="thumbnail-img h-20 w-20 object-cover rounded-lg cursor-pointer" data-src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Nutrients">
+                    <div class="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0">
+                        <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                             alt="Moringa Powder - main" 
+                             class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent thumbnail-active"
+                             data-src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+                        <img src="https://images.unsplash.com/photo-1600503467431-c655c6d36e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                             alt="Moringa Powder - view 2" 
+                             class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
+                             data-src="https://images.unsplash.com/photo-1600503467431-c655c6d36e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+                        <img src="https://images.unsplash.com/photo-1590333893608-621b4a3d7bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                             alt="Moringa Powder - view 3" 
+                             class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
+                             data-src="https://images.unsplash.com/photo-1590333893608-621b4a3d7bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
                     </div>
                     <div class="flex-1">
-                        <img id="main-product-image" src="https://placehold.co/600x600/f0f7f0/2a6f2b?text=Moringa+Powder" alt="Organic Moringa Leaf Powder" class="w-full h-auto object-cover rounded-xl shadow-lg">
+                        <img id="main-product-image" 
+                             src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                             alt="Organic Moringa Leaf Powder"
+                             class="w-full h-auto object-cover rounded-lg shadow-md">
                     </div>
                 </div>
             </div>
             
-            <div class="mt-10 lg:mt-0">
-                <p class="text-sm font-semibold tracking-wider uppercase" style="color: var(--color-green);">Carbamide Forte</p>
-                <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2">Organic Moringa Leaf Powder</h1>
+            <div class="mt-8 lg:mt-0">
+                <p class="text-sm text-gray-500">Carbamide Forte</p>
+                <h1 class="text-2xl sm:text-3xl font-bold font-heading text-gray-900 mt-1">Organic Moringa Leaf Powder</h1>
                 
-                <div class="mt-4 flex items-center gap-2">
-                    <div class="flex text-yellow-400">
-                        <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon>
-                    </div>
-                    <span class="text-md font-semibold text-gray-800">4.68</span>
-                    <a href="#reviews" class="text-sm text-gray-500 hover:underline">(31 Reviews)</a>
-                </div>
-                
-                <div class="mt-5 flex items-baseline gap-3">
-                    <span class="text-4xl font-bold text-gray-900">₹249</span>
-                    <span class="text-xl text-gray-400 line-through">₹450</span>
-                </div>
-                <p class="text-sm text-gray-400 mt-1">Incl. of all taxes</p>
-                
-                <div class="mt-8">
-                    <span class="text-md font-semibold text-gray-800">Size:</span>
-                    <div class="flex gap-3 mt-3">
-                        <button class="variant-btn">100 gm</button>
-                        <button class="variant-btn active">200 gm <span class="save-tag">Save 15%</span></button>
-                    </div>
+                <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                    <span class="flex items-center text-sm text-theme-green">
+                        <ion-icon name="checkmark-circle" class="h-5 w-5 mr-1"></ion-icon> Boosts Immunity
+                    </span>
+                    <span class="flex items-center text-sm text-theme-green">
+                        <ion-icon name="checkmark-circle" class="h-5 w-5 mr-1"></ion-icon> Supports Digestion
+                    </span>
+                    <span class="flex items-center text-sm text-theme-green">
+                        <ion-icon name="checkmark-circle" class="h-5 w-5 mr-1"></ion-icon> Nutrient-Rich Superfood
+                    </span>
                 </div>
 
-                <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
-                    <div class="flex items-center border border-gray-300 rounded-lg justify-between">
-                        <button id="qty-decrease" class="p-3 text-xl font-bold text-gray-600 hover:bg-gray-100 rounded-l-lg">-</button>
-                        <span id="qty-display" class="w-12 text-center text-xl font-bold text-gray-900">1</span>
-                        <button id="qty-increase" class="p-3 text-xl font-bold text-gray-600 hover:bg-gray-100 rounded-r-lg">+</button>
+                <div class="mt-3 flex items-center gap-2">
+                    <div class="flex text-yellow-400">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star-half"></ion-icon>
                     </div>
-                    <div class="sm:col-span-2">
-                         <button id="add-to-cart-btn" class="w-full btn btn-primary flex items-center justify-center gap-2">
-                            <ion-icon name="cart-outline" class="h-6 w-6"></ion-icon>
-                            Add to Cart
+                    <span class="text-md font-semibold text-gray-800">4.68</span>
+                    <span class="text-sm text-gray-600">(31 Reviews)</span>
+                </div>
+                
+                <div class="mt-4 flex items-baseline gap-3">
+                    <span class="text-2xl sm:text-3xl font-bold text-gray-900">₹249</span>
+                    <span class="text-lg sm:text-xl text-gray-500 line-through">₹450</span>
+                    <span class="px-2 py-0.5 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded-md">SAVE 45%</span>
+                </div>
+                <p class="text-sm text-gray-500 mt-1">Incl. of all taxes</p>
+                
+                <div class="mt-6">
+                    <span class="text-md font-semibold text-gray-700">Size:</span>
+                    <div class="flex gap-3 mt-2">
+                        <button class="variant-btn">100 gm</button>
+                        <button class="variant-btn active">
+                            200 gm
+                            <span class="save-tag">Save More</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="mt-4">
-                    <button id="buy-it-now-btn" class="w-full btn btn-secondary">Buy It Now</button>
+                <div class="mt-8 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-md font-semibold text-gray-700">Qty:</span>
+                        <div class="flex items-center border border-gray-300 rounded-md">
+                            <button id="qty-decrease" class="p-3 text-lg font-bold text-gray-700 hover:bg-gray-100 rounded-l-md">-</button>
+                            <span id="qty-display" class="w-12 text-center text-lg font-semibold">1</span>
+                            <button id="qty-increase" class="p-3 text-lg font-bold text-gray-700 hover:bg-gray-100 rounded-r-md">+</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <button id="add-to-cart-btn" class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-secondary flex items-center justify-center gap-2">
+                            <ion-icon name="cart-outline" class="h-6 w-6"></ion-icon>
+                            Add to Cart
+                        </button>
+                        <button id="buy-it-now-btn" class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-primary flex items-center justify-center gap-2">
+                            <ion-icon name="flash-outline" class="h-6 w-6"></ion-icon>
+                            Buy It Now
+                        </button>
+                    </div>
                 </div>
 
-                <div class="mt-8 p-5 bg-gray-50 rounded-lg border border-gray-200">
-                    <p class="font-semibold text-gray-800">Check Delivery Availability</p>
-                    <div class="flex mt-3 gap-2">
-                        <input id="pincode-input" type="text" placeholder="Enter Pincode" class="flex-1 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400 transition">
-                        <button id="pincode-check-btn" class="px-5 py-3 bg-gray-800 text-white font-semibold rounded-md hover:bg-black transition">Check</button>
+                <div class="mt-6 flex flex-wrap gap-4 items-center">
+                    <div class="flex items-center gap-2">
+                        <ion-icon name="flame" class="h-5 w-5 text-red-500"></ion-icon>
+                        <span class="text-sm font-medium text-gray-800">Recently in 741 carts</span>
+                        <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs font-bold rounded-md">Hurry, Few Left!</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-700">
+                        <ion-icon name="logo-electron" class="h-5 w-5 text-theme-green"></ion-icon> <span>Get it by <span class="font-bold">Nov 11</span></span>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h3 class="text-md font-semibold text-gray-800 flex items-center gap-2">
+                        <ion-icon name="pricetag-outline" class="h-5 w-5 text-gray-600"></ion-icon>
+                        Available offers
+                    </h3>
+                    <div class="mt-2 p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center gap-4">
+                        <span class="text-3xl font-bold text-yellow-600">%</span>
+                        <div>
+                            <p class="font-semibold text-gray-800">₹20 off on prepaid orders</p>
+                            <p class="text-sm text-gray-600">Auto-applied at checkout.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                    <p class="font-semibold text-gray-800">Select Delivery Location</p>
+                    <div class="flex mt-2 gap-2">
+                        <input id="pincode-input" type="text" placeholder="Enter Pincode" class="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-gold">
+                        <button id="pincode-check-btn" class="px-4 py-2 bg-theme-gold text-white rounded-md hover:bg-theme-gold/90">Check</button>
                     </div>
                     <p id="pincode-message" class="text-xs text-gray-500 mt-2"></p>
                 </div>
                 
-                <div class="mt-8 space-y-3">
+                <div class="mt-6 grid grid-cols-3 gap-4 text-center">
+                    <div class="flex flex-col items-center p-2 bg-white rounded-lg border border-gray-200">
+                        <ion-icon name="leaf-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                        <span class="mt-1 text-sm font-medium text-gray-700">100% Organic</span>
+                    </div>
+                    <div class="flex flex-col items-center p-2 bg-white rounded-lg border border-gray-200">
+                        <ion-icon name="shield-checkmark-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                        <span class="mt-1 text-sm font-medium text-gray-700">Secure Payments</span>
+                    </div>
+                    <div class="flex flex-col items-center p-2 bg-white rounded-lg border border-gray-200">
+                        <ion-icon name="refresh-circle-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                        <span class="mt-1 text-sm font-medium text-gray-700">Easy Returns</span>
+                    </div>
+                </div>
+
+                <div class="mt-8 space-y-2">
                     <div class="accordion-item border-b border-gray-200">
                         <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
-                            <span class="text-lg font-semibold text-gray-800">Description</span>
-                            <ion-icon name="add-outline" class="text-2xl transition-transform duration-300"></ion-icon>
+                            <span class="text-lg font-semibold text-gray-800 font-heading">Description</span>
+                            <ion-icon name="add-outline" class="text-xl"></ion-icon>
                         </button>
-                        <div class="accordion-content pb-4 text-gray-600">
-                            <p>Nutriyanshu Organic Moringa Powder is sourced from the finest, organically grown moringa leaves. Known as the 'miracle tree', moringa is a nutritional powerhouse, packed with vitamins, minerals, and antioxidants.</p>
+                        <div class="accordion-content pb-4">
+                            <p class="text-gray-700">
+                                Nutriyanshu Organic Moringa Powder is sourced from the finest, organically grown moringa leaves. Known as the 'miracle tree', moringa is a nutritional powerhouse, packed with vitamins, minerals, and antioxidants.
+                            </p>
                         </div>
                     </div>
+                    
                     <div class="accordion-item border-b border-gray-200">
                         <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
-                            <span class="text-lg font-semibold text-gray-800">Benefits</span>
-                            <ion-icon name="add-outline" class="text-2xl transition-transform duration-300"></ion-icon>
+                            <span class="text-lg font-semibold text-gray-800 font-heading">Benefits</span>
+                            <ion-icon name="add-outline" class="text-xl"></ion-icon>
                         </button>
-                        <div class="accordion-content pb-4 text-gray-600">
-                            <ul class="list-disc list-inside space-y-1">
+                        <div class="accordion-content pb-4">
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
                                 <li>Boosts energy and stamina naturally.</li>
                                 <li>Rich in antioxidants to fight free radicals.</li>
                                 <li>Supports a healthy immune system.</li>
+                                <li>Helps in detoxification and digestion.</li>
+                                <li>Promotes healthy skin and hair.</li>
                             </ul>
                         </div>
                     </div>
+
+                    <div class="accordion-item border-b border-gray-200">
+                        <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
+                            <span class="text-lg font-semibold text-gray-800 font-heading">How to Use</span>
+                            <ion-icon name="add-outline" class="text-xl"></ion-icon>
+                        </button>
+                        <div class="accordion-content pb-4">
+                            <p class="text-gray-700">
+                                Mix 1 scoop (approx. 2g) of moringa powder into a glass of water, smoothie, juice, or your favorite beverage. You can also sprinkle it over salads, soups, or meals.
+                            </p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
+
+        <section class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-gray-200">
+            <h2 class="text-xl sm:text-2xl font-bold font-heading text-gray-900 mb-6 text-center">Frequently Bought Together</h2>
+            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" alt="Moringa Powder" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
+                        <p class="font-semibold mt-2">Moringa Powder</p>
+                        <p class="font-bold text-gray-800">₹249</p>
+                    </div>
+                    
+                    <ion-icon name="add-outline" class="text-3xl text-gray-600"></ion-icon>
+
+                    <div class="flex flex-col items-center text-center">
+                        <img src="https://placehold.co/150x150/f0f7f0/2a6f2b?text=Ashwagandha" alt="Ashwagandha" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
+                        <p class="font-semibold mt-2">Ashwagandha</p>
+                        <p class="font-bold text-gray-800">₹299</p>
+                    </div>
+
+                    <ion-icon name="add-outline" class="text-3xl text-gray-600 hidden sm:block"></ion-icon>
+                    
+                    <div class="flex flex-col items-center text-center mt-4 sm:mt-0">
+                        <img src="https://placehold.co/150x150/f0f7f0/2a6f2b?text=Turmeric" alt="Turmeric" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
+                        <p class="font-semibold mt-2">Turmeric Curcumin</p>
+                        <p class="font-bold text-gray-800">₹349</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                    <div class="flex items-center justify-center gap-4">
+                        <span class="text-lg text-gray-600">Total Price:</span>
+                        <span class="text-2xl font-bold text-gray-900">₹897</span>
+                    </div>
+                    <button class="mt-4 w-full sm:w-auto py-3 px-8 rounded-md text-lg font-semibold btn-primary flex items-center justify-center gap-2 mx-auto">
+                        <ion-icon name="cart-outline" class="h-6 w-6"></ion-icon>
+                        Add all three to Cart
+                    </button>
+                </div>
+            </div>
+        </section>
+
         
-        <div id="reviews" class="mt-20 sm:mt-24 pt-12 sm:pt-16 border-t border-gray-200">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 text-center">What Our Customers Say</h2>
-            <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="premium-card p-6">
-                    <div class="flex items-center mb-2">
-                        <span class="font-semibold text-gray-800">Anjali S.</span>
-                        <span class="ml-auto text-xs text-gray-400">Oct 28, 2025</span>
+        <div class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-gray-200">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl sm:text-2xl font-bold font-heading text-gray-900">Customer Reviews</h2>
+                <button id="show-review-form-btn" class="py-2 px-4 rounded-md text-sm font-semibold btn-secondary-light flex items-center justify-center gap-1.5">
+                    <ion-icon name="create-outline" class="h-5 w-5"></ion-icon>
+                    Write a Review
+                </button>
+            </div>
+            
+            <div id="review-form" class="mb-8 p-4 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+                <h3 class="text-lg font-semibold font-heading text-gray-800 mb-4">Write your review</h3>
+                <form id="submit-review-form" class="space-y-4">
+                    <div>
+                        <label for="review-name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                        <input type="text" id="review-name" required class="mt-1 block w-full sm:w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-gold">
                     </div>
-                    <div class="flex text-yellow-400"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
-                    <p class="mt-3 text-gray-600">"Great product! I've been using this for two weeks and I can already feel a difference in my energy levels. Mixes well in my morning smoothie."</p>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Your Rating</label>
+                        <div class="star-rating-input mt-1">
+                            <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="review-body" class="block text-sm font-medium text-gray-700">Review</label>
+                        <textarea id="review-body" rows="4" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-gold" placeholder="What did you like or dislike?"></textarea>
+                    </div>
+                    <div class="flex gap-4">
+                        <button type="submit" class="py-2 px-5 rounded-md font-semibold btn-primary">Submit Review</button>
+                        <button type="button" id="cancel-review-btn" class="py-2 px-5 rounded-md font-semibold btn-secondary-light">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <span class="font-semibold">Anjali S.</span>
+                        <span class="ml-auto text-sm text-gray-500">Oct 28, 2025</span>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                    </div>
+                    <p class="mt-2 text-gray-700">"Great product! I've been using this moringa powder for two weeks and I can already feel a difference in my energy levels. Mixes well in my morning smoothie."</p>
                 </div>
-                <div class="premium-card p-6">
+                
+                <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
                     <div class="flex items-center mb-2">
-                        <span class="font-semibold text-gray-800">Rohan P.</span>
-                        <span class="ml-auto text-xs text-gray-400">Oct 22, 2025</span>
+                        <span class="font-semibold">Rohan P.</span>
+                        <span class="ml-auto text-sm text-gray-500">Oct 22, 2025</span>
                     </div>
-                    <div class="flex text-yellow-400"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-outline"></ion-icon></div>
-                    <p class="mt-3 text-gray-600">"Good quality and nice packaging. The taste is a bit strong, but that's normal for moringa. Happy with the purchase."</p>
-                </div>
-                 <div class="premium-card p-6">
-                    <div class="flex items-center mb-2">
-                        <span class="font-semibold text-gray-800">Priya K.</span>
-                        <span class="ml-auto text-xs text-gray-400">Oct 19, 2025</span>
+                    <div class="flex text-yellow-400">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
                     </div>
-                    <div class="flex text-yellow-400"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
-                    <p class="mt-3 text-gray-600">"The powder is very fine and high quality. It feels very pure. Will definitely be re-ordering this."</p>
+                    <p class="mt-2 text-gray-700">"Good quality and nice packaging. The taste is a bit strong, but that's normal for moringa. Happy with the purchase."</p>
                 </div>
             </div>
         </div>
 
     </main>
     
-    <section class="bg-gray-50 border-t border-b border-gray-200 py-16 sm:py-24">
+    <section class="bg-white border-t border-b border-gray-200 py-12 sm:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-12 text-center">You May Also Like</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center group">
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 group-hover:shadow-xl">
-                        <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Ashwagandha" alt="Ashwagandha" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105">
-                    </div>
-                    <h3 class="font-semibold text-gray-800 mt-4">Ashwagandha Capsules</h3>
-                    <p class="mt-1 text-lg font-bold" style="color: var(--color-green);">₹299</p>
+            <h2 class="text-xl sm:text-2xl font-bold font-heading text-gray-900 mb-8 text-center">You May Also Like</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 text-center">
+                    <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Ashwagandha" alt="Ashwagandha" class="w-full h-auto object-cover rounded-md mb-4">
+                    <h3 class="font-semibold font-heading text-gray-800">Ashwagandha Capsules</h3>
+                    <p class="mt-1 text-lg font-bold text-theme-green">₹299</p>
+                    <button class="mt-3 w-full py-2 px-4 rounded-md font-semibold btn-secondary flex items-center justify-center gap-2">
+                         <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
+                    </button>
                 </div>
-                <div class="text-center group">
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 group-hover:shadow-xl">
-                        <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Turmeric" alt="Turmeric" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105">
-                    </div>
-                    <h3 class="font-semibold text-gray-800 mt-4">Turmeric Curcumin</h3>
-                    <p class="mt-1 text-lg font-bold" style="color: var(--color-green);">₹349</p>
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 text-center">
+                    <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Turmeric" alt="Turmeric" class="w-full h-auto object-cover rounded-md mb-4">
+                    <h3 class="font-semibold font-heading text-gray-800">Turmeric Curcumin</h3>
+                    <p class="mt-1 text-lg font-bold text-theme-green">₹349</p>
+                    <button class="mt-3 w-full py-2 px-4 rounded-md font-semibold btn-secondary flex items-center justify-center gap-2">
+                         <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
+                    </button>
                 </div>
-                <div class="text-center group">
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 group-hover:shadow-xl">
-                        <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Spirulina" alt="Spirulina" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105">
-                    </div>
-                    <h3 class="font-semibold text-gray-800 mt-4">Organic Spirulina</h3>
-                    <p class="mt-1 text-lg font-bold" style="color: var(--color-green);">₹499</p>
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 text-center">
+                    <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Spirulina" alt="Spirulina" class="w-full h-auto object-cover rounded-md mb-4">
+                    <h3 class="font-semibold font-heading text-gray-800">Organic Spirulina</h3>
+                    <p class="mt-1 text-lg font-bold text-theme-green">₹499</p>
+                    <button class="mt-3 w-full py-2 px-4 rounded-md font-semibold btn-secondary flex items-center justify-center gap-2">
+                         <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
+                    </button>
                 </div>
-                <div class="text-center group">
-                    <div class="bg-white rounded-xl shadow-sm overflow-hidden transition-all duration-300 group-hover:shadow-xl">
-                        <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Triphala" alt="Triphala" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105">
-                    </div>
-                    <h3 class="font-semibold text-gray-800 mt-4">Triphala Powder</h3>
-                    <p class="mt-1 text-lg font-bold" style="color: var(--color-green);">₹199</p>
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 text-center">
+                    <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Triphala" alt="Triphala" class="w-full h-auto object-cover rounded-md mb-4">
+                    <h3 class="font-semibold font-heading text-gray-800">Triphala Powder</h3>
+                    <p class="mt-1 text-lg font-bold text-theme-green">₹199</p>
+                    <button class="mt-3 w-full py-2 px-4 rounded-md font-semibold btn-secondary flex items-center justify-center gap-2">
+                         <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
     </section>
     
-    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8">
+    <section class="py-12 bg-white border-t border-b border-gray-200">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-4">Nutriyanshu</h3>
-                    <p class="text-sm">Your partner in holistic wellness and natural supplements.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
+                        <ion-icon name="cash-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold font-heading text-gray-800">COD Available</h4>
+                        <p class="text-sm text-gray-600">Pan-India</p>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="font-semibold text-white mb-4">Shop</h4>
-                    <ul class="space-y-2 text-sm"><a href="#" class="hover:text-white">Immunity</a> | <a href="#" class="hover:text-white">Digestion</a> | <a href="#" class="hover:text-white">Energy</a></ul>
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
+                        <ion-icon name="car-sport-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold font-heading text-gray-800">Free Delivery</h4>
+                        <p class="text-sm text-gray-600">Above ₹500</p>
+                    </div>
                 </div>
-                 <div>
-                    <h4 class="font-semibold text-white mb-4">Support</h4>
-                    <ul class="space-y-2 text-sm"><a href="#" class="hover:text-white">Contact</a> | <a href="#" class="hover:text-white">FAQ</a> | <a href="#" class="hover:text-white">Returns</a></ul>
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
+                        <ion-icon name="ribbon-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold font-heading text-gray-800">100% Real Products</h4>
+                        <p class="text-sm text-gray-600">Certified</p>
+                    </div>
                 </div>
-                 <div>
-                    <h4 class="font-semibold text-white mb-4">Newsletter</h4>
-                    <p class="text-sm mb-3">Subscribe for updates and special offers.</p>
-                    <div class="flex gap-2">
-                        <input type="email" placeholder="Your email" class="flex-1 p-2 bg-gray-800 border border-gray-700 text-white rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
-                        <button class="px-4 py-2 bg-purple-600 text-white rounded-md text-sm hover:bg-purple-700">Go</button>
+                <div class="flex items-center gap-4">
+                    <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
+                        <ion-icon name="document-text-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold font-heading text-gray-800">Expert Approved</h4>
+                        <p class="text-sm text-gray-600">Curated by specialists</p>
                     </div>
                 </div>
             </div>
-            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm">
-                <p>&copy; 2025 Nutriyanshu. All Rights Reserved.</p>
-            </div>
         </div>
-    </footer>
-    
-    <div id="toast">Item added to cart!</div>
+    </section>
 
-    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-40"></div>
-    <div id="cart-modal" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white shadow-2xl z-50 flex flex-col">
-        <div class="flex justify-between items-center p-5 border-b border-gray-200">
-            <h2 class="text-xl font-bold">Your Cart</h2>
-            <button id="close-cart-btn" class="p-2 text-gray-500 hover:text-gray-900"><ion-icon name="close-outline" class="h-7 w-7"></ion-icon></button>
+    <div id="toast">
+        Item added to cart!
+    </div>
+
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+    
+    <div id="cart-modal" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white shadow-lg z-50 flex flex-col">
+        <div class="flex justify-between items-center p-4 border-b border-gray-200">
+            <h2 class="text-xl font-semibold font-heading">Your Cart</h2>
+            <button id="close-cart-btn" class="p-2 rounded-full text-gray-700 hover:bg-gray-100">
+                <ion-icon name="close-outline" class="h-6 w-6"></ion-icon>
+            </button>
         </div>
-        <div id="cart-body" class="flex-1 overflow-y-auto p-5">
-            <div id="empty-cart-message" class="text-center text-gray-500 pt-20">
-                <ion-icon name="cart-outline" class="h-24 w-24 mx-auto"></ion-icon>
+        
+        <div id="cart-body" class="flex-1 overflow-y-auto p-4">
+            <div id="empty-cart-message" class="text-center text-gray-500 pt-16">
+                <ion-icon name="cart-outline" class="h-20 w-20 mx-auto"></ion-icon>
                 <p class="mt-4 text-lg">Your cart is empty</p>
+                <p class="text-sm">Looks like you haven't added anything yet.</p>
             </div>
         </div>
-        <div id="cart-footer" class="p-5 border-t border-gray-200 bg-gray-50 hidden">
+        
+        <div id="cart-footer" class="p-4 border-t border-gray-200 bg-gray-50 hidden">
             <div class="flex justify-between items-center mb-4">
                 <span class="text-lg font-semibold">Subtotal:</span>
                 <span id="cart-subtotal" class="text-lg font-bold">₹0</span>
             </div>
-            <button class="w-full py-3.5 px-6 rounded-lg text-lg font-semibold btn-primary">Proceed to Checkout</button>
+            <button class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-primary">
+                Proceed to Checkout
+            </button>
         </div>
     </div>
+
+    <footer class="bg-theme-green text-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold font-heading text-white mb-4">Nutriyanshu</h3>
+                    <p class="text-sm">Your one-stop shop for organic and natural supplements.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold font-heading text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Home</a></li>
+                        <li><a href="#" class="hover:text-white">Shop All</a></li>
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold font-heading text-white mb-4">Customer Service</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Returns & Refunds</a></li>
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold font-heading text-white mb-4">Newsletter</h4>
+                    <p class="text-sm mb-2">Subscribe for updates and special offers.</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email" class="flex-1 p-2 border border-gray-600 bg-gray-100 text-gray-900 rounded-md text-sm focus:outline-none">
+                        <button class="px-4 py-2 bg-theme-gold text-white rounded-md text-sm hover:bg-theme-gold/90">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
+                <p>&copy; 2025 Nutriyanshu. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -428,21 +694,39 @@
             // --- STATE ---
             let cart = [];
             let quantity = 1;
-            let selectedVariant = '200gm';
+            let selectedVariant = '200g'; 
             
             const productData = {
-                '100gm': { id: 'moringa-100g', name: 'Organic Moringa Powder (100g)', price: 149, image: 'https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+1' },
-                '200gm': { id: 'moringa-200g', name: 'Organic Moringa Powder (200g)', price: 249, image: 'https://placehold.co/100x100/f0f7f0/2a6f2b?text=Moringa+1' }
-            };
+                '100g': {
+                    id: 'moringa-100g',
+                    name: 'Organic Moringa Leaf Powder (100g)',
+                    price: 149,
+                    image: 'https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80'
+                },
+                '200g': {
+                    id: 'moringa-200g',
+                    name: 'Organic Moringa Leaf Powder (200g)',
+                    price: 249,
+                    image: 'https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80'
+                }
+            }
 
             // --- SELECTORS ---
             const qtyDisplay = document.getElementById('qty-display');
+            const qtyIncrease = document.getElementById('qty-increase');
+            const qtyDecrease = document.getElementById('qty-decrease');
             const addToCartBtn = document.getElementById('add-to-cart-btn');
             const buyItNowBtn = document.getElementById('buy-it-now-btn');
             const mainProductImage = document.getElementById('main-product-image');
             const thumbnailImages = document.querySelectorAll('.thumbnail-img');
             const accordionHeaders = document.querySelectorAll('.accordion-header');
             const toast = document.getElementById('toast');
+            const pincodeInput = document.getElementById('pincode-input');
+            const pincodeCheckBtn = document.getElementById('pincode-check-btn');
+            const pincodeMessage = document.getElementById('pincode-message');
+            const variantButtons = document.querySelectorAll('.variant-btn');
+            const openCartBtn = document.getElementById('open-cart-btn');
+            const closeCartBtn = document.getElementById('close-cart-btn');
             const cartModal = document.getElementById('cart-modal');
             const cartOverlay = document.getElementById('cart-overlay');
             const cartItemCount = document.getElementById('cart-item-count');
@@ -450,49 +734,80 @@
             const cartFooter = document.getElementById('cart-footer');
             const cartSubtotal = document.getElementById('cart-subtotal');
             const emptyCartMessage = document.getElementById('empty-cart-message');
-            const mainHeader = document.getElementById('main-header');
+            const showReviewFormBtn = document.getElementById('show-review-form-btn');
+            const reviewForm = document.getElementById('review-form');
+            const submitReviewForm = document.getElementById('submit-review-form');
+            const cancelReviewBtn = document.getElementById('cancel-review-btn');
 
             // --- FUNCTIONS ---
-            const updateQuantityDisplay = () => { qtyDisplay.textContent = quantity; };
             
-            const showToast = (message) => {
+            function updateQuantityDisplay() {
+                qtyDisplay.textContent = quantity;
+            }
+
+            function showToast(message) {
                 toast.textContent = message;
                 toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 3000);
-            };
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
 
-            const updateCartIcon = () => {
+            function updateCartIcon() {
                 const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-                cartItemCount.textContent = totalItems;
-                cartItemCount.style.display = totalItems > 0 ? 'flex' : 'none';
-            };
+                if (totalItems > 0) {
+                    cartItemCount.textContent = totalItems;
+                    cartItemCount.classList.remove('hidden');
+                } else {
+                    cartItemCount.classList.add('hidden');
+                }
+            }
             
-            const renderCart = () => {
-                emptyCartMessage.style.display = cart.length === 0 ? 'block' : 'none';
-                cartFooter.style.display = cart.length === 0 ? 'none' : 'block';
-                
-                cartBody.querySelectorAll('.cart-item').forEach(item => item.remove());
-                
-                let subtotal = 0;
-                cart.forEach(item => {
-                    subtotal += item.price * item.quantity;
-                    const itemHtml = `
-                        <div class="cart-item flex gap-4 mb-4" data-id="${item.id}">
-                            <img src="${item.image}" alt="${item.name}" class="h-20 w-20 object-cover rounded-md">
-                            <div class="flex-1">
-                                <h3 class="font-semibold text-gray-800">${item.name}</h3>
-                                <p class="text-sm text-gray-500">Qty: ${item.quantity}</p>
-                                <p class="text-md font-semibold mt-1">₹${item.price * item.quantity}</p>
+            function renderCart() {
+                if (cart.length === 0) {
+                    emptyCartMessage.classList.remove('hidden');
+                    cartFooter.classList.add('hidden');
+                    cartBody.querySelectorAll('.cart-item').forEach(item => item.remove());
+                } else {
+                    emptyCartMessage.classList.add('hidden');
+                    cartFooter.classList.remove('hidden');
+                    let subtotal = 0;
+                    cartBody.innerHTML = '';
+                    cart.forEach(item => {
+                        subtotal += item.price * item.quantity;
+                        const itemHtml = `
+                            <div class="cart-item flex gap-4 mb-4" data-id="${item.id}">
+                                <img src="${item.image}" alt="${item.name}" class="h-20 w-20 object-cover rounded-md border border-gray-200">
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-gray-800">${item.name}</h3>
+                                    <div class="flex justify-between items-center">
+                                        <p class="text-sm text-gray-500">Qty: ${item.quantity}</p>
+                                        <p class="text-md font-semibold mt-1">₹${item.price * item.quantity}</p>
+                                    </div>
+                                </div>
+                                <button class="remove-from-cart p-1 text-gray-500 hover:text-red-600 self-start">
+                                    <ion-icon name="trash-outline" class="h-5 w-5"></ion-icon>
+                                </button>
                             </div>
-                            <button class="remove-from-cart p-1 text-gray-500 hover:text-red-600 self-start"><ion-icon name="trash-outline" class="h-5 w-5"></ion-icon></button>
-                        </div>`;
-                    cartBody.insertAdjacentHTML('beforeend', itemHtml);
-                });
-                cartSubtotal.textContent = `₹${subtotal}`;
+                        `;
+                        cartBody.insertAdjacentHTML('beforeend', itemHtml);
+                    });
+                    cartSubtotal.textContent = `₹${subtotal}`;
+                }
                 updateCartIcon();
-            };
+            }
             
-            const handleAddToCart = () => {
+            function handleRemoveFromCart(event) {
+                const removeButton = event.target.closest('.remove-from-cart');
+                if (removeButton) {
+                    const cartItemElement = removeButton.closest('.cart-item');
+                    const itemId = cartItemElement.dataset.id;
+                    cart = cart.filter(item => item.id !== itemId);
+                    renderCart();
+                }
+            }
+
+            function handleAddToCart() {
                 const productToAdd = productData[selectedVariant];
                 const existingItem = cart.find(item => item.id === productToAdd.id);
                 if (existingItem) {
@@ -503,41 +818,83 @@
                 quantity = 1;
                 updateQuantityDisplay();
                 renderCart();
-            };
+            }
 
-            const openCart = () => {
+            function openCart() {
                 renderCart();
                 cartModal.classList.add('open');
                 cartOverlay.classList.add('open');
-            };
-            const closeCart = () => {
+            }
+            
+            function closeCart() {
                 cartModal.classList.remove('open');
                 cartOverlay.classList.remove('open');
-            };
+            }
             
-            // --- EVENT LISTENERS ---
-            document.getElementById('qty-increase').addEventListener('click', () => { quantity++; updateQuantityDisplay(); });
-            document.getElementById('qty-decrease').addEventListener('click', () => { if (quantity > 1) { quantity--; updateQuantityDisplay(); } });
+            function checkPincode() {
+                const pincode = pincodeInput.value;
+                pincodeMessage.classList.remove('text-red-600', 'text-green-600');
+                if (!pincode || pincode.length !== 6 || !/^\d+$/.test(pincode)) {
+                    pincodeMessage.textContent = 'Please enter a valid 6-digit pincode.';
+                    pincodeMessage.classList.add('text-red-600');
+                    return;
+                }
+                pincodeMessage.textContent = 'Checking...';
+                setTimeout(() => {
+                    if (pincode === '110001' || pincode === '400001' || pincode === '560001') {
+                        pincodeMessage.textContent = `Delivery available to ${pincode} in 2-3 days.`;
+                        pincodeMessage.classList.add('text-green-600');
+                    } else {
+                        pincodeMessage.textContent = `Sorry, delivery is not available to ${pincode} right now.`;
+                        pincodeMessage.classList.add('text-red-600');
+                    }
+                }, 500);
+            }
             
-            addToCartBtn.addEventListener('click', () => { handleAddToCart(); showToast('Item added to cart!'); });
-            buyItNowBtn.addEventListener('click', () => { handleAddToCart(); openCart(); });
+            function toggleReviewForm() {
+                reviewForm.classList.toggle('open');
+            }
 
-            document.getElementById('open-cart-btn').addEventListener('click', openCart);
-            document.getElementById('close-cart-btn').addEventListener('click', closeCart);
-            cartOverlay.addEventListener('click', closeCart);
+            // --- EVENT LISTENERS ---
             
-            cartBody.addEventListener('click', (event) => {
-                const removeButton = event.target.closest('.remove-from-cart');
-                if (removeButton) {
-                    const itemId = removeButton.closest('.cart-item').dataset.id;
-                    cart = cart.filter(item => item.id !== itemId);
-                    renderCart();
+            qtyIncrease.addEventListener('click', () => {
+                quantity++;
+                updateQuantityDisplay();
+            });
+            
+            qtyDecrease.addEventListener('click', () => {
+                if (quantity > 1) {
+                    quantity--;
+                    updateQuantityDisplay();
+                }
+            });
+
+            addToCartBtn.addEventListener('click', () => {
+                handleAddToCart();
+                showToast('Item added to cart!');
+            });
+            
+            buyItNowBtn.addEventListener('click', () => {
+                handleAddToCart();
+                openCart();
+            });
+            
+            openCartBtn.addEventListener('click', openCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', closeCart);
+            cartBody.addEventListener('click', handleRemoveFromCart);
+            
+            pincodeCheckBtn.addEventListener('click', checkPincode);
+            pincodeInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    checkPincode();
                 }
             });
 
             thumbnailImages.forEach(img => {
                 img.addEventListener('click', () => {
-                    mainProductImage.src = img.dataset.src;
+                    const newSrc = img.dataset.src;
+                    mainProductImage.src = newSrc;
                     thumbnailImages.forEach(i => i.classList.remove('thumbnail-active'));
                     img.classList.add('thumbnail-active');
                 });
@@ -547,36 +904,38 @@
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     const icon = header.querySelector('ion-icon');
-                    const isOpen = content.style.maxHeight;
-                    
-                    document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
-                    document.querySelectorAll('.accordion-header ion-icon').forEach(i => {
-                        i.setAttribute('name', 'add-outline');
-                        i.classList.remove('rotate-45');
-                    });
-                    
-                    if (!isOpen) {
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.setAttribute('name', 'add-outline');
+                    } else {
                         content.style.maxHeight = content.scrollHeight + 'px';
-                        icon.setAttribute('name', 'close-outline');
+                        icon.setAttribute('name', 'remove-outline');
                     }
                 });
             });
 
-            document.querySelectorAll('.variant-btn').forEach(button => {
+            variantButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    document.querySelectorAll('.variant-btn').forEach(btn => btn.classList.remove('active'));
+                    variantButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
                     selectedVariant = button.textContent.trim().split(' ')[0].toLowerCase();
                 });
             });
-
-            window.addEventListener('scroll', () => {
-                 mainHeader.classList.toggle('header-scrolled', window.scrollY > 50);
-            });
             
+            showReviewFormBtn.addEventListener('click', toggleReviewForm);
+            cancelReviewBtn.addEventListener('click', toggleReviewForm);
+            
+            submitReviewForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showToast('Thank you for your review!');
+                toggleReviewForm();
+                submitReviewForm.reset();
+            });
+
             // --- INITIALIZATION ---
             updateCartIcon();
         });
     </script>
+
 </body>
 </html>
