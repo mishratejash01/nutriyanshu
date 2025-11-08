@@ -187,8 +187,7 @@
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#">
-                        <img class="h-10 w-auto" src="logo.WEBP" alt="Nutriyanshu">
+                    <a href="index.html"> <img class="h-10 w-auto" src="logo.WEBP" alt="Nutriyanshu">
                     </a>
                 </div>
                 
@@ -208,10 +207,8 @@
 
     <nav class="container mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <ol class="flex items-center space-x-2 text-sm text-gray-500">
-            <li><a href="#" class="hover:underline hover:text-gray-700">Home</a></li>
-            <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
-            <li><a href="#" class="hover:underline hover:text-gray-700">Supplements</a></li>
-            <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
+            <li><a href="index.html" class="hover:underline hover:text-gray-700">Home</a></li> <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
+            <li><a href="shop-all.html" class="hover:underline hover:text-gray-700">Supplements</a></li> <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
             <li><span class="font-medium text-gray-700">Moringa Powder</span></li>
         </ol>
     </nav>
@@ -639,8 +636,7 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <a href="#" class="mb-4 inline-block">
-                        <img class_name="h-10 w-auto" src="logo.WEBP" alt="Nutriyanshu">
+                    <a href="index.html" class="mb-4 inline-block"> <img class="h-10 w-auto" src="logo.WEBP" alt="Nutriyanshu">
                     </a>
                     <p class="text-sm">Your one-stop shop for organic and natural supplements.</p>
                 </div>
@@ -648,20 +644,20 @@
                 <div>
                     <h4 class="font-semibold font-heading text-white mb-4">Quick Links</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white">Home</a></li>
-                        <li><a href="#" class="hover:text-white">Shop All</a></li>
-                        <li><a href="#" class="hover:text-white">About Us</a></li>
-                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="shop-all.html" class="hover:text-white">Shop All</a></li>
+                        <li><a href="about-us.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="font-semibold font-heading text-white mb-4">Customer Service</h4>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white">FAQ</a></li>
-                        <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="hover:text-white">Returns & Refunds</a></li>
-                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="faq.html" class="hover:text-white">FAQ</a></li>
+                        <li><a href="shipping-policy.html" class="hover:text-white">Shipping Policy</a></li>
+                        <li><a href="returns-refunds.html" class="hover:text-white">Returns & Refunds</a></li>
+                        <li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li>
                     </ul>
                 </div>
 
@@ -802,6 +798,9 @@
             }
 
             function handleAddToCart() {
+                // This function is only relevant on index.html, but harmless on other pages
+                if (typeof productData === 'undefined') return;
+                
                 const productToAdd = productData[selectedVariant];
                 const existingItem = cart.find(item => item.id === productToAdd.id);
                 if (existingItem) {
@@ -826,6 +825,9 @@
             }
             
             function checkPincode() {
+                // This function is only relevant on index.html, but harmless on other pages
+                if (!pincodeInput) return;
+                
                 const pincode = pincodeInput.value;
                 pincodeMessage.classList.remove('text-red-600', 'text-green-600');
                 if (!pincode || pincode.length !== 6 || !/^\d+$/.test(pincode)) {
@@ -846,55 +848,75 @@
             }
             
             function toggleReviewForm() {
+                // This function is only relevant on index.html, but harmless on other pages
+                if (!reviewForm) return;
                 reviewForm.classList.toggle('open');
             }
 
             // --- EVENT LISTENERS ---
             
-            qtyIncrease.addEventListener('click', () => {
-                quantity++;
-                updateQuantityDisplay();
-            });
-            
-            qtyDecrease.addEventListener('click', () => {
-                if (quantity > 1) {
-                    quantity--;
+            // Quantity controls (only on index.html)
+            if (qtyIncrease) {
+                qtyIncrease.addEventListener('click', () => {
+                    quantity++;
                     updateQuantityDisplay();
-                }
-            });
+                });
+            }
+            if (qtyDecrease) {
+                qtyDecrease.addEventListener('click', () => {
+                    if (quantity > 1) {
+                        quantity--;
+                        updateQuantityDisplay();
+                    }
+                });
+            }
 
-            addToCartBtn.addEventListener('click', () => {
-                handleAddToCart();
-                showToast('Item added to cart!');
-            });
+            // Add to Cart (only on index.html)
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener('click', () => {
+                    handleAddToCart();
+                    showToast('Item added to cart!');
+                });
+            }
             
-            buyItNowBtn.addEventListener('click', () => {
-                handleAddToCart();
-                openCart();
-            });
+            // Buy It Now (only on index.html)
+            if (buyItNowBtn) {
+                buyItNowBtn.addEventListener('click', () => {
+                    handleAddToCart();
+                    openCart();
+                });
+            }
             
+            // Cart modal controls (global)
             openCartBtn.addEventListener('click', openCart);
             closeCartBtn.addEventListener('click', closeCart);
             cartOverlay.addEventListener('click', closeCart);
             cartBody.addEventListener('click', handleRemoveFromCart);
             
-            pincodeCheckBtn.addEventListener('click', checkPincode);
-            pincodeInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    checkPincode();
-                }
-            });
-
-            thumbnailImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    const newSrc = img.dataset.src;
-                    mainProductImage.src = newSrc;
-                    thumbnailImages.forEach(i => i.classList.remove('thumbnail-active'));
-                    img.classList.add('thumbnail-active');
+            // Pincode Check (only on index.html)
+            if (pincodeCheckBtn) {
+                pincodeCheckBtn.addEventListener('click', checkPincode);
+                pincodeInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        checkPincode();
+                    }
                 });
-            });
+            }
 
-            accordionHeaders.forEach(header => {
+            // Image Gallery (only on index.html)
+            if (thumbnailImages.length > 0) {
+                thumbnailImages.forEach(img => {
+                    img.addEventListener('click', () => {
+                        const newSrc = img.dataset.src;
+                        mainProductImage.src = newSrc;
+                        thumbnailImages.forEach(i => i.classList.remove('thumbnail-active'));
+                        img.classList.add('thumbnail-active');
+                    });
+                });
+            }
+
+            // Accordions (global, as FAQ page will use them)
+            document.querySelectorAll('.accordion-header').forEach(header => {
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     const icon = header.querySelector('ion-icon');
@@ -908,26 +930,38 @@
                 });
             });
 
-            variantButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    variantButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    selectedVariant = button.textContent.trim().split(' ')[0].toLowerCase();
+            // Variant Selection (only on index.html)
+            if (variantButtons.length > 0) {
+                variantButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        variantButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        selectedVariant = button.textContent.trim().split(' ')[0].toLowerCase();
+                    });
                 });
-            });
+            }
             
-            showReviewFormBtn.addEventListener('click', toggleReviewForm);
-            cancelReviewBtn.addEventListener('click', toggleReviewForm);
-            
-            submitReviewForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                showToast('Thank you for your review!');
-                toggleReviewForm();
-                submitReviewForm.reset();
-            });
+            // Review Form Listeners (only on index.html)
+            if (showReviewFormBtn) {
+                showReviewFormBtn.addEventListener('click', toggleReviewForm);
+                cancelReviewBtn.addEventListener('click', toggleReviewForm);
+                
+                submitReviewForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    showToast('Thank you for your review!');
+                    toggleReviewForm();
+                    submitReviewForm.reset();
+                });
+            }
 
+            
             // --- INITIALIZATION ---
-            updateCartIcon();
+            updateCartIcon(); // Set initial cart count (0)
+            
+            // Run on index.html only
+            if (qtyDisplay) {
+                updateQuantityDisplay();
+            }
         });
     </script>
 
