@@ -136,6 +136,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleAddToCart() {
         const productToAdd = productData[selectedVariant];
+        
+        // This check prevents the 'undefined' error
+        if (!productToAdd) {
+            console.error('Invalid product variant selected:', selectedVariant);
+            return;
+        }
+        
         const existingItem = cart.find(item => item.id === productToAdd.id);
         if (existingItem) {
             existingItem.quantity += quantity;
@@ -271,7 +278,12 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', () => {
                 variantButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-                selectedVariant = button.textContent.trim().split(' ')[0].toLowerCase();
+                
+                // *** THIS IS THE FIX ***
+                // We use firstChild.textContent to get *only* the text ("200 gm")
+                // and ignore the <span> tag's text ("Save More").
+                // Then we format it to match the '200g' key in productData.
+                selectedVariant = button.firstChild.textContent.trim().split(' ')[0] + 'g';
             });
         });
     }
