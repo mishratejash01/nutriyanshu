@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -23,6 +24,15 @@
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
                         'heading': ['Lora', 'serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 20s linear infinite',
+                    },
+                    keyframes: {
+                        'marquee': {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
                     }
                 }
             }
@@ -41,15 +51,37 @@
         #cart-overlay.open { opacity: 1; visibility: visible; transition: opacity 0.3s ease-in-out; }
         #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); padding: 1rem 2rem; background-color: #2d3748; color: white; border-radius: 8px; z-index: 100; transition: bottom 0.5s ease-in-out; }
         #toast.show { bottom: 30px; }
-        /* Page-specific content styles */
         .content-container p { margin-bottom: 1.5rem; }
         .content-container h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; margin-top: 2rem; }
+        
+        .cart-qty-selector {
+            height: 36px;
+        }
+        .cart-qty-btn {
+            line-height: 1;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
     </style>
 </head>
 <body class="bg-theme-bg">
 
-    <div class="bg-gray-800 text-white text-sm text-center py-2 px-4">
-        Free shipping on orders over ₹500
+    <div class="bg-theme-green text-white text-sm py-2 overflow-hidden whitespace-nowrap font-medium">
+        <div class="inline-block animate-marquee">
+            <span class="mx-4 tracking-wider">FREE SHIPPING ON ALL ORDERS</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">PAN-INDIA DELIVERY</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">100% ORGANIC & NATURAL</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            
+            <span class="mx-4 tracking-wider">FREE SHIPPING ON ALL ORDERS</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">PAN-INDIA DELIVERY</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">100% ORGANIC & NATURAL</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+        </div>
     </div>
 
     <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
@@ -83,8 +115,7 @@
             <p class="text-gray-700">All orders are processed within 1-2 business days (excluding weekends and holidays) after receiving your order confirmation email. You will receive another notification when your order has shipped.</p>
 
             <h2 class="font-heading">Domestic Shipping Rates and Estimates</h2>
-            <p class="text-gray-700"><strong>Free Shipping:</strong> We offer free standard shipping on all orders over ₹500 within India.</p>
-            <p class="text-gray-700"><strong>Standard Shipping:</strong> For orders under ₹500, a flat rate of ₹50 will be charged.</p>
+            <p class="text-gray-700"><strong>Free Shipping:</strong> We offer free standard shipping on all orders, with no minimum purchase, to any location within India.</p>
             <p class="text-gray-700">Shipping times typically range from 3-7 business days, depending on your location.</p>
 
             <h2 class="font-heading">How do I check the status of my order?</h2>
