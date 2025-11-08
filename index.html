@@ -26,6 +26,15 @@
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
                         'heading': ['Lora', 'serif'],
+                    },
+                    animation: {
+                        'marquee': 'marquee 20s linear infinite',
+                    },
+                    keyframes: {
+                        'marquee': {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
                     }
                 }
             }
@@ -168,22 +177,35 @@
             color: #f59e0b;
         }
         
-        /* NEW: Cart Quantity Selector Styles */
         .cart-qty-selector {
-            height: 36px; /* Set a fixed height */
+            height: 36px;
         }
         .cart-qty-btn {
-            line-height: 1; /* Aligns the + and - symbols vertically */
-            padding-left: 0.75rem; /* 12px */
-            padding-right: 0.75rem; /* 12px */
+            line-height: 1;
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
         }
         
     </style>
 </head>
 <body class="bg-theme-bg">
 
-    <div class="bg-gray-800 text-white text-sm text-center py-2 px-4">
-        Free Shipping On All Orders | Pan-India Delivery
+    <div class="bg-theme-green text-white text-sm py-2 overflow-hidden whitespace-nowrap font-medium">
+        <div class="inline-block animate-marquee">
+            <span class="mx-4 tracking-wider">FREE SHIPPING ON ALL ORDERS</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">PAN-INDIA DELIVERY</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">100% ORGANIC & NATURAL</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            
+            <span class="mx-4 tracking-wider">FREE SHIPPING ON ALL ORDERS</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">PAN-INDIA DELIVERY</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+            <span class="mx-4 tracking-wider">100% ORGANIC & NATURAL</span>
+            <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
+        </div>
     </div>
 
     <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
@@ -580,7 +602,8 @@
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold font-heading text-gray-800">Free Delivery</h4>
-                        <p class="text-sm text-gray-600">On All Orders</p> </div>
+                        <p class="text-sm text-gray-600">On All Orders</p>
+                    </div>
                 </div>
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
