@@ -250,6 +250,56 @@ document.addEventListener('DOMContentLoaded', () => {
         reviewForm.classList.toggle('open');
     }
 
+    // =============================================
+    // === NEW: STICKY CTA BAR LOGIC ===
+    // =============================================
+    const stickyCtaBar = document.getElementById('sticky-cta-bar');
+    const mainBuyButton = document.getElementById('buy-it-now-btn'); // The button we watch
+    const mainCartButton = document.getElementById('add-to-cart-btn');
+
+    const stickyBuyButton = document.getElementById('sticky-buy-now-btn');
+    const stickyCartButton = document.getElementById('sticky-add-to-cart-btn');
+
+    if (mainBuyButton && stickyCtaBar) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                if (entry.isIntersecting) {
+                    // Main button is ON screen, so HIDE the sticky bar
+                    stickyCtaBar.classList.remove('show');
+                } else {
+                    // Main button is OFF screen, so SHOW the sticky bar
+                    stickyCtaBar.classList.add('show');
+                }
+            },
+            {
+                root: null, // relative to viewport
+                threshold: 0, 
+                rootMargin: '-100px 0px 0px 0px' // Triggers 100px before it's fully off-screen
+            }
+        );
+
+        // Start observing the main "Buy It Now" button
+        observer.observe(mainBuyButton);
+
+        // --- Make sticky buttons trigger the real buttons ---
+        // This ensures all your original cart logic just works.
+        if (stickyBuyButton) {
+            stickyBuyButton.addEventListener('click', () => {
+                mainBuyButton.click(); // Clicks the original "Buy It Now"
+            });
+        }
+        if (stickyCartButton) {
+            stickyCartButton.addEventListener('click', () => {
+                mainCartButton.click(); // Clicks the original "Add to Cart"
+            });
+        }
+    }
+    // =============================================
+    // === END OF STICKY CTA BAR LOGIC ===
+    // =============================================
+
+
     // --- EVENT LISTENERS ---
     
     // Quantity controls (only on index.html)
@@ -324,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     icon.setAttribute('name', 'add-outline');
                 } else {
                     content.style.maxHeight = content.scrollHeight + 'px';
-                    icon.setAttribute('name', 'remove-outline');
+                    icon.setAttribute('name','remove-outline');
                 }
             });
         });
