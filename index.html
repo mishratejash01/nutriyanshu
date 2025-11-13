@@ -8,7 +8,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -18,14 +18,17 @@
             theme: {
                 extend: {
                     colors: {
-                        'theme-green': '#336940',  /* NEW: Richer, more vibrant green */
-                        'theme-gold': '#E0C48F',  /* NEW: Lighter, champagne gold for accents */
-                        'theme-bg': '#FBFBF9',    /* KEPT: Soft, premium warm white */
-                        'theme-text': '#2A2A2A',  /* NEW: Softer, richer black for text */
+                        'theme-primary': '#00B5B7',  /* Vibrant Teal (Clinikally's main accent) */
+                        'theme-secondary': '#F0FFFF', /* Very light mint/teal for backgrounds */
+                        'theme-bg': '#FFFFFF',      /* Pure White background */
+                        'theme-text-headings': '#212529', /* Dark, near-black for headings */
+                        'theme-text-body': '#495057',   /* Softer dark gray for body text */
+                        'theme-text-muted': '#6C757D',  /* Lighter gray for muted text */
+                        'theme-border': '#E9ECEF',   /* Subtle light gray for borders */
                     },
                     fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
-                        'heading': ['Lora', 'serif'],
+                        /* The whole site will use this one font family */
+                        'sans': ['Poppins', 'sans-serif'],
                     },
                     animation: {
                         'marquee': 'marquee 20s linear infinite',
@@ -40,39 +43,47 @@
             }
         }
     </script>
+    
     <style>
-        /* Custom styles */
+        /* Base styles using the new palette */
         body {
-            font-family: 'Inter', sans-serif;
-            color: #2A2A2A; /* Updated base text color */
+            font-family: 'Poppins', sans-serif;
+            color: #495057; /* theme-text-body */
+            background-color: #FFFFFF; /* theme-bg */
         }
         
+        /* All headings use the same font, just different sizes/weights */
         h1, h2, h3, h4, .font-heading {
-            font-family: 'Lora', serif;
+            font-family: 'Poppins', sans-serif;
+            color: #212529; /* theme-text-headings */
+            font-weight: 600; /* Semibold */
         }
 
-        /* These button styles now automatically use the new 
-         'theme-gold' and 'theme-bg' colors from your config.
-        */
+        /* Primary button (solid teal) */
         .btn-primary {
-            background-color: #E0C48F; /* theme-gold */
-            color: #2A2A2A; /* theme-text, for better contrast */
-            border: 1px solid #E0C48F; /* theme-gold */
+            background-color: #00B5B7; /* theme-primary */
+            color: white;
+            border: 1px solid #00B5B7; /* theme-primary */
             transition: all 0.3s ease;
+            font-weight: 600;
+            border-radius: 8px; /* rounded-md */
         }
         .btn-primary:hover {
-            background-color: #d1b580; /* A slightly darker gold */
-            border-color: #d1b580;
+            background-color: #00A0A2; /* Darker teal */
+            border-color: #00A0A2;
         }
         
+        /* Secondary button (white with teal border) */
         .btn-secondary {
             background-color: white;
-            color: #E0C48F; /* theme-gold */
-            border: 1px solid #E0C48F; /* theme-gold */
+            color: #00B5B7; /* theme-primary */
+            border: 1px solid #00B5B7; /* theme-primary */
             transition: all 0.3s ease;
+            font-weight: 600;
+            border-radius: 8px; /* rounded-md */
         }
         .btn-secondary:hover {
-            background-color: #fcfaf6; /* Lighter version of theme-bg */
+            background-color: #F0FFFF; /* theme-secondary */
         }
         
         .btn-secondary-light {
@@ -126,7 +137,7 @@
         }
 
         .thumbnail-active {
-            border-color: #336940 !important; /* theme-green */
+            border-color: #00B5B7 !important; /* theme-primary */
         }
 
         .variant-btn {
@@ -138,19 +149,21 @@
             position: relative;
             transition: all 0.3s ease;
         }
+        /* UPDATED: Active variant style */
         .variant-btn.active {
-            border-color: #E0C48F; /* theme-gold */
-            background-color: #fcfaf6;
-            color: #336940; /* theme-green */
+            border-color: #00B5B7; /* theme-primary */
+            background-color: #F0FFFF; /* theme-secondary */
+            color: #00B5B7; /* theme-primary */
             font-weight: 600;
         }
         
+        /* UPDATED: Save tag style */
         .save-tag {
             position: absolute;
             top: -8px;
             right: -8px;
             transform: none;
-            background-color: #336940; /* theme-green */
+            background-color: #00B5B7; /* theme-primary */
             color: white;
             font-size: 10px;
             font-weight: bold;
@@ -192,7 +205,7 @@
 </head>
 <body class="bg-theme-bg">
 
-    <div class="bg-theme-green text-white text-sm py-2 overflow-hidden whitespace-nowrap font-medium">
+    <div class="bg-theme-primary text-white text-sm py-2 overflow-hidden whitespace-nowrap font-medium">
         <div class="inline-block animate-marquee">
             <span class="mx-4 tracking-wider">FREE SHIPPING ON ALL ORDERS</span>
             <ion-icon name="leaf-outline" class="inline-block align-middle text-lg"></ion-icon>
@@ -210,7 +223,7 @@
         </div>
     </div>
 
-    <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
+    <header class="bg-theme-bg border-b border-theme-border shadow-sm sticky top-0 z-40">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0 flex items-center">
@@ -224,7 +237,7 @@
                         <span class="sr-only">Open cart</span>
                         <ion-icon name="cart-outline" class="h-7 w-7"></ion-icon>
                         <span id="cart-item-count" class_name="hidden"
-                              class="absolute top-0 right-0 h-5 w-5 bg-theme-gold text-white text-xs font-bold rounded-full flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
+                              class="absolute top-0 right-0 h-5 w-5 bg-theme-primary text-white text-xs font-bold rounded-full flex items-center justify-center transform translate-x-1/4 -translate-y-1/4">
                             0
                         </span>
                     </button>
@@ -234,12 +247,12 @@
     </header>
 
     <nav class="container mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        <ol class="flex items-center space-x-2 text-sm text-gray-500">
-            <li><a href="index.html" class="hover:underline hover:text-gray-700">Home</a></li>
+        <ol class="flex items-center space-x-2 text-sm text-theme-text-muted">
+            <li><a href="index.html" class="hover:underline hover:text-theme-primary">Home</a></li>
             <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
-            <li><a href="shop-all.html" class="hover:underline hover:text-gray-700">Supplements</a></li>
+            <li><a href="shop-all.html" class="hover:underline hover:text-theme-primary">Supplements</a></li>
             <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
-            <li><span class="font-medium text-gray-700">Moringa Powder</span></li>
+            <li><span class="font-medium text-theme-text-body">Moringa Powder</span></li>
         </ol>
     </nav>
 
@@ -272,17 +285,17 @@
             </div>
             
             <div class="mt-8 lg:mt-0">
-                <p class="text-sm text-gray-500">Carbamide Forte</p>
-                <h1 class="text-2xl sm:text-3xl font-bold font-heading text-theme-text mt-1">Organic Moringa Leaf Powder</h1>
+                <p class="text-sm text-theme-text-muted">Carbamide Forte</p>
+                <h1 class="text-2xl sm:text-3xl font-bold font-heading text-theme-text-headings mt-1">Organic Moringa Leaf Powder</h1>
                 
                 <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
-                    <span class="flex items-center text-sm text-theme-green">
+                    <span class="flex items-center text-sm text-theme-primary">
                         <ion-icon name="checkmark-circle" class="h-5 w-5 mr-1"></ion-icon> Boosts Immunity
                     </span>
-                    <span class="flex items-center text-sm text-theme-green">
+                    <span class="flex items-center text-sm text-theme-primary">
                         <ion-icon name="checkmark-circle" class="h-5 w-5 mr-1"></ion-icon> Supports Digestion
                     </span>
-                    <span class="flex items-center text-sm text-theme-green">
+                    <span class="flex items-center text-sm text-theme-primary">
                         <ion-icon name="checkmark-circle" class="h-5 w-5 mr-1"></ion-icon> Nutrient-Rich Superfood
                     </span>
                 </div>
@@ -295,19 +308,19 @@
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star-half"></ion-icon>
                     </div>
-                    <span class="text-md font-semibold text-gray-800">4.68</span>
-                    <span class="text-sm text-gray-600">(31 Reviews)</span>
+                    <span class="text-md font-semibold text-theme-text-headings">4.68</span>
+                    <span class="text-sm text-theme-text-muted">(31 Reviews)</span>
                 </div>
                 
                 <div class="mt-4 flex items-baseline gap-3">
-                    <span class="text-2xl sm:text-3xl font-bold text-theme-text">₹249</span>
-                    <span class="text-lg sm:text-xl text-gray-500 line-through">₹450</span>
+                    <span class="text-2xl sm:text-3xl font-bold text-theme-text-headings">₹249</span>
+                    <span class="text-lg sm:text-xl text-theme-text-muted line-through">₹450</span>
                     <span class="px-2 py-0.5 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded-md">SAVE 45%</span>
                 </div>
-                <p class="text-sm text-gray-500 mt-1">Incl. of all taxes</p>
+                <p class="text-sm text-theme-text-muted mt-1">Incl. of all taxes</p>
                 
                 <div class="mt-6">
-                    <span class="text-md font-semibold text-gray-700">Size:</span>
+                    <span class="text-md font-semibold text-theme-text-body">Size:</span>
                     <div class="flex gap-3 mt-2">
                         <button class="variant-btn">100 gm</button>
                         <button class="variant-btn active">
@@ -319,7 +332,7 @@
 
                 <div class="mt-8 space-y-4">
                     <div class="flex items-center space-x-3">
-                        <span class="text-md font-semibold text-gray-700">Qty:</span>
+                        <span class="text-md font-semibold text-theme-text-body">Qty:</span>
                         <div class="flex items-center border border-gray-300 rounded-md">
                             <button id="qty-decrease" class="p-3 text-lg font-bold text-gray-700 hover:bg-gray-100 rounded-l-md">-</button>
                             <span id="qty-display" class="w-12 text-center text-lg font-semibold">1</span>
@@ -342,72 +355,72 @@
                 <div class="mt-6 flex flex-wrap gap-4 items-center">
                     <div class="flex items-center gap-2">
                         <ion-icon name="flame" class="h-5 w-5 text-red-500"></ion-icon>
-                        <span class="text-sm font-medium text-gray-800">Recently in 741 carts</span>
+                        <span class="text-sm font-medium text-theme-text-headings">Recently in 741 carts</span>
                         <span class="px-2 py-0.5 bg-red-100 text-red-700 text-xs font-bold rounded-md">Hurry, Few Left!</span>
                     </div>
-                    <div class="flex items-center gap-2 text-sm text-gray-700">
-                        <ion-icon name="logo-electron" class="h-5 w-5 text-theme-green"></ion-icon> <span>Get it by <span class="font-bold">Nov 11</span></span>
+                    <div class="flex items-center gap-2 text-sm text-theme-text-body">
+                        <ion-icon name="logo-electron" class="h-5 w-5 text-theme-primary"></ion-icon> <span>Get it by <span class="font-bold">Nov 11</span></span>
                     </div>
                 </div>
 
                 <div class="mt-6">
-                    <h3 class="text-md font-semibold text-gray-800 flex items-center gap-2">
+                    <h3 class="text-md font-semibold text-theme-text-headings flex items-center gap-2">
                         <ion-icon name="pricetag-outline" class="h-5 w-5 text-gray-600"></ion-icon>
                         Available offers
                     </h3>
-                    <div class="mt-2 p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center gap-4">
-                        <span class="text-3xl font-bold text-yellow-600">%</span>
+                    <div class="mt-2 p-4 bg-theme-secondary border border-theme-primary/30 rounded-lg flex items-center gap-4">
+                        <ion-icon name="cash-outline" class="h-8 w-8 text-theme-primary"></ion-icon>
                         <div>
-                            <p class="font-semibold text-gray-800">₹20 off on prepaid orders</p>
-                            <p class="text-sm text-gray-600">Auto-applied at checkout.</p>
+                            <p class="font-semibold text-theme-text-headings">₹20 off on prepaid orders</p>
+                            <p class="text-sm text-theme-text-body">Auto-applied at checkout.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="mt-6 p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
-                    <p class="font-semibold text-gray-800">Select Delivery Location</p>
+                <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-theme-border">
+                    <p class="font-semibold text-theme-text-headings">Select Delivery Location</p>
                     <div class="flex mt-2 gap-2">
-                        <input id="pincode-input" type="text" placeholder="Enter Pincode" class="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-gold">
-                        <button id="pincode-check-btn" class="px-4 py-2 bg-theme-gold text-white rounded-md hover:bg-theme-gold/90">Check</button>
+                        <input id="pincode-input" type="text" placeholder="Enter Pincode" class="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary">
+                        <button id="pincode-check-btn" class="px-4 py-2 rounded-md font-semibold btn-primary">Check</button>
                     </div>
-                    <p id="pincode-message" class="text-xs text-gray-500 mt-2"></p>
+                    <p id="pincode-message" class="text-xs text-theme-text-muted mt-2"></p>
                 </div>
                 
                 <div class="mt-6 grid grid-cols-3 gap-4 text-center">
-                    <div class="flex flex-col items-center p-2 bg-white rounded-lg border border-gray-200">
-                        <ion-icon name="leaf-outline" class="h-8 w-8 text-theme-green"></ion-icon>
-                        <span class="mt-1 text-sm font-medium text-gray-700">100% Organic</span>
+                    <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg border border-theme-border">
+                        <ion-icon name="leaf-outline" class="h-8 w-8 text-theme-primary"></ion-icon>
+                        <span class="mt-1 text-sm font-medium text-theme-text-headings">100% Organic</span>
                     </div>
-                    <div class="flex flex-col items-center p-2 bg-white rounded-lg border border-gray-200">
-                        <ion-icon name="shield-checkmark-outline" class="h-8 w-8 text-theme-green"></ion-icon>
-                        <span class="mt-1 text-sm font-medium text-gray-700">Secure Payments</span>
+                    <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg border border-theme-border">
+                        <ion-icon name="shield-checkmark-outline" class="h-8 w-8 text-theme-primary"></ion-icon>
+                        <span class="mt-1 text-sm font-medium text-theme-text-headings">Secure Payments</span>
                     </div>
-                    <div class="flex flex-col items-center p-2 bg-white rounded-lg border border-gray-200">
-                        <ion-icon name="refresh-circle-outline" class="h-8 w-8 text-theme-green"></ion-icon>
-                        <span class="mt-1 text-sm font-medium text-gray-700">Easy Returns</span>
+                    <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg border border-theme-border">
+                        <ion-icon name="refresh-circle-outline" class="h-8 w-8 text-theme-primary"></ion-icon>
+                        <span class="mt-1 text-sm font-medium text-theme-text-headings">Easy Returns</span>
                     </div>
                 </div>
 
                 <div class="mt-8 space-y-2">
-                    <div class="accordion-item border-b border-gray-200">
+                    <div class="accordion-item border-b border-theme-border">
                         <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
-                            <span class="text-lg font-semibold text-gray-800 font-heading">Description</span>
+                            <span class="text-lg font-semibold text-theme-text-headings font-heading">Description</span>
                             <ion-icon name="add-outline" class="text-xl"></ion-icon>
                         </button>
                         <div class="accordion-content pb-4">
-                            <p class="text-gray-700">
+                            <p class="text-theme-text-body">
                                 Nutriyanshu Organic Moringa Powder is sourced from the finest, organically grown moringa leaves. Known as the 'miracle tree', moringa is a nutritional powerhouse, packed with vitamins, minerals, and antioxidants.
                             </p>
                         </div>
                     </div>
                     
-                    <div class="accordion-item border-b border-gray-200">
+                    <div class="accordion-item border-b border-theme-border">
                         <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
-                            <span class="text-lg font-semibold text-gray-800 font-heading">Benefits</span>
+                            <span class="text-lg font-semibold text-theme-text-headings font-heading">Benefits</span>
                             <ion-icon name="add-outline" class="text-xl"></ion-icon>
                         </button>
                         <div class="accordion-content pb-4">
-                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <ul class="list-disc list-inside text-theme-text-body space-y-1">
                                 <li>Boosts energy and stamina naturally.</li>
                                 <li>Rich in antioxidants to fight free radicals.</li>
                                 <li>Supports a healthy immune system.</li>
@@ -417,13 +430,13 @@
                         </div>
                     </div>
 
-                    <div class="accordion-item border-b border-gray-200">
+                    <div class="accordion-item border-b border-theme-border">
                         <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
-                            <span class="text-lg font-semibold text-gray-800 font-heading">How to Use</span>
+                            <span class="text-lg font-semibold text-theme-text-headings font-heading">How to Use</span>
                             <ion-icon name="add-outline" class="text-xl"></ion-icon>
                         </button>
                         <div class="accordion-content pb-4">
-                            <p class="text-gray-700">
+                            <p class="text-theme-text-body">
                                 Mix 1 scoop (approx. 2g) of moringa powder into a glass of water, smoothie, juice, or your favorite beverage. You can also sprinkle it over salads, soups, or meals.
                             </p>
                         </div>
@@ -433,37 +446,37 @@
             </div>
         </div>
 
-        <section class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-gray-200">
-            <h2 class="text-xl sm:text-2xl font-bold font-heading text-gray-900 mb-6 text-center">Frequently Bought Together</h2>
-            <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+        <section class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-theme-border bg-gray-50 rounded-lg">
+            <h2 class="text-xl sm:text-2xl font-bold font-heading text-theme-text-headings mb-6 text-center">Frequently Bought Together</h2>
+            <div class="max-w-2xl mx-auto bg-theme-bg p-6 rounded-lg shadow-sm border border-theme-border">
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <div class="flex flex-col items-center text-center">
                         <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80" alt="Moringa Powder" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
-                        <p class="font-semibold mt-2">Moringa Powder</p>
-                        <p class="font-bold text-gray-800">₹249</p>
+                        <p class="font-semibold mt-2 text-theme-text-headings">Moringa Powder</p>
+                        <p class="font-bold text-theme-text-headings">₹249</p>
                     </div>
                     
-                    <ion-icon name="add-outline" class="text-3xl text-gray-600"></ion-icon>
+                    <ion-icon name="add-outline" class="text-3xl text-theme-text-muted"></ion-icon>
 
                     <div class="flex flex-col items-center text-center">
                         <img src="https://placehold.co/150x150/f0f7f0/2a6f2b?text=Ashwagandha" alt="Ashwagandha" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
-                        <p class="font-semibold mt-2">Ashwagandha</p>
-                        <p class="font-bold text-gray-800">₹299</p>
+                        <p class="font-semibold mt-2 text-theme-text-headings">Ashwagandha</p>
+                        <p class="font-bold text-theme-text-headings">₹299</p>
                     </div>
 
-                    <ion-icon name="add-outline" class="text-3xl text-gray-600 hidden sm:block"></ion-icon>
+                    <ion-icon name="add-outline" class="text-3xl text-theme-text-muted hidden sm:block"></ion-icon>
                     
                     <div class="flex flex-col items-center text-center mt-4 sm:mt-0">
                         <img src="https://placehold.co/150x150/f0f7f0/2a6f2b?text=Turmeric" alt="Turmeric" class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg">
-                        <p class="font-semibold mt-2">Turmeric Curcumin</p>
-                        <p class="font-bold text-gray-800">₹349</p>
+                        <p class="font-semibold mt-2 text-theme-text-headings">Turmeric Curcumin</p>
+                        <p class="font-bold text-theme-text-headings">₹349</p>
                     </div>
                 </div>
                 
-                <div class="mt-6 pt-6 border-t border-gray-200 text-center">
+                <div class="mt-6 pt-6 border-t border-theme-border text-center">
                     <div class="flex items-center justify-center gap-4">
-                        <span class="text-lg text-gray-600">Total Price:</span>
-                        <span class="text-2xl font-bold text-gray-900">₹897</span>
+                        <span class="text-lg text-theme-text-body">Total Price:</span>
+                        <span class="text-2xl font-bold text-theme-text-headings">₹897</span>
                     </div>
                     <button class="mt-4 w-full sm:w-auto py-3 px-8 rounded-md text-lg font-semibold btn-primary flex items-center justify-center gap-2 mx-auto">
                         <ion-icon name="cart-outline" class="h-6 w-6"></ion-icon>
@@ -474,24 +487,24 @@
         </section>
 
         
-        <div class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-gray-200">
+        <div class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-theme-border">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl sm:text-2xl font-bold font-heading text-gray-900">Customer Reviews</h2>
+                <h2 class="text-xl sm:text-2xl font-bold font-heading text-theme-text-headings">Customer Reviews</h2>
                 <button id="show-review-form-btn" class="py-2 px-4 rounded-md text-sm font-semibold btn-secondary-light flex items-center justify-center gap-1.5">
                     <ion-icon name="create-outline" class="h-5 w-5"></ion-icon>
                     Write a Review
                 </button>
             </div>
             
-            <div id="review-form" class="mb-8 p-4 sm:p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
-                <h3 class="text-lg font-semibold font-heading text-gray-800 mb-4">Write your review</h3>
+            <div id="review-form" class="mb-8 p-4 sm:p-6 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
+                <h3 class="text-lg font-semibold font-heading text-theme-text-headings mb-4">Write your review</h3>
                 <form id="submit-review-form" class="space-y-4">
                     <div>
-                        <label for="review-name" class="block text-sm font-medium text-gray-700">Your Name</label>
-                        <input type="text" id="review-name" required class="mt-1 block w-full sm:w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-gold">
+                        <label for="review-name" class="block text-sm font-medium text-theme-text-body">Your Name</label>
+                        <input type="text" id="review-name" required class="mt-1 block w-full sm:w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Your Rating</label>
+                        <label class="block text-sm font-medium text-theme-text-body">Your Rating</label>
                         <div class="star-rating-input mt-1">
                             <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
                             <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
@@ -501,8 +514,8 @@
                         </div>
                     </div>
                     <div>
-                        <label for="review-body" class="block text-sm font-medium text-gray-700">Review</label>
-                        <textarea id="review-body" rows="4" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-gold" placeholder="What did you like or dislike?"></textarea>
+                        <label for="review-body" class="block text-sm font-medium text-theme-text-body">Review</label>
+                        <textarea id="review-body" rows="4" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary" placeholder="What did you like or dislike?"></textarea>
                     </div>
                     <div class="flex gap-4">
                         <button type="submit" class="py-2 px-5 rounded-md font-semibold btn-primary">Submit Review</button>
@@ -512,10 +525,10 @@
             </div>
             
             <div class="space-y-8">
-                <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                <div class="p-4 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
                     <div class="flex items-center mb-2">
-                        <span class="font-semibold">Anjali S.</span>
-                        <span class="ml-auto text-sm text-gray-500">Oct 28, 2025</span>
+                        <span class="font-semibold text-theme-text-headings">Anjali S.</span>
+                        <span class="ml-auto text-sm text-theme-text-muted">Oct 28, 2025</span>
                     </div>
                     <div class="flex text-yellow-400">
                         <ion-icon name="star"></ion-icon>
@@ -524,13 +537,13 @@
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star"></ion-icon>
                     </div>
-                    <p class="mt-2 text-gray-700">"Great product! I've been using this moringa powder for two weeks and I can already feel a difference in my energy levels. Mixes well in my morning smoothie."</p>
+                    <p class="mt-2 text-theme-text-body">"Great product! I've been using this moringa powder for two weeks and I can already feel a difference in my energy levels. Mixes well in my morning smoothie."</p>
                 </div>
                 
-                <div class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+                <div class="p-4 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
                     <div class="flex items-center mb-2">
-                        <span class="font-semibold">Rohan P.</span>
-                        <span class="ml-auto text-sm text-gray-500">Oct 22, 2025</span>
+                        <span class="font-semibold text-theme-text-headings">Rohan P.</span>
+                        <span class="ml-auto text-sm text-theme-text-muted">Oct 22, 2025</span>
                     </div>
                     <div class="flex text-yellow-400">
                         <ion-icon name="star"></ion-icon>
@@ -539,45 +552,45 @@
                         <ion-icon name="star"></ion-icon>
                         <ion-icon name="star-outline"></ion-icon>
                     </div>
-                    <p class="mt-2 text-gray-700">"Good quality and nice packaging. The taste is a bit strong, but that's normal for moringa. Happy with the purchase."</p>
+                    <p class="mt-2 text-theme-text-body">"Good quality and nice packaging. The taste is a bit strong, but that's normal for moringa. Happy with the purchase."</p>
                 </div>
             </div>
         </div>
 
     </main>
     
-    <section class="bg-white border-t border-b border-gray-200 py-12 sm:py-16">
+    <section class="bg-gray-50 border-t border-b border-theme-border py-12 sm:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-xl sm:text-2xl font-bold font-heading text-gray-900 mb-8 text-center">You May Also Like</h2>
+            <h2 class="text-xl sm:text-2xl font-bold font-heading text-theme-text-headings mb-8 text-center">You May Also Like</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 text-center">
+                <div class="bg-theme-bg rounded-lg shadow-sm border border-theme-border p-4 text-center">
                     <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Ashwagandha" alt="Ashwagandha" class="w-full h-auto object-cover rounded-md mb-4">
-                    <h3 class="font-semibold font-heading text-gray-800">Ashwagandha Capsules</h3>
-                    <p class="mt-1 text-lg font-bold text-theme-green">₹299</p>
+                    <h3 class="font-semibold font-heading text-theme-text-headings">Ashwagandha Capsules</h3>
+                    <p class="mt-1 text-lg font-bold text-theme-primary">₹299</p>
                     <button class="mt-3 w-full py-2 px-4 rounded-md font-semibold btn-secondary flex items-center justify-center gap-2">
                          <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
                     </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 text-center">
+                <div class="bg-theme-bg rounded-lg shadow-sm border border-theme-border p-4 text-center">
                     <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Turmeric" alt="Turmeric" class="w-full h-auto object-cover rounded-md mb-4">
-                    <h3 class="font-semibold font-heading text-gray-800">Turmeric Curcumin</h3>
-                    <p class="mt-1 text-lg font-bold text-theme-green">₹349</p>
+                    <h3 class="font-semibold font-heading text-theme-text-headings">Turmeric Curcumin</h3>
+                    <p class="mt-1 text-lg font-bold text-theme-primary">₹349</p>
                     <button class="mt-3 w-full py-2 px-4 rounded-md font-semibold btn-secondary flex items-center justify-center gap-2">
                          <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
                     </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 text-center">
+                <div class="bg-theme-bg rounded-lg shadow-sm border border-theme-border p-4 text-center">
                     <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Spirulina" alt="Spirulina" class="w-full h-auto object-cover rounded-md mb-4">
-                    <h3 class="font-semibold font-heading text-gray-800">Organic Spirulina</h3>
-                    <p class="mt-1 text-lg font-bold text-theme-green">₹499</p>
+                    <h3 class="font-semibold font-heading text-theme-text-headings">Organic Spirulina</h3>
+                    <p class="mt-1 text-lg font-bold text-theme-primary">₹499</p>
                     <button class="mt-3 w-full py-2 px-4 rounded-md font-semibold btn-secondary flex items-center justify-center gap-2">
                          <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
                     </button>
                 </div>
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 text-center">
+                <div class="bg-theme-bg rounded-lg shadow-sm border border-theme-border p-4 text-center">
                     <img src="https://placehold.co/300x300/f0f7f0/2a6f2b?text=Triphala" alt="Triphala" class="w-full h-auto object-cover rounded-md mb-4">
-                    <h3 class="font-semibold font-heading text-gray-800">Triphala Powder</h3>
-                    <p class="mt-1 text-lg font-bold text-theme-green">₹199</p>
+                    <h3 class="font-semibold font-heading text-theme-text-headings">Triphala Powder</h3>
+                    <p class="mt-1 text-lg font-bold text-theme-primary">₹199</p>
                     <button class="mt-3 w-full py-2 px-4 rounded-md font-semibold btn-secondary flex items-center justify-center gap-2">
                          <ion-icon name="cart-outline" class="h-5 w-5"></ion-icon> Add to Cart
                     </button>
@@ -586,43 +599,43 @@
         </div>
     </section>
     
-    <section class="py-12 bg-white border-t border-b border-gray-200">
+    <section class="py-12 bg-theme-bg border-t border-b border-theme-border">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
-                        <ion-icon name="cash-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                    <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
+                        <ion-icon name="cash-outline" class="h-8 w-8 text-theme-primary"></ion-icon>
                     </div>
                     <div>
-                        <h4 class="text-lg font-semibold font-heading text-gray-800">COD Available</h4>
-                        <p class="text-sm text-gray-600">Pan-India</p>
+                        <h4 class="text-lg font-semibold font-heading text-theme-text-headings">COD Available</h4>
+                        <p class="text-sm text-theme-text-body">Pan-India</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
-                        <ion-icon name="car-sport-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                    <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
+                        <ion-icon name="car-sport-outline" class="h-8 w-8 text-theme-primary"></ion-icon>
                     </div>
                     <div>
-                        <h4 class="text-lg font-semibold font-heading text-gray-800">Free Delivery</h4>
-                        <p class="text-sm text-gray-600">On All Orders</p>
+                        <h4 class="text-lg font-semibold font-heading text-theme-text-headings">Free Delivery</h4>
+                        <p class="text-sm text-theme-text-body">On All Orders</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
-                        <ion-icon name="ribbon-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                    <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
+                        <ion-icon name="ribbon-outline" class="h-8 w-8 text-theme-primary"></ion-icon>
                     </div>
                     <div>
-                        <h4 class="text-lg font-semibold font-heading text-gray-800">100% Real Products</h4>
-                        <p class="text-sm text-gray-600">Certified</p>
+                        <h4 class="text-lg font-semibold font-heading text-theme-text-headings">100% Real Products</h4>
+                        <p class="text-sm text-theme-text-body">Certified</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div class="flex-shrink-0 p-3 bg-theme-green/10 rounded-full">
-                        <ion-icon name="document-text-outline" class="h-8 w-8 text-theme-green"></ion-icon>
+                    <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
+                        <ion-icon name="document-text-outline" class="h-8 w-8 text-theme-primary"></ion-icon>
                     </div>
                     <div>
-                        <h4 class="text-lg font-semibold font-heading text-gray-800">Expert Approved</h4>
-                        <p class="text-sm text-gray-600">Curated by specialists</p>
+                        <h4 class="text-lg font-semibold font-heading text-theme-text-headings">Expert Approved</h4>
+                        <p class="text-sm text-theme-text-body">Curated by specialists</p>
                     </div>
                 </div>
             </div>
@@ -636,7 +649,7 @@
     <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
     
     <div id="cart-modal" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white shadow-lg z-50 flex flex-col">
-        <div class="flex justify-between items-center p-4 border-b border-gray-200">
+        <div class="flex justify-between items-center p-4 border-b border-theme-border">
             <h2 class="text-xl font-semibold font-heading">Your Cart</h2>
             <button id="close-cart-btn" class="p-2 rounded-full text-gray-700 hover:bg-gray-100">
                 <ion-icon name="close-outline" class="h-6 w-6"></ion-icon>
@@ -651,7 +664,7 @@
             </div>
         </div>
         
-        <div id="cart-footer" class="p-4 border-t border-gray-200 bg-gray-50 hidden">
+        <div id="cart-footer" class="p-4 border-t border-theme-border bg-gray-50 hidden">
             <div class="flex justify-between items-center mb-4">
                 <span class="text-lg font-semibold">Subtotal:</span>
                 <span id="cart-subtotal" class="text-lg font-bold">₹0</span>
@@ -662,7 +675,7 @@
         </div>
     </div>
 
-    <footer class="bg-theme-green text-gray-300 pt-16 pb-8">
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -696,8 +709,8 @@
                     <h4 class="font-semibold font-heading text-white mb-4">Newsletter</h4>
                     <p class="text-sm mb-2">Subscribe for updates and special offers.</p>
                     <div class="flex gap-2">
-                        <input type="email" placeholder="Your email" class="flex-1 p-2 border border-gray-600 bg-gray-100 text-gray-900 rounded-md text-sm focus:outline-none">
-                        <button class="px-4 py-2 bg-theme-gold text-white rounded-md text-sm hover:bg-theme-gold/90">Subscribe</button>
+                        <input type="email" placeholder="Your email" class="flex-1 p-2 border border-gray-600 bg-gray-700 text-white rounded-md text-sm focus:outline-none">
+                        <button class="px-4 py-2 rounded-md text-sm font-semibold btn-primary">Subscribe</button>
                     </div>
                 </div>
             </div>
