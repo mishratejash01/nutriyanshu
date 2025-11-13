@@ -261,7 +261,7 @@
         </ol>
     </nav>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4 sm:mt-8 mb-12 sm:mb-16">
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4 sm:mt-8 mb-12 sm:mb-16 max-w-5xl">
         <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-start">
             
             <div class="lg:sticky lg:top-24">
@@ -564,27 +564,38 @@
 
     </main>
     
-    <div id="sticky-cta-bar" class="fixed bottom-0 left-0 right-0 w-full bg-white border-t border-theme-border p-4 shadow-lg z-30 opacity-0 transform translate-y-full transition-all duration-300 ease-in-out">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+    <div id="sticky-cta-bar" class="fixed bottom-0 left-0 right-0 w-full bg-white p-4 z-30 
+                                  opacity-0 transform translate-y-full transition-all duration-300 ease-in-out
+                                  shadow-[0_-4px_10px_-5px_rgba(0,0,0,0.1)] border-t border-theme-border">
+        
+        <div class="flex items-center justify-between max-w-5xl mx-auto gap-4">
+            
             <div class="flex items-center gap-3">
-                <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=60&q=80" alt="Moringa" class="w-12 h-12 rounded-md object-cover hidden sm:block">
+                <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=60&q=80" alt="Moringa" class="w-12 h-12 rounded-md object-cover">
                 <div>
-                    <h4 class="font-semibold text-sm text-theme-text-headings">Moringa Leaf Powder</h4>
+                    <h4 class="font-semibold text-sm text-theme-text-headings hidden sm:block">Moringa Leaf Powder</h4>
                     <p class="font-bold text-lg text-theme-text-headings">₹249</p>
                 </div>
             </div>
-            <div class="flex flex-1 sm:flex-none sm:max-w-xs gap-4">
-                 <button id="sticky-add-to-cart-btn" class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-secondary">
-                    Add to Cart
+            
+            <div class="flex items-center gap-3">
+                
+                <button id="sticky-add-to-cart-btn" title="Add to Cart" class="py-3 px-4 rounded-md text-lg font-semibold btn-secondary">
+                    <ion-icon name="cart-outline" class="h-6 w-6"></ion-icon>
                 </button>
-                <button id="sticky-buy-now-btn" class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-primary">
-                    Buy It Now
+                
+                <button id="sticky-buy-now-btn" class="py-3 px-6 rounded-md text-lg font-semibold btn-primary flex-1 whitespace-nowrap">
+                    Buy Now
                 </button>
             </div>
         </div>
     </div>
+    <div id="toast">
+        Item added to cart!
+    </div>
+    
     <section class="bg-gray-50 border-t border-b border-theme-border py-12 sm:py-16">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <h2 class="text-xl sm:text-2xl font-bold font-heading text-theme-text-headings mb-8 text-center">You May Also Like</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-theme-bg rounded-lg shadow-sm border border-theme-border p-4 text-center">
@@ -624,7 +635,7 @@
     </section>
     
     <section class="py-12 bg-theme-bg border-t border-b border-theme-border">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="flex items-center gap-4">
                     <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
@@ -666,9 +677,6 @@
         </div>
     </section>
 
-    <div id="toast">
-        Item added to cart!
-    </div>
 
     <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
     
