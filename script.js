@@ -244,51 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         reviewForm.classList.toggle('open');
     }
 
-    // =============================================
-    // === STICKY CTA BAR LOGIC ===
-    // =============================================
-    const stickyCtaBar = document.getElementById('sticky-cta-bar');
-    const mainBuyButton = document.getElementById('buy-it-now-btn'); 
-    const mainCartButton = document.getElementById('add-to-cart-btn');
-
-    const stickyBuyButton = document.getElementById('sticky-buy-now-btn');
-    const stickyCartButton = document.getElementById('sticky-add-to-cart-btn');
-
-    if (mainBuyButton && stickyCtaBar) {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const entry = entries[0];
-                if (entry.isIntersecting) {
-                    // Main button is ON screen, so HIDE the sticky bar
-                    stickyCtaBar.classList.remove('show');
-                } else {
-                    // Main button is OFF screen, so SHOW the sticky bar
-                    stickyCtaBar.classList.add('show');
-                }
-            },
-            {
-                root: null, 
-                threshold: 0, 
-                rootMargin: '-100px 0px 0px 0px' 
-            }
-        );
-
-        observer.observe(mainBuyButton);
-
-        if (stickyBuyButton) {
-            stickyBuyButton.addEventListener('click', () => {
-                mainBuyButton.click(); 
-            });
-        }
-        if (stickyCartButton) {
-            stickyCartButton.addEventListener('click', () => {
-                mainCartButton.click(); 
-            });
-        }
-    }
-    // =============================================
-    // === END OF STICKY CTA BAR LOGIC ===
-    // =============================================
+    // --- (Sticky bar logic has been removed as it's no longer needed) ---
 
 
     // --- EVENT LISTENERS ---
