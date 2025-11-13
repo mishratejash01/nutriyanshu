@@ -133,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                         <button class="remove-from-cart p-1 text-gray-500 hover:text-red-600 self-start">
-                            <ion-icon name="trash-outline" class="h-5 w-5"></ion-icon>
+                            <ion-icon name="trash-outline" class="h-5 w-5"></ion-CSS>
                         </button>
                     </div>
                 `;
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =============================================
-    // === STICKY CTA BAR LOGIC (RE-ADDED) ===
+    // === STICKY CTA BAR LOGIC ===
     // =============================================
     const stickyCtaBar = document.getElementById('sticky-cta-bar');
     // We observe the main "Add to Cart" button, not "Buy Now"
