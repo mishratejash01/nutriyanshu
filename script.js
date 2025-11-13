@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // This ensures all your original cart logic just works.
         if (stickyBuyButton) {
             stickyBuyButton.addEventListener('click', () => {
-                mainBuyButton.click(); // Clicks the original "Buy It Now"
+                mainBuyButton.click(); // Clicks the original "Buy ItNow"
             });
         }
         if (stickyCartButton) {
