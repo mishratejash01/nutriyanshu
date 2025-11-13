@@ -8,15 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let cart = JSON.parse(localStorage.getItem('nutriyanshuCart')) || [];
 
     // *** FIX: CLEAN CART ON LOAD ***
-    // This removes any "bad" items (like the 'undefined' one)
-    // that were saved in localStorage before the previous bug fix.
     const cleanCart = cart.filter(item => item.id && item.price);
     if (cleanCart.length !== cart.length) {
-        // If we found bad items, save the clean cart back to storage
         cart = cleanCart;
         localStorage.setItem('nutriyanshuCart', JSON.stringify(cart));
     }
-    // Now, 'cart' is guaranteed to only have valid items.
 
 
     let quantity = 1;
@@ -148,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartIcon();
     }
     
-    // NEW: Combined function to handle all clicks inside the cart body
     function handleCartClick(event) {
         const removeButton = event.target.closest('.remove-from-cart');
         if (removeButton) {
@@ -157,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cart = cart.filter(item => item.id !== itemId);
             saveCart();
             renderCart();
-            return; // Stop execution
+            return; 
         }
 
         const increaseButton = event.target.closest('.cart-qty-increase');
@@ -183,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 saveCart();
                 renderCart();
             } else if (item && item.quantity === 1) {
-                // If quantity is 1, remove the item
                 cart = cart.filter(i => i.id !== itemId);
                 saveCart();
                 renderCart();
@@ -208,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         quantity = 1;
         updateQuantityDisplay();
-        saveCart(); // Save changes
+        saveCart(); 
         renderCart();
     }
 
@@ -251,10 +245,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =============================================
-    // === NEW: STICKY CTA BAR LOGIC ===
+    // === STICKY CTA BAR LOGIC ===
     // =============================================
     const stickyCtaBar = document.getElementById('sticky-cta-bar');
-    const mainBuyButton = document.getElementById('buy-it-now-btn'); // The button we watch
+    const mainBuyButton = document.getElementById('buy-it-now-btn'); 
     const mainCartButton = document.getElementById('add-to-cart-btn');
 
     const stickyBuyButton = document.getElementById('sticky-buy-now-btn');
@@ -273,25 +267,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             },
             {
-                root: null, // relative to viewport
+                root: null, 
                 threshold: 0, 
-                rootMargin: '-100px 0px 0px 0px' // Triggers 100px before it's fully off-screen
+                rootMargin: '-100px 0px 0px 0px' 
             }
         );
 
-        // Start observing the main "Buy It Now" button
         observer.observe(mainBuyButton);
 
-        // --- Make sticky buttons trigger the real buttons ---
-        // This ensures all your original cart logic just works.
         if (stickyBuyButton) {
             stickyBuyButton.addEventListener('click', () => {
-                mainBuyButton.click(); // Clicks the original "Buy ItNow"
+                mainBuyButton.click(); 
             });
         }
         if (stickyCartButton) {
             stickyCartButton.addEventListener('click', () => {
-                mainCartButton.click(); // Clicks the original "Add to Cart"
+                mainCartButton.click(); 
             });
         }
     }
@@ -302,7 +293,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- EVENT LISTENERS ---
     
-    // Quantity controls (only on index.html)
     if (qtyIncrease) {
         qtyIncrease.addEventListener('click', () => {
             quantity++;
@@ -318,7 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Add to Cart (only on index.html)
     if (addToCartBtn) {
         addToCartBtn.addEventListener('click', () => {
             handleAddToCart();
@@ -326,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Buy It Now (only on index.html)
     if (buyItNowBtn) {
         buyItNowBtn.addEventListener('click', () => {
             handleAddToCart();
@@ -334,14 +322,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Cart modal controls (global)
     if(openCartBtn) openCartBtn.addEventListener('click', openCart);
     if(closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
     if(cartOverlay) cartOverlay.addEventListener('click', closeCart);
-    // CHANGED: Replaced handleRemoveFromCart with handleCartClick
     if(cartBody) cartBody.addEventListener('click', handleCartClick);
     
-    // Pincode Check (only on index.html)
     if (pincodeCheckBtn) {
         pincodeCheckBtn.addEventListener('click', checkPincode);
         pincodeInput.addEventListener('keypress', (e) => {
@@ -351,7 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Image Gallery (only on index.html)
     if (thumbnailImages.length > 0) {
         thumbnailImages.forEach(img => {
             img.addEventListener('click', () => {
@@ -363,7 +347,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Accordions (global, for index.html and faq.html)
     if (accordionHeaders.length > 0) {
         accordionHeaders.forEach(header => {
             header.addEventListener('click', () => {
@@ -380,20 +363,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Variant Selection (only on index.html)
     if (variantButtons.length > 0) {
         variantButtons.forEach(button => {
             button.addEventListener('click', () => {
                 variantButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
                 
-                // This logic correctly gets the variant text (e.g., "200g")
                 selectedVariant = button.firstChild.textContent.trim().split(' ')[0] + 'g';
             });
         });
     }
     
-    // Review Form Listeners (only on index.html)
     if (showReviewFormBtn) {
         showReviewFormBtn.addEventListener('click', toggleReviewForm);
         cancelReviewBtn.addEventListener('click', toggleReviewForm);
@@ -408,9 +388,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     // --- INITIALIZATION ---
-    updateCartIcon(); // Set initial cart count on page load
+    updateCartIcon(); 
     
-    // Run on index.html only
     if (qtyDisplay) {
         updateQuantityDisplay();
     }
