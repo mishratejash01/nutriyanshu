@@ -244,7 +244,56 @@ document.addEventListener('DOMContentLoaded', () => {
         reviewForm.classList.toggle('open');
     }
 
-    // --- (Sticky bar logic has been removed as it's no longer needed) ---
+    // =============================================
+    // === STICKY CTA BAR LOGIC (RE-ADDED) ===
+    // =============================================
+    const stickyCtaBar = document.getElementById('sticky-cta-bar');
+    // We observe the main "Add to Cart" button, not "Buy Now"
+    const mainCartButton = document.getElementById('add-to-cart-btn'); 
+    const mainBuyButton = document.getElementById('buy-it-now-btn');
+
+    const stickyBuyButton = document.getElementById('sticky-buy-now-btn');
+    const stickyCartButton = document.getElementById('sticky-add-to-cart-btn');
+
+    // Check if we are on the product page (where these elements exist)
+    if (mainCartButton && stickyCtaBar) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                // When the main "Add to Cart" button is NOT on the screen...
+                if (!entry.isIntersecting) {
+                    // SHOW the sticky bar
+                    stickyCtaBar.classList.add('show');
+                } else {
+                    // Otherwise, HIDE it
+                    stickyCtaBar.classList.remove('show');
+                }
+            },
+            {
+                root: null, 
+                threshold: 0, // Triggers as soon as it's 0% visible
+                rootMargin: "0px 0px -100px 0px" // Triggers 100px from the bottom edge
+            }
+        );
+
+        // Start observing the main "Add to Cart" button
+        observer.observe(mainCartButton);
+
+        // --- Make sticky buttons trigger the real buttons ---
+        if (stickyBuyButton) {
+            stickyBuyButton.addEventListener('click', () => {
+                mainBuyButton.click(); // Clicks the original "Buy It Now"
+            });
+        }
+        if (stickyCartButton) {
+            stickyCartButton.addEventListener('click', () => {
+                mainCartButton.click(); // Clicks the original "Add to Cart"
+            });
+        }
+    }
+    // =============================================
+    // === END OF STICKY CTA BAR LOGIC ===
+    // =============================================
 
 
     // --- EVENT LISTENERS ---
@@ -312,6 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     content.style.maxHeight = null;
                     icon.setAttribute('name', 'add-outline');
                 } else {
+                    // Set max-height to the content's real scroll height
                     content.style.maxHeight = content.scrollHeight + 'px';
                     icon.setAttribute('name','remove-outline');
                 }
