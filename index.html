@@ -18,10 +18,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'theme-green': '#225723',
-                        'theme-gold': '#BFA160',
-                        'theme-bg': '#FBFBF9',
-                        'theme-text': '#333333',
+                        'theme-green': '#336940',  /* NEW: Richer, more vibrant green */
+                        'theme-gold': '#E0C48F',  /* NEW: Lighter, champagne gold for accents */
+                        'theme-bg': '#FBFBF9',    /* KEPT: Soft, premium warm white */
+                        'theme-text': '#2A2A2A',  /* NEW: Softer, richer black for text */
                     },
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
@@ -40,37 +40,39 @@
             }
         }
     </script>
-    
     <style>
         /* Custom styles */
         body {
             font-family: 'Inter', sans-serif;
-            color: #333333;
+            color: #2A2A2A; /* Updated base text color */
         }
         
         h1, h2, h3, h4, .font-heading {
             font-family: 'Lora', serif;
         }
 
+        /* These button styles now automatically use the new 
+         'theme-gold' and 'theme-bg' colors from your config.
+        */
         .btn-primary {
-            background-color: #BFA160;
-            color: white;
-            border: 1px solid #BFA160;
+            background-color: #E0C48F; /* theme-gold */
+            color: #2A2A2A; /* theme-text, for better contrast */
+            border: 1px solid #E0C48F; /* theme-gold */
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #a68b50;
-            border-color: #a68b50;
+            background-color: #d1b580; /* A slightly darker gold */
+            border-color: #d1b580;
         }
         
         .btn-secondary {
             background-color: white;
-            color: #BFA160;
-            border: 1px solid #BFA160;
+            color: #E0C48F; /* theme-gold */
+            border: 1px solid #E0C48F; /* theme-gold */
             transition: all 0.3s ease;
         }
         .btn-secondary:hover {
-            background-color: #fcfaf6;
+            background-color: #fcfaf6; /* Lighter version of theme-bg */
         }
         
         .btn-secondary-light {
@@ -124,7 +126,7 @@
         }
 
         .thumbnail-active {
-            border-color: #225723 !important;
+            border-color: #336940 !important; /* theme-green */
         }
 
         .variant-btn {
@@ -137,9 +139,9 @@
             transition: all 0.3s ease;
         }
         .variant-btn.active {
-            border-color: #BFA160;
+            border-color: #E0C48F; /* theme-gold */
             background-color: #fcfaf6;
-            color: #225723;
+            color: #336940; /* theme-green */
             font-weight: 600;
         }
         
@@ -148,7 +150,7 @@
             top: -8px;
             right: -8px;
             transform: none;
-            background-color: #225723;
+            background-color: #336940; /* theme-green */
             color: white;
             font-size: 10px;
             font-weight: bold;
@@ -271,7 +273,7 @@
             
             <div class="mt-8 lg:mt-0">
                 <p class="text-sm text-gray-500">Carbamide Forte</p>
-                <h1 class="text-2xl sm:text-3xl font-bold font-heading text-gray-900 mt-1">Organic Moringa Leaf Powder</h1>
+                <h1 class="text-2xl sm:text-3xl font-bold font-heading text-theme-text mt-1">Organic Moringa Leaf Powder</h1>
                 
                 <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2">
                     <span class="flex items-center text-sm text-theme-green">
@@ -298,7 +300,7 @@
                 </div>
                 
                 <div class="mt-4 flex items-baseline gap-3">
-                    <span class="text-2xl sm:text-3xl font-bold text-gray-900">₹249</span>
+                    <span class="text-2xl sm:text-3xl font-bold text-theme-text">₹249</span>
                     <span class="text-lg sm:text-xl text-gray-500 line-through">₹450</span>
                     <span class="px-2 py-0.5 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded-md">SAVE 45%</span>
                 </div>
