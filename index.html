@@ -181,8 +181,7 @@
             padding-left: 0.75rem;
             padding-right: 0.75rem;
         }
-
-        /* This is the only style for the sticky bar we removed. We can leave it, it won't hurt. */
+        /* This rule shows the sticky bar when JS adds the 'show' class */
         #sticky-cta-bar.show {
             opacity: 1;
             transform: translateY(0);
@@ -232,180 +231,44 @@
         </nav>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 mb-12 sm:mb-16 max-w-6xl">
-        <div class="lg:grid lg:grid-cols-5 lg:gap-12 xl:gap-16">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8 mt-6 max-w-5xl">
+        <ol class="flex items-center space-x-2 text-sm text-theme-text-muted">
+            <li><a href="index.html" class="hover:underline hover:text-theme-primary">Home</a></li>
+            <li><ion-icon name="chevron-forward-outline" class="h-3 w-3"></ion-icon></li>
+            <li><span class="font-medium text-theme-text-body">Moringa Powder</span></li>
+        </ol>
+    </nav>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-4 sm:mt-8 mb-12 sm:mb-16 max-w-5xl">
+
+        <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-start">
             
-            <div class="lg:col-span-3">
-                
-                <div class="lg:sticky lg:top-24">
-                    <div class="flex flex-col-reverse sm:flex-row gap-4">
-                        <div class="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0">
-                            <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
-                                 alt="Moringa Powder - main" 
-                                 class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent thumbnail-active"
-                                 data-src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
-                            <img src="https://images.unsplash.com/photo-1600503467431-c655c6d36e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
-                                 alt="Moringa Powder - view 2" 
-                                 class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
-                                 data-src="https://images.unsplash.com/photo-1600503467431-c655c6d36e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
-                            <img src="https://images.unsplash.com/photo-1590333893608-621b4a3d7bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
-                                 alt="Moringa Powder - view 3" 
-                                 class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
-                                 data-src="https://images.unsplash.com/photo-1590333893608-621b4a3d7bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
-                        </div>
-                        <div class="flex-1">
-                            <img id="main-product-image" 
-                                 src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Organic Moringa Leaf Powder"
-                                 class="w-full h-auto object-cover rounded-lg shadow-md">
-                        </div>
+            <div>
+                <div class="flex flex-col-reverse sm:flex-row gap-4">
+                    <div class="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-x-visible pb-2 sm:pb-0">
+                        <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                             alt="Moringa Powder - main" 
+                             class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent thumbnail-active"
+                             data-src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+                        <img src="https://images.unsplash.com/photo-1600503467431-c655c6d36e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                             alt="Moringa Powder - view 2" 
+                             class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
+                             data-src="https://images.unsplash.com/photo-1600503467431-c655c6d36e2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
+                        <img src="https://images.unsplash.com/photo-1590333893608-621b4a3d7bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                             alt="Moringa Powder - view 3" 
+                             class="thumbnail-img h-16 w-16 sm:h-20 sm:w-20 object-cover rounded-md cursor-pointer border-2 border-transparent"
+                             data-src="https://images.unsplash.com/photo-1590333893608-621b4a3d7bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80">
                     </div>
-                </div>
-
-                <div class="mt-12 sm:mt-16">
-                    <div class="accordion-item border-b border-theme-border">
-                        <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
-                            <span class="text-lg font-semibold text-theme-text-headings font-heading">Description</span>
-                            <ion-icon name="add-outline" class="text-xl"></ion-icon>
-                        </button>
-                        <div class="accordion-content pb-4">
-                            <p class="text-theme-text-body max-w-3xl">
-                                Nutriyanshu Organic Moringa Powder is sourced from the finest, organically grown moringa leaves. Known as the 'miracle tree', moringa is a nutritional powerhouse, packed with vitamins, minerals, and antioxidants.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item border-b border-theme-border">
-                        <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
-                            <span class="text-lg font-semibold text-theme-text-headings font-heading">Benefits</span>
-                            <ion-icon name="add-outline" class="text-xl"></ion-icon>
-                        </button>
-                        <div class="accordion-content pb-4">
-                            <ul class="list-disc list-inside text-theme-text-body space-y-1 max-w-3xl">
-                                <li>Boosts energy and stamina naturally.</li>
-                                <li>Rich in antioxidants to fight free radicals.</li>
-                                <li>Supports a healthy immune system.</li>
-                                <li>Helps in detoxification and digestion.</li>
-                                <li>Promotes healthy skin and hair.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item border-b border-theme-border">
-                        <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
-                            <span class="text-lg font-semibold text-theme-text-headings font-heading">How to Use</span>
-                            <ion-icon name="add-outline" class="text-xl"></ion-icon>
-                        </button>
-                        <div class="accordion-content pb-4">
-                            <p class="text-theme-text-body max-w-3xl">
-                                Mix 1 scoop (approx. 2g) of moringa powder into a glass of water, smoothie, juice, or your. You can also sprinkle it over salads, soups, or meals.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <section class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-theme-border bg-gray-50 rounded-lg p-8 md:p-12">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        <div>
-                            <span class="text-sm font-semibold text-theme-primary uppercase">Pure, Potent, & Proud</span>
-                            <h2 class="text-3xl font-bold font-heading text-theme-text-headings mt-2 mb-4">Our Quality Guarantee</h2>
-                            <p class="text-lg text-theme-text-body mb-6">
-                                We are committed to a single goal: delivering the purest, most effective Moringa powder available. We don't sell dozens of products because our focus is entirely on perfecting this one.
-                            </p>
-                            <ul class="space-y-4">
-                                <li class="flex items-center gap-3">
-                                    <ion-icon name="leaf-outline" class="h-6 w-6 text-theme-primary flex-shrink-0"></ion-icon>
-                                    <span class="text-theme-text-body">Sustainably sourced from organic-certified farms.</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <ion-icon name="flask-outline" class="h-6 w-6 text-theme-primary flex-shrink-0"></ion-icon>
-                                    <span class="text-theme-text-body">Rigorously lab-tested for purity and potency.</span>
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <ion-icon name="ban-outline" class="h-6 w-6 text-theme-primary flex-shrink-0"></ion-icon>
-                                    <span class="text-theme-text-body">100% free from fillers, additives, and preservatives.</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <img src="https://images.unsplash.com/photo-1590333893608-621b4a3d7bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
-                                 alt="Moringa leaves in a bowl"
-                                 class="w-full h-auto object-cover rounded-lg shadow-md">
-                        </div>
-                    </div>
-                </section>
-
-                <div class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-theme-border">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-xl sm:text-2xl font-bold font-heading text-theme-text-headings">Customer Reviews</h2>
-                        <button id="show-review-form-btn" class="py-2 px-4 rounded-md text-sm font-semibold btn-secondary-light flex items-center justify-center gap-1.5">
-                            <ion-icon name="create-outline" class="h-5 w-5"></ion-icon>
-                            Write a Review
-                        </button>
-                    </div>
-                    
-                    <div id="review-form" class="mb-8 p-4 sm:p-6 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
-                        <h3 class="text-lg font-semibold font-heading text-theme-text-headings mb-4">Write your review</h3>
-                        <form id="submit-review-form" class="space-y-4">
-                            <div>
-                                <label for="review-name" class="block text-sm font-medium text-theme-text-body">Your Name</label>
-                                <input type="text" id="review-name" required class="mt-1 block w-full sm:w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-theme-text-body">Your Rating</label>
-                                <div class="star-rating-input mt-1">
-                                    <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
-                                    <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
-                                    <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
-                                    <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
-                                    <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="review-body" class="block text-sm font-medium text-theme-text-body">Review</label>
-                                <textarea id="review-body" rows="4" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary" placeholder="What did you like or dislike?"></textarea>
-                            </div>
-                            <div class="flex gap-4">
-                                <button type="submit" class="py-2 px-5 rounded-md font-semibold btn-primary">Submit Review</button>
-                                <button type="button" id="cancel-review-btn" class="py-2 px-5 rounded-md font-semibold btn-secondary-light">Cancel</button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <div class="space-y-8">
-                        <div class="p-4 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
-                            <div class="flex items-center mb-2">
-                                <span class="font-semibold text-theme-text-headings">Anjali S.</span>
-                                <span class="ml-auto text-sm text-theme-text-muted">Oct 28, 2025</span>
-                            </div>
-                            <div class="flex text-yellow-400">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                            </div>
-                            <p class="mt-2 text-theme-text-body">"Great product! I've been using this moringa powder for two weeks and I can already feel a difference in my energy levels. Mixes well in my morning smoothie."</p>
-                        </div>
-                        
-                        <div class="p-4 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
-                            <div class="flex items-center mb-2">
-                                <span class="font-semibold text-theme-text-headings">Rohan P.</span>
-                                <span class="ml-auto text-sm text-theme-text-muted">Oct 22, 2025</span>
-                            </div>
-                            <div class="flex text-yellow-400">
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star"></ion-icon>
-                                <ion-icon name="star-outline"></ion-icon>
-                            </div>
-                            <p class="mt-2 text-theme-text-body">"Good quality and nice packaging. The taste is a bit strong, but that's normal for moringa. Happy with the purchase."</p>
-                        </div>
+                    <div class="flex-1">
+                        <img id="main-product-image" 
+                             src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                             alt="Organic Moringa Leaf Powder"
+                             class="w-full h-auto object-cover rounded-lg shadow-md">
                     </div>
                 </div>
             </div>
-            <div class="lg:col-span-2 lg:sticky lg:top-24">
+            
+            <div class="mt-8 lg:mt-0">
                 <p class="text-sm text-theme-text-muted">Nutriyanshu</p>
                 <h1 class="text-3xl lg:text-4xl font-bold font-heading text-theme-text-headings mt-1">Organic Moringa Leaf Powder</h1>
                 
@@ -483,30 +346,184 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="mt-8 space-y-4">
-                    <div class="flex items-center gap-3">
-                        <ion-icon name="leaf-outline" class="h-7 w-7 text-theme-primary"></ion-icon>
-                        <span class="font-medium text-theme-text-headings">100% Organic</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <ion-icon name="shield-checkmark-outline" class="h-7 w-7 text-theme-primary"></ion-icon>
-                        <span class="font-medium text-theme-text-headings">Secure Payments</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <ion-icon name="refresh-circle-outline" class="h-7 w-7 text-theme-primary"></ion-icon>
-                        <span class="font-medium text-theme-text-headings">Easy Returns</span>
-                    </div>
+            </div>
+        </div>
+
+        <div class="mt-12 sm:mt-16 border-t border-theme-border pt-8">
+            <div class="accordion-item border-b border-theme-border">
+                <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
+                    <span class="text-lg font-semibold text-theme-text-headings font-heading">Description</span>
+                    <ion-icon name="add-outline" class="text-xl"></ion-icon>
+                </button>
+                <div class="accordion-content pb-4">
+                    <p class="text-theme-text-body max-w-3xl">
+                        Nutriyanshu Organic Moringa Powder is sourced from the finest, organically grown moringa leaves. Known as the 'miracle tree', moringa is a nutritional powerhouse, packed with vitamins, minerals, and antioxidants.
+                    </p>
                 </div>
             </div>
+            
+            <div class="accordion-item border-b border-theme-border">
+                <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
+                    <span class="text-lg font-semibold text-theme-text-headings font-heading">Benefits</span>
+                    <ion-icon name="add-outline" class="text-xl"></ion-icon>
+                </button>
+                <div class="accordion-content pb-4">
+                    <ul class="list-disc list-inside text-theme-text-body space-y-1 max-w-3xl">
+                        <li>Boosts energy and stamina naturally.</li>
+                        <li>Rich in antioxidants to fight free radicals.</li>
+                        <li>Supports a healthy immune system.</li>
+                        <li>Helps in detoxification and digestion.</li>
+                        <li>Promotes healthy skin and hair.</li>
+                    </ul>
+                </div>
             </div>
+
+            <div class="accordion-item border-b border-theme-border">
+                <button class="accordion-header w-full flex justify-between items-center py-4 text-left">
+                    <span class="text-lg font-semibold text-theme-text-headings font-heading">How to Use</span>
+                    <ion-icon name="add-outline" class="text-xl"></ion-icon>
+                </button>
+                <div class="accordion-content pb-4">
+                    <p class="text-theme-text-body max-w-3xl">
+                        Mix 1 scoop (approx. 2g) of moringa powder into a glass of water, smoothie, juice, or your. You can also sprinkle it over salads, soups, or meals.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <section class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-theme-border bg-gray-50 rounded-lg p-8 md:p-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-sm font-semibold text-theme-primary uppercase">Pure, Potent, & Proud</span>
+                    <h2 class="text-3xl font-bold font-heading text-theme-text-headings mt-2 mb-4">Our Quality Guarantee</h2>
+                    <p class="text-lg text-theme-text-body mb-6">
+                        We are committed to a single goal: delivering the purest, most effective Moringa powder available. We don't sell dozens of products because our focus is entirely on perfecting this one.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <ion-icon name="leaf-outline" class="h-6 w-6 text-theme-primary flex-shrink-0"></ion-icon>
+                            <span class="text-theme-text-body">Sustainably sourced from organic-certified farms.</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <ion-icon name="flask-outline" class="h-6 w-6 text-theme-primary flex-shrink-0"></ion-icon>
+                            <span class="text-theme-text-body">Rigorously lab-tested for purity and potency.</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <ion-icon name="ban-outline" class="h-6 w-6 text-theme-primary flex-shrink-0"></ion-icon>
+                            <span class="text-theme-text-body">100% free from fillers, additives, and preservatives.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1590333893608-621b4a3d7bf4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                         alt="Moringa leaves in a bowl"
+                         class="w-full h-auto object-cover rounded-lg shadow-md">
+                </div>
+            </div>
+        </section>
+
+        <div class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-theme-border">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl sm:text-2xl font-bold font-heading text-theme-text-headings">Customer Reviews</h2>
+                <button id="show-review-form-btn" class="py-2 px-4 rounded-md text-sm font-semibold btn-secondary-light flex items-center justify-center gap-1.5">
+                    <ion-icon name="create-outline" class="h-5 w-5"></ion-icon>
+                    Write a Review
+                </button>
+            </div>
+            
+            <div id="review-form" class="mb-8 p-4 sm:p-6 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
+                <h3 class="text-lg font-semibold font-heading text-theme-text-headings mb-4">Write your review</h3>
+                <form id="submit-review-form" class="space-y-4">
+                    <div>
+                        <label for="review-name" class="block text-sm font-medium text-theme-text-body">Your Name</label>
+                        <input type="text" id="review-name" required class="mt-1 block w-full sm:w-1/2 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-theme-text-body">Your Rating</label>
+                        <div class="star-rating-input mt-1">
+                            <input type="radio" id="star5" name="rating" value="5" required><label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="review-body" class="block text-sm font-medium text-theme-text-body">Review</label>
+                        <textarea id="review-body" rows="4" required class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-theme-primary" placeholder="What did you like or dislike?"></textarea>
+                    </div>
+                    <div class="flex gap-4">
+                        <button type="submit" class="py-2 px-5 rounded-md font-semibold btn-primary">Submit Review</button>
+                        <button type="button" id="cancel-review-btn" class="py-2 px-5 rounded-md font-semibold btn-secondary-light">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="p-4 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <span class="font-semibold text-theme-text-headings">Anjali S.</span>
+                        <span class="ml-auto text-sm text-theme-text-muted">Oct 28, 2025</span>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                    </div>
+                    <p class="mt-2 text-theme-text-body">"Great product! I've been using this moringa powder for two weeks and I can already feel a difference in my energy levels. Mixes well in my morning smoothie."</p>
+                </div>
+                
+                <div class="p-4 bg-theme-bg rounded-lg border border-theme-border shadow-sm">
+                    <div class="flex items-center mb-2">
+                        <span class="font-semibold text-theme-text-headings">Rohan P.</span>
+                        <span class="ml-auto text-sm text-theme-text-muted">Oct 22, 2025</span>
+                    </div>
+                    <div class="flex text-yellow-400">
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star"></ion-icon>
+                        <ion-icon name="star-outline"></ion-icon>
+                    </div>
+                    <p class="mt-2 text-theme-text-body">"Good quality and nice packaging. The taste is a bit strong, but that's normal for moringa. Happy with the purchase."</p>
+                </div>
+            </div>
+        </div>
+
     </main>
+    
+    <div id="sticky-cta-bar" class="fixed bottom-0 left-0 right-0 w-full bg-white p-4 z-30 
+                                  opacity-0 transform translate-y-full transition-all duration-300 ease-in-out
+                                  shadow-[0_-4px_10px_-5px_rgba(0,0,0,0.1)] border-t border-theme-border">
+        
+        <div class="flex items-center justify-between max-w-5xl mx-auto gap-4">
+            
+            <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=60&q=80" alt="Moringa" class="w-12 h-12 rounded-md object-cover">
+                <div>
+                    <h4 class="font-semibold text-sm text-theme-text-headings hidden sm:block">Moringa Leaf Powder</h4>
+                    <p class="font-bold text-lg text-theme-text-headings">₹249</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button id="sticky-add-to-cart-btn" title="Add to Cart" class="py-3 px-4 rounded-md text-lg font-semibold btn-secondary">
+                    <ion-icon name="cart-outline" class="h-6 w-6"></ion-icon>
+                </button>
+                <button id="sticky-buy-now-btn" class="py-3 px-6 rounded-md text-lg font-semibold btn-primary flex-1 whitespace-nowrap">
+                    Buy Now
+                </button>
+            </div>
+        </div>
+    </div>
     <div id="toast">
         Item added to cart!
     </div>
     
     <section class="py-12 sm:py-16 bg-theme-bg border-t border-b border-theme-border">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
             <h2 class="text-3xl font-bold font-heading text-theme-text-headings mb-12 text-center">The Nutriyanshu Promise</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 
