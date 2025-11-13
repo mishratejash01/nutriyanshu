@@ -200,7 +200,12 @@
             padding-left: 0.75rem;
             padding-right: 0.75rem;
         }
-        
+
+        /* === NEW: Class to show the sticky bar === */
+        #sticky-cta-bar.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-theme-bg">
@@ -559,6 +564,25 @@
 
     </main>
     
+    <div id="sticky-cta-bar" class="fixed bottom-0 left-0 right-0 w-full bg-white border-t border-theme-border p-4 shadow-lg z-30 opacity-0 transform translate-y-full transition-all duration-300 ease-in-out">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=60&q=80" alt="Moringa" class="w-12 h-12 rounded-md object-cover hidden sm:block">
+                <div>
+                    <h4 class="font-semibold text-sm text-theme-text-headings">Moringa Leaf Powder</h4>
+                    <p class="font-bold text-lg text-theme-text-headings">₹249</p>
+                </div>
+            </div>
+            <div class="flex flex-1 sm:flex-none sm:max-w-xs gap-4">
+                 <button id="sticky-add-to-cart-btn" class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-secondary">
+                    Add to Cart
+                </button>
+                <button id="sticky-buy-now-btn" class="w-full py-3 px-6 rounded-md text-lg font-semibold btn-primary">
+                    Buy It Now
+                </button>
+            </div>
+        </div>
+    </div>
     <section class="bg-gray-50 border-t border-b border-theme-border py-12 sm:py-16">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-xl sm:text-2xl font-bold font-heading text-theme-text-headings mb-8 text-center">You May Also Like</h2>
