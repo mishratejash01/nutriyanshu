@@ -181,7 +181,6 @@
             padding-left: 0.75rem;
             padding-right: 0.75rem;
         }
-        /* This rule shows the sticky bar when JS adds the 'show' class */
         #sticky-cta-bar.show {
             opacity: 1;
             transform: translateY(0);
@@ -356,7 +355,7 @@
                     <ion-icon name="add-outline" class="text-xl"></ion-icon>
                 </button>
                 <div class="accordion-content pb-4">
-                    <p class="text-theme-text-body max-w-3xl">
+                    <p class="text-theme-text-body max-w-3xl pt-2">
                         Nutriyanshu Organic Moringa Powder is sourced from the finest, organically grown moringa leaves. Known as the 'miracle tree', moringa is a nutritional powerhouse, packed with vitamins, minerals, and antioxidants.
                     </p>
                 </div>
@@ -368,13 +367,44 @@
                     <ion-icon name="add-outline" class="text-xl"></ion-icon>
                 </button>
                 <div class="accordion-content pb-4">
-                    <ul class="list-disc list-inside text-theme-text-body space-y-1 max-w-3xl">
-                        <li>Boosts energy and stamina naturally.</li>
-                        <li>Rich in antioxidants to fight free radicals.</li>
-                        <li>Supports a healthy immune system.</li>
-                        <li>Helps in detoxification and digestion.</li>
-                        <li>Promotes healthy skin and hair.</li>
-                    </ul>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 pt-4">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
+                                <ion-icon name="flash-outline" class="h-6 w-6 text-theme-primary"></ion-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-theme-text-headings">Boosts Energy & Stamina</h4>
+                                <p class="text-sm text-theme-text-body">Naturally enhances energy levels without jitters, helping you power through your day.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
+                                <ion-icon name="shield-checkmark-outline" class="h-6 w-6 text-theme-primary"></ion-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-theme-text-headings">Supports Immune System</h4>
+                                <p class="text-sm text-theme-text-body">Rich in vitamins and antioxidants that help strengthen your body's natural defenses.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
+                                <ion-icon name="leaf-outline" class="h-6 w-6 text-theme-primary"></ion-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-theme-text-headings">Rich in Antioxidants</h4>
+                                <p class="text-sm text-theme-text-body">Helps fight free radicals and reduce oxidative stress, promoting overall wellness.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 p-3 bg-theme-secondary rounded-full">
+                                <ion-icon name="happy-outline" class="h-6 w-6 text-theme-primary"></ion-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-theme-text-headings">Promotes Healthy Skin</h4>
+                                <p class="text-sm text-theme-text-body">Nutrient-dense profile helps nourish your skin from the inside out for a natural glow.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -384,13 +414,26 @@
                     <ion-icon name="add-outline" class="text-xl"></ion-icon>
                 </button>
                 <div class="accordion-content pb-4">
-                    <p class="text-theme-text-body max-w-3xl">
-                        Mix 1 scoop (approx. 2g) of moringa powder into a glass of water, smoothie, juice, or your. You can also sprinkle it over salads, soups, or meals.
-                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+                        <div class="text-center">
+                            <img src="https://placehold.co/400x300/F0FFFF/00B5B7?text=1.+SCOOP" alt="Scoop Moringa Powder" class="w-full h-auto object-cover rounded-lg shadow-sm mb-4">
+                            <h4 class="text-lg font-semibold text-theme-text-headings">Step 1: Scoop</h4>
+                            <p class="text-theme-text-body">Take 1 scoop (approx. 2g) of Nutriyanshu Moringa Powder.</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://placehold.co/400x300/F0FFFF/00B5B7?text=2.+MIX" alt="Mix Moringa in a glass" class="w-full h-auto object-cover rounded-lg shadow-sm mb-4">
+                            <h4 class="text-lg font-semibold text-theme-text-headings">Step 2: Mix</h4>
+                            <p class="text-theme-text-body">Blend it into a glass of water, your favorite smoothie, or juice.</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="https://placehold.co/400x300/F0FFFF/00B5B7?text=3.+ENJOY" alt="Enjoy your Moringa drink" class="w-full h-auto object-cover rounded-lg shadow-sm mb-4">
+                            <h4 class="text-lg font-semibold text-theme-text-headings">Step 3: Enjoy</h4>
+                            <p class="text-theme-text-body">Drink daily. You can also sprinkle it over salads, soups, or meals.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
         <section class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-theme-border bg-gray-50 rounded-lg p-8 md:p-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
@@ -518,6 +561,7 @@
             </div>
         </div>
     </div>
+    
     <div id="toast">
         Item added to cart!
     </div>
@@ -641,7 +685,6 @@
             </div>
         </div>
     </footer>
-
 
     <script src="script.js"></script>
 </body>
