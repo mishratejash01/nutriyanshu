@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'moringa-100g',
             name: 'Organic Moringa Leaf Powder (100g)',
             price: 149,
-            image: 'https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDBfHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80'
+            image: 'front.jpg'
         },
         '200g': {
             id: 'moringa-200g',
             name: 'Organic Moringa Leaf Powder (200g)',
             price: 249,
-            image: 'https://images.unsplash.com/photo-1590333894165-a6369651c6b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDBfHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80'
+            image: 'front.jpg'
         }
     }
 
