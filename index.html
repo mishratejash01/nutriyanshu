@@ -6,16 +6,13 @@
     <title>Organic Moringa Leaf Powder | Nutriyanshu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     
-    <!-- Razorpay -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     
     <script>
@@ -38,6 +35,7 @@
                         'premium': '0 20px 40px -10px rgba(13, 148, 136, 0.15)',
                         'float': '0 10px 30px -10px rgba(0,0,0,0.05)',
                         'glow': '0 0 20px rgba(13, 148, 136, 0.4)',
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
                     },
                     animation: {
                         'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
@@ -62,9 +60,9 @@
         }
         
         .glass-header { 
-            background: rgba(255, 255, 255, 0.8); 
-            backdrop-filter: blur(16px); 
-            border-bottom: 1px solid rgba(0,0,0,0.03);
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         /* Hide Scrollbar */
@@ -76,18 +74,20 @@
         
         /* Smooth Transitions */
         .smooth-transition { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        /* Editorial Heading Style */
+        h1, h2, h3 { letter-spacing: -0.02em; }
     </style>
 </head>
 <body class="antialiased bg-white">
 
-    <!-- Announcement Bar -->
     <div class="bg-brand-black text-white text-[10px] md:text-xs font-bold py-3 text-center tracking-[0.2em] uppercase z-50 relative">
         <span class="opacity-90 flex items-center justify-center gap-3">
+            <ion-icon name="sparkles" class="text-yellow-400"></ion-icon> 
             Free Express Shipping on Orders Above ₹599
         </span>
     </div>
 
-    <!-- Glass Header -->
     <header class="glass-header sticky top-0 z-40 transition-all duration-300">
         <nav class="container mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="group">
@@ -101,11 +101,11 @@
                 <a href="#nutrition" class="hover:text-brand-teal transition relative group">
                     Science <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all group-hover:w-full"></span>
                 </a>
+                <a href="#comparison" class="hover:text-brand-teal transition relative group">
+                    Why Us <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all group-hover:w-full"></span>
+                </a>
                 <a href="#recipes" class="hover:text-brand-teal transition relative group">
                     Recipes <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all group-hover:w-full"></span>
-                </a>
-                <a href="#reviews" class="hover:text-brand-teal transition relative group">
-                    Reviews <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-teal transition-all group-hover:w-full"></span>
                 </a>
             </div>
 
@@ -118,11 +118,9 @@
         </nav>
     </header>
 
-    <!-- HERO PRODUCT SECTION -->
     <main id="product-section" class="container mx-auto px-4 lg:px-8 py-12 lg:py-20">
         <div class="lg:grid lg:grid-cols-12 lg:gap-24 items-start">
             
-            <!-- Left: Visual Stage -->
             <div class="lg:col-span-7 space-y-6 opacity-0 animate-fade-up">
                 <div class="relative bg-brand-surface rounded-[2rem] overflow-hidden shadow-float border border-gray-100 aspect-square group cursor-zoom-in">
                     <img id="main-product-image" src="front.jpg" alt="Moringa Powder" class="w-full h-full object-center object-cover transition-transform duration-700 group-hover:scale-105">
@@ -131,48 +129,40 @@
                     </div>
                 </div>
                 
-                <!-- Thumbnails -->
                 <div class="grid grid-cols-5 gap-4">
-                    <button onclick="changeImage('front.jpg')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1">
-                        <img src="front.jpg" class="w-full h-full object-cover">
-                    </button>
-                    <button onclick="changeImage('back.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1">
-                        <img src="back.png" class="w-full h-full object-cover">
-                    </button>
-                    <button onclick="changeImage('Supplements Facts.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1">
-                        <img src="Supplements Facts.png" class="w-full h-full object-cover">
-                    </button>
-                    <button onclick="changeImage('Bowl.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1">
-                        <img src="Bowl.png" class="w-full h-full object-cover">
-                    </button>
-                    <button onclick="changeImage('mix.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1">
-                        <img src="mix.png" class="w-full h-full object-cover">
-                    </button>
+                    <button onclick="changeImage('front.jpg')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1 bg-gray-50"><img src="front.jpg" class="w-full h-full object-cover"></button>
+                    <button onclick="changeImage('back.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1 bg-gray-50"><img src="back.png" class="w-full h-full object-cover"></button>
+                    <button onclick="changeImage('Supplements Facts.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1 bg-gray-50"><img src="Supplements Facts.png" class="w-full h-full object-cover"></button>
+                    <button onclick="changeImage('Bowl.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1 bg-gray-50"><img src="Bowl.png" class="w-full h-full object-cover"></button>
+                    <button onclick="changeImage('mix.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition-all duration-300 hover:-translate-y-1 bg-gray-50"><img src="mix.png" class="w-full h-full object-cover"></button>
                 </div>
             </div>
 
-            <!-- Right: Commerce Engine -->
             <div class="lg:col-span-5 mt-10 lg:mt-0 sticky-details opacity-0 animate-fade-up" style="animation-delay: 200ms;">
                 <nav class="flex items-center gap-2 text-[10px] font-bold tracking-[0.2em] text-brand-teal uppercase mb-6">
                     Home <span class="text-gray-300">/</span> Superfoods <span class="text-gray-300">/</span> Organic
                 </nav>
                 
-                <h1 class="text-4xl lg:text-6xl font-bold text-brand-black leading-[1.1] mb-4 tracking-tight">Organic Moringa <br><span class="text-brand-teal">Leaf Powder</span></h1>
+                <h1 class="text-4xl lg:text-6xl font-serif font-medium text-brand-black leading-[1.1] mb-4 tracking-tight">Organic Moringa <br><span class="italic text-brand-teal">Leaf Powder</span></h1>
                 
                 <p class="text-lg text-text-secondary mb-8 leading-relaxed font-medium">
-                    The daily green supercharge your body craves. Ethically sourced, shade-dried, and packed with potent antioxidants to fuel your immunity.
+                    The daily green supercharge your body craves. Ethically sourced from India's finest farms, shade-dried to preserve nutrients, and packed with potent antioxidants to fuel your immunity.
                 </p>
                 
-                <!-- Social Proof -->
-                <div class="flex items-center gap-4 mb-10">
-                    <div class="flex text-yellow-400 text-lg">
-                        <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                <div class="flex items-center gap-4 mb-10 py-4 border-y border-dashed border-gray-200">
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-200"></div>
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-300"></div>
+                        <div class="w-10 h-10 rounded-full border-2 border-white bg-brand-black text-white flex items-center justify-center text-xs font-bold">+1k</div>
                     </div>
-                    <span class="text-sm font-bold text-brand-black underline decoration-gray-300 underline-offset-4">4.9/5 Rating</span>
-                    <span class="text-sm text-text-secondary">Based on 1,200+ Reviews</span>
+                    <div>
+                        <div class="flex text-yellow-400 text-sm">
+                            <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
+                        </div>
+                        <span class="text-xs font-bold text-brand-black">4.9/5 Rating (1,200+ Reviews)</span>
+                    </div>
                 </div>
 
-                <!-- Dynamic Pricing Card -->
                 <div class="bg-white rounded-2xl p-6 shadow-premium border border-teal-50 mb-8 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 bg-brand-black text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-xl z-10 tracking-wide">LIMITED OFFER</div>
                     <div class="flex items-baseline gap-3 mb-2">
@@ -184,7 +174,6 @@
                     </p>
                 </div>
 
-                <!-- Selection (Fixed 200g) -->
                 <div class="mb-8">
                     <div class="flex justify-between items-center mb-3">
                         <label class="text-xs font-bold text-brand-black uppercase tracking-wide">Pack Size</label>
@@ -202,7 +191,6 @@
                     </button>
                 </div>
 
-                <!-- CTA Actions -->
                 <div class="space-y-4">
                     <div class="flex gap-4 h-14">
                         <div class="flex items-center bg-white border border-gray-200 rounded-xl w-32 shadow-sm">
@@ -219,7 +207,6 @@
                     </button>
                 </div>
 
-                <!-- Trust Strip -->
                 <div class="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-gray-100">
                     <div class="flex flex-col items-center gap-2 text-center group">
                         <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-600 text-xl group-hover:scale-110 transition duration-300"><ion-icon name="leaf-outline"></ion-icon></div>
@@ -238,10 +225,8 @@
         </div>
     </main>
 
-    <!-- IMMERSIVE SECTION: Dark Mode Superfood Showdown -->
     <section id="nutrition" class="py-24 bg-brand-black text-white relative overflow-hidden">
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
-        <!-- Glow Effects -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             <div class="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-brand-teal rounded-full blur-[150px] opacity-20"></div>
             <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-brand-teal-dark rounded-full blur-[150px] opacity-20"></div>
@@ -255,29 +240,25 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Stat Card 1 -->
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-500">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-500 hover:-translate-y-2">
                     <div class="text-5xl font-bold text-brand-teal mb-3 group-hover:scale-110 transition duration-500">7x</div>
                     <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Vitamin C</p>
                     <div class="h-px w-12 bg-white/10 mx-auto mb-4"></div>
                     <p class="text-sm text-gray-300">Than Oranges</p>
                 </div>
-                <!-- Stat Card 2 -->
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-500">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-500 hover:-translate-y-2">
                     <div class="text-5xl font-bold text-brand-teal mb-3 group-hover:scale-110 transition duration-500">15x</div>
                     <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Potassium</p>
                     <div class="h-px w-12 bg-white/10 mx-auto mb-4"></div>
                     <p class="text-sm text-gray-300">Than Bananas</p>
                 </div>
-                <!-- Stat Card 3 -->
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-500">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-500 hover:-translate-y-2">
                     <div class="text-5xl font-bold text-brand-teal mb-3 group-hover:scale-110 transition duration-500">9x</div>
                     <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Protein</p>
                     <div class="h-px w-12 bg-white/10 mx-auto mb-4"></div>
                     <p class="text-sm text-gray-300">Than Yogurt</p>
                 </div>
-                <!-- Stat Card 4 -->
-                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-500">
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-500 hover:-translate-y-2">
                     <div class="text-5xl font-bold text-brand-teal mb-3 group-hover:scale-110 transition duration-500">25x</div>
                     <p class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">Iron</p>
                     <div class="h-px w-12 bg-white/10 mx-auto mb-4"></div>
@@ -287,19 +268,18 @@
         </div>
     </section>
 
-    <!-- COMPARISON SECTION -->
-    <section class="py-24 bg-brand-surface">
+    <section id="comparison" class="py-24 bg-brand-surface">
         <div class="container mx-auto px-6 max-w-5xl">
             <div class="text-center mb-16">
-                <h2 class="text-3xl lg:text-4xl font-bold text-brand-black mb-4">The Nutriyanshu Difference</h2>
-                <p class="text-text-secondary">Not all Moringa is created equal. See why we stand apart.</p>
+                <h2 class="text-3xl lg:text-5xl font-serif font-medium text-brand-black mb-4">The Nutriyanshu <span class="italic text-brand-teal">Difference</span></h2>
+                <p class="text-text-secondary text-lg">Not all Moringa is created equal. See why we stand apart.</p>
             </div>
 
-            <div class="bg-white rounded-3xl shadow-premium border border-gray-100 overflow-hidden">
+            <div class="bg-white rounded-[2rem] shadow-premium border border-gray-100 overflow-hidden">
                 <div class="grid grid-cols-3 bg-gray-50/50 p-6 border-b border-gray-100 text-xs font-bold tracking-widest uppercase text-gray-500">
                     <div class="text-left pl-4">Feature</div>
                     <div class="text-center text-brand-teal">Nutriyanshu</div>
-                    <div class="text-center text-gray-400">Others</div>
+                    <div class="text-center text-gray-400">Regular Brands</div>
                 </div>
                 
                 <div class="grid grid-cols-3 p-6 border-b border-gray-100 items-center hover:bg-gray-50 transition duration-300">
@@ -321,73 +301,74 @@
         </div>
     </section>
 
-    <!-- RECIPES GRID -->
     <section id="recipes" class="py-24 bg-white">
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-end mb-12">
                 <div>
                     <span class="text-brand-teal font-bold tracking-[0.2em] text-xs uppercase mb-3 block">Lifestyle</span>
-                    <h2 class="text-3xl lg:text-4xl font-bold text-brand-black">Whip Up Wellness</h2>
+                    <h2 class="text-3xl lg:text-5xl font-serif font-medium text-brand-black">Whip Up Wellness</h2>
                 </div>
                 <a href="#" class="hidden md:block text-sm font-bold border-b-2 border-brand-black pb-1 hover:text-brand-teal hover:border-brand-teal transition">View All Recipes</a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Recipe 1 -->
                 <div class="group cursor-pointer">
-                    <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-6 relative">
+                    <div class="rounded-[2rem] overflow-hidden aspect-[4/3] mb-6 relative shadow-float">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 z-10"></div>
                         <img src="https://images.unsplash.com/photo-1623855244697-5d8fbe9c7992?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Moringa Moon Latte</h3>
-                    <p class="text-sm text-text-secondary line-clamp-2">Warm almond milk, 1 tsp Moringa, honey, and a dash of cinnamon. The perfect evening ritual.</p>
+                    <div class="px-2">
+                        <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Moringa Moon Latte</h3>
+                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Warm almond milk, 1 tsp Moringa, honey, and a dash of cinnamon. The perfect evening ritual to unwind and de-stress.</p>
+                    </div>
                 </div>
-                <!-- Recipe 2 -->
                 <div class="group cursor-pointer">
-                    <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-6 relative">
+                    <div class="rounded-[2rem] overflow-hidden aspect-[4/3] mb-6 relative shadow-float">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 z-10"></div>
                         <img src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Tropical Green Blast</h3>
-                    <p class="text-sm text-text-secondary line-clamp-2">Blend with frozen pineapple, banana, and coconut water for a refreshing nutrient hit.</p>
+                    <div class="px-2">
+                        <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Tropical Green Blast</h3>
+                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Blend with frozen pineapple, banana, and coconut water. A refreshing nutrient hit that tastes like a vacation.</p>
+                    </div>
                 </div>
-                <!-- Recipe 3 -->
                 <div class="group cursor-pointer">
-                    <div class="rounded-2xl overflow-hidden aspect-[4/3] mb-6 relative">
+                    <div class="rounded-[2rem] overflow-hidden aspect-[4/3] mb-6 relative shadow-float">
                         <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 z-10"></div>
                         <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Superfood Sprinkle</h3>
-                    <p class="text-sm text-text-secondary line-clamp-2">Just sprinkle 1 tsp over your avocado toast, salad, or soup for an instant upgrade.</p>
+                    <div class="px-2">
+                        <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Superfood Sprinkle</h3>
+                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Just sprinkle 1 tsp over your avocado toast, salad, or soup. An instant, undetectable nutrient upgrade for any meal.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- REVIEWS SECTION -->
     <section id="reviews" class="py-24 bg-brand-surface border-t border-gray-100">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl lg:text-4xl font-bold text-center text-brand-black mb-16">Loved by the Community</h2>
+            <h2 class="text-3xl lg:text-5xl font-serif font-medium text-center text-brand-black mb-16">Loved by the Community</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-8 rounded-2xl shadow-float border border-transparent hover:border-teal-100 transition duration-300">
+                <div class="bg-white p-8 rounded-2xl shadow-glass border border-transparent hover:border-teal-100 transition duration-300">
                     <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"I was skeptical at first, but the quality of Nutriyanshu is unmatched. The powder is vibrant green and dissolves well."</p>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"I was skeptical at first, but the quality of Nutriyanshu is unmatched. The powder is vibrant green and dissolves well. Digestion has improved significantly."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">AS</div>
                         <div><p class="text-sm font-bold">Anjali S.</p><p class="text-[10px] text-brand-teal font-bold uppercase tracking-wider">Verified Buyer</p></div>
                     </div>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-float border border-transparent hover:border-teal-100 transition duration-300">
+                <div class="bg-white p-8 rounded-2xl shadow-glass border border-transparent hover:border-teal-100 transition duration-300">
                     <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Finally an organic brand that delivers what it promises. The packaging is premium and the product is fresh."</p>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Finally an organic brand that delivers what it promises. The packaging is premium and the product is fresh. It's become a staple in my morning routine."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">RK</div>
                         <div><p class="text-sm font-bold">Rahul K.</p><p class="text-[10px] text-brand-teal font-bold uppercase tracking-wider">Verified Buyer</p></div>
                     </div>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-float border border-transparent hover:border-teal-100 transition duration-300">
+                <div class="bg-white p-8 rounded-2xl shadow-glass border border-transparent hover:border-teal-100 transition duration-300">
                     <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Great value. The 200g pack lasts a long time. Shipping was super fast to Bangalore. Highly recommend."</p>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Great value. The 200g pack lasts a long time. Shipping was super fast to Bangalore. Highly recommend for anyone looking for a natural energy boost."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">NP</div>
                         <div><p class="text-sm font-bold">Neha P.</p><p class="text-[10px] text-brand-teal font-bold uppercase tracking-wider">Verified Buyer</p></div>
@@ -397,10 +378,9 @@
         </div>
     </section>
 
-    <!-- FAQ Accordion -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-3xl font-bold text-center mb-12 text-brand-black">Common Questions</h2>
+            <h2 class="text-3xl font-serif font-medium text-center mb-12 text-brand-black">Common Questions</h2>
             <div class="space-y-4">
                 <div class="border border-gray-100 rounded-xl overflow-hidden">
                     <button class="accordion-header w-full px-6 py-5 flex justify-between items-center text-left hover:bg-gray-50 transition">
@@ -433,7 +413,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="bg-brand-black text-white pt-24 pb-12">
         <div class="container mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20 border-b border-gray-800 pb-16">
@@ -483,7 +462,6 @@
         </div>
     </footer>
 
-    <!-- Mobile Sticky CTA Bar -->
     <div id="sticky-cta-bar" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 p-4 z-50 lg:hidden shadow-[0_-5px_20px_rgba(0,0,0,0.05)] translate-y-full transition-transform duration-300 ease-in-out">
         <div class="flex items-center gap-4">
             <img src="front.jpg" class="h-12 w-12 rounded-lg border border-gray-100 object-cover">
@@ -497,7 +475,6 @@
         </div>
     </div>
 
-    <!-- Cart Drawer -->
     <div id="cart-overlay" class="fixed inset-0 bg-brand-black/40 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
     <div id="cart-modal" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white z-50 transform translate-x-full transition-transform duration-500 cubic-bezier(0.25, 1, 0.5, 1) shadow-2xl flex flex-col">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-white/80 backdrop-blur">
@@ -508,7 +485,6 @@
         </div>
         
         <div id="cart-body" class="flex-1 overflow-y-auto p-6 space-y-6">
-            <!-- Empty State -->
             <div id="empty-cart-message" class="text-center py-32 flex flex-col items-center">
                 <div class="w-20 h-20 bg-brand-surface rounded-full flex items-center justify-center mb-6 text-gray-300 shadow-inner">
                     <ion-icon name="bag-handle-outline" class="text-4xl"></ion-icon>
