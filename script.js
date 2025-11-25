@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '200g': { id: 'moringa-200g', name: 'Organic Moringa Leaf Powder (200g)', price: 249, image: 'front.jpg' }
     };
 
-    // --- ELEMENTS ---
+    // --- DOM ELEMENTS ---
     const qtyDisplay = document.getElementById('qty-display');
     const qtyIncrease = document.getElementById('qty-increase');
     const qtyDecrease = document.getElementById('qty-decrease');
@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const stickyAddBtn = document.getElementById('sticky-add-btn');
     const buyItNowBtn = document.getElementById('buy-it-now-btn');
     const variantButtons = document.querySelectorAll('.variant-btn');
+    const pincodeCheckBtn = document.getElementById('pincode-check-btn');
+    const pincodeInput = document.getElementById('pincode-input');
+    const pincodeMessage = document.getElementById('pincode-message');
     
     // Cart Elements
     const openCartBtn = document.getElementById('open-cart-btn');
@@ -30,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartSubtotal = document.getElementById('cart-subtotal');
     const emptyCartMessage = document.getElementById('empty-cart-message');
 
-    // Sticky Bar Logic
+    // Sticky Bar
     const stickyCtaBar = document.getElementById('sticky-cta-bar');
     
     // Accordions
@@ -68,16 +71,21 @@ document.addEventListener('DOMContentLoaded', () => {
             cart.forEach(item => {
                 subtotal += item.price * item.quantity;
                 const html = `
-                    <div class="flex gap-4 border-b border-gray-100 pb-4 cart-item" data-id="${item.id}">
-                        <img src="${item.image}" class="w-16 h-16 object-cover rounded-md border border-gray-200">
+                    <div class="flex gap-4 border-b border-gray-100 pb-4 cart-item animate-fade-in" data-id="${item.id}">
+                        <div class="w-16 h-16 bg-gray-50 rounded-md border border-gray-200 overflow-hidden flex-shrink-0">
+                            <img src="${item.image}" class="w-full h-full object-cover">
+                        </div>
                         <div class="flex-1">
-                            <h4 class="text-sm font-semibold text-gray-800">${item.name}</h4>
-                            <p class="text-sm text-gray-600">₹${item.price} x ${item.quantity}</p>
-                            <div class="flex items-center gap-3 mt-2">
-                                <button class="cart-decrease w-6 h-6 bg-gray-100 rounded text-gray-600 flex items-center justify-center hover:bg-gray-200">-</button>
-                                <span class="text-sm font-medium">${item.quantity}</span>
-                                <button class="cart-increase w-6 h-6 bg-gray-100 rounded text-gray-600 flex items-center justify-center hover:bg-gray-200">+</button>
-                                <button class="cart-remove text-xs text-red-500 ml-auto underline">Remove</button>
+                            <h4 class="text-sm font-bold text-gray-900 line-clamp-2">${item.name}</h4>
+                            <p class="text-sm text-gray-500 font-medium mt-0.5">₹${item.price}</p>
+                            
+                            <div class="flex items-center justify-between mt-3">
+                                <div class="flex items-center gap-3 bg-gray-50 rounded p-1">
+                                    <button class="cart-decrease w-6 h-6 bg-white rounded shadow-sm text-gray-600 flex items-center justify-center hover:text-black font-bold">-</button>
+                                    <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
+                                    <button class="cart-increase w-6 h-6 bg-white rounded shadow-sm text-gray-600 flex items-center justify-center hover:text-black font-bold">+</button>
+                                </div>
+                                <button class="cart-remove text-xs text-red-500 font-medium hover:underline">Remove</button>
                             </div>
                         </div>
                     </div>
@@ -92,11 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
         cartModal.classList.remove('translate-x-full');
         cartOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
     }
 
     function closeCart() {
         cartModal.classList.add('translate-x-full');
         cartOverlay.classList.add('hidden');
+        document.body.style.overflow = ''; // Restore scrolling
     }
 
     function addToCart() {
@@ -108,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveCart();
         openCart();
         quantity = 1;
-        qtyDisplay.textContent = 1;
+        if(qtyDisplay) qtyDisplay.textContent = 1;
     }
 
     // 2. Event Listeners
@@ -116,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (qtyDecrease) qtyDecrease.addEventListener('click', () => { if(quantity > 1) quantity--; qtyDisplay.textContent = quantity; });
 
     if (addToCartBtn) addToCartBtn.addEventListener('click', addToCart);
-    if (stickyAddBtn) stickyAddBtn.addEventListener('click', addToCart); // Link sticky button
+    if (stickyAddBtn) stickyAddBtn.addEventListener('click', addToCart);
     if (buyItNowBtn) buyItNowBtn.addEventListener('click', () => { addToCart(); /* Add Checkout Logic Here */ });
 
     if (openCartBtn) openCartBtn.addEventListener('click', openCart);
@@ -147,39 +157,53 @@ document.addEventListener('DOMContentLoaded', () => {
     // Variant Selection
     variantButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            variantButtons.forEach(b => b.classList.remove('active', 'border-brand-black', 'bg-gray-50'));
-            // Remove checkmarks or styled borders from others
+            variantButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
-            // Logic to parse variant from text (Quick & Dirty)
             const text = btn.innerText;
             if (text.includes('100g')) selectedVariant = '100g';
             if (text.includes('200g')) selectedVariant = '200g';
         });
     });
 
-    // Accordions
+    // Pincode Checker
+    if (pincodeCheckBtn) {
+        pincodeCheckBtn.addEventListener('click', () => {
+            const val = pincodeInput.value;
+            if (val.length === 6 && !isNaN(val)) {
+                pincodeMessage.className = 'text-xs mt-2 font-bold text-green-600';
+                pincodeMessage.textContent = `Delivery available to ${val} by ${new Date(Date.now() + 3*86400000).toDateString().slice(0,10)}`;
+            } else {
+                pincodeMessage.className = 'text-xs mt-2 font-bold text-red-500';
+                pincodeMessage.textContent = 'Please enter a valid 6-digit pincode';
+            }
+        });
+    }
+
+    // FAQ Accordions
     accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
             const icon = header.querySelector('ion-icon');
             
-            // Toggle
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
                 icon.style.transform = 'rotate(0deg)';
             } else {
+                // Close others
+                document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
+                document.querySelectorAll('.accordion-header ion-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+                
                 content.style.maxHeight = content.scrollHeight + 'px';
                 icon.style.transform = 'rotate(180deg)';
             }
         });
     });
 
-    // Sticky Bar Observer
+    // Sticky CTA Bar Logic
     if (addToCartBtn && stickyCtaBar) {
         const observer = new IntersectionObserver((entries) => {
-            // If Add to Cart button is NOT visible (we scrolled past it), SHOW sticky bar
-            if (!entries[0].isIntersecting && window.scrollY > 500) {
+            if (!entries[0].isIntersecting && window.scrollY > 400) {
                 stickyCtaBar.classList.remove('translate-y-full');
             } else {
                 stickyCtaBar.classList.add('translate-y-full');
