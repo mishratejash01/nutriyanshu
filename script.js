@@ -22,9 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const addToCartBtn = document.getElementById('add-to-cart-btn');
     const stickyAddBtn = document.getElementById('sticky-add-btn');
     const buyItNowBtn = document.getElementById('buy-it-now-btn');
-    const pincodeCheckBtn = document.getElementById('pincode-check-btn');
-    const pincodeInput = document.getElementById('pincode-input');
-    const pincodeMessage = document.getElementById('pincode-message');
     
     // Cart Elements
     const openCartBtn = document.getElementById('open-cart-btn');
@@ -32,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartModal = document.getElementById('cart-modal');
     const cartOverlay = document.getElementById('cart-overlay');
     const cartItemCount = document.getElementById('cart-item-count');
+    const cartCountHeader = document.getElementById('cart-count-header');
     const cartBody = document.getElementById('cart-body');
     const cartFooter = document.getElementById('cart-footer');
     const cartSubtotal = document.getElementById('cart-subtotal');
@@ -53,43 +51,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateCartIcon() {
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        
+        // Update bubble count
         if (cartItemCount) {
             cartItemCount.textContent = totalItems;
-            if (totalItems > 0) cartItemCount.classList.remove('hidden');
-            else cartItemCount.classList.add('hidden');
+            if (totalItems > 0) {
+                cartItemCount.classList.remove('hidden');
+                cartItemCount.classList.add('flex');
+            } else {
+                cartItemCount.classList.add('hidden');
+                cartItemCount.classList.remove('flex');
+            }
+        }
+
+        // Update Header in Drawer
+        if (cartCountHeader) {
+            cartCountHeader.textContent = `(${totalItems} items)`;
         }
     }
 
     function renderCart() {
         if (!cartBody) return;
-        cartBody.innerHTML = '';
         
+        // Clear current items (but keep empty message container)
+        // We will toggle visibility of empty message vs items
+        const itemsHtml = [];
+        let subtotal = 0;
+
         if (cart.length === 0) {
-            emptyCartMessage.classList.remove('hidden');
+            emptyCartMessage.style.display = 'flex';
             cartFooter.classList.add('hidden');
+            cartBody.innerHTML = ''; 
+            cartBody.appendChild(emptyCartMessage);
         } else {
-            emptyCartMessage.classList.add('hidden');
+            emptyCartMessage.style.display = 'none';
             cartFooter.classList.remove('hidden');
+            cartBody.innerHTML = '';
             
-            let subtotal = 0;
             cart.forEach(item => {
                 subtotal += item.price * item.quantity;
                 const html = `
-                    <div class="flex gap-4 border-b border-gray-100 pb-4 cart-item animate-fade-in" data-id="${item.id}">
-                        <div class="w-16 h-16 bg-gray-50 rounded-md border border-gray-200 overflow-hidden flex-shrink-0">
+                    <div class="flex gap-4 border-b border-gray-100 pb-6 cart-item animate-fade-up" data-id="${item.id}">
+                        <div class="w-20 h-20 bg-gray-50 rounded-xl border border-gray-100 overflow-hidden flex-shrink-0">
                             <img src="${item.image}" class="w-full h-full object-cover">
                         </div>
-                        <div class="flex-1">
-                            <h4 class="text-sm font-bold text-gray-900 line-clamp-2">${item.name}</h4>
-                            <p class="text-sm text-gray-500 font-medium mt-0.5">₹${item.price}</p>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-sm font-bold text-brand-black line-clamp-2">${item.name}</h4>
+                                <p class="text-sm text-gray-500 font-medium mt-1">₹${item.price}</p>
+                            </div>
                             
-                            <div class="flex items-center justify-between mt-3">
-                                <div class="flex items-center gap-3 bg-gray-50 rounded p-1">
-                                    <button class="cart-decrease w-6 h-6 bg-white rounded shadow-sm text-gray-600 flex items-center justify-center hover:text-black font-bold">-</button>
+                            <div class="flex items-center justify-between mt-2">
+                                <div class="flex items-center gap-3 bg-gray-50 rounded-lg p-1 border border-gray-200">
+                                    <button class="cart-decrease w-6 h-6 bg-white rounded shadow-sm text-gray-600 flex items-center justify-center hover:text-black font-bold transition">-</button>
                                     <span class="text-xs font-bold w-4 text-center">${item.quantity}</span>
-                                    <button class="cart-increase w-6 h-6 bg-white rounded shadow-sm text-gray-600 flex items-center justify-center hover:text-black font-bold">+</button>
+                                    <button class="cart-increase w-6 h-6 bg-white rounded shadow-sm text-gray-600 flex items-center justify-center hover:text-black font-bold transition">+</button>
                                 </div>
-                                <button class="cart-remove text-xs text-red-500 font-medium hover:underline">Remove</button>
+                                <button class="cart-remove text-xs text-red-500 font-semibold hover:text-red-700 transition underline decoration-red-200 underline-offset-2">Remove</button>
                             </div>
                         </div>
                     </div>
@@ -158,20 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Pincode Checker
-    if (pincodeCheckBtn) {
-        pincodeCheckBtn.addEventListener('click', () => {
-            const val = pincodeInput.value;
-            if (val.length === 6 && !isNaN(val)) {
-                pincodeMessage.className = 'text-xs mt-2 font-bold text-green-600';
-                pincodeMessage.textContent = `Delivery available to ${val} by ${new Date(Date.now() + 3*86400000).toDateString().slice(0,10)}`;
-            } else {
-                pincodeMessage.className = 'text-xs mt-2 font-bold text-red-500';
-                pincodeMessage.textContent = 'Please enter a valid 6-digit pincode';
-            }
-        });
-    }
-
     // FAQ Accordions
     accordionHeaders.forEach(header => {
         header.addEventListener('click', () => {
@@ -194,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Sticky CTA Bar Logic
     if (addToCartBtn && stickyCtaBar) {
         const observer = new IntersectionObserver((entries) => {
+            // Mobile only sticky bar triggers when main button scrolls out of view
             if (!entries[0].isIntersecting && window.scrollY > 400) {
                 stickyCtaBar.classList.remove('translate-y-full');
             } else {
