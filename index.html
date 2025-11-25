@@ -20,10 +20,10 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-black': '#0F172A', /* Slate 900 - Softer than pure black */
-                        'brand-teal': '#0D9488',   /* A slightly deeper, richer teal */
+                        'brand-black': '#0F172A',
+                        'brand-teal': '#0D9488',
                         'brand-teal-light': '#CCFBF1',
-                        'brand-bg': '#F8FAFC',     /* Very light slate background */
+                        'brand-bg': '#F8FAFC',
                         'brand-surface': '#FFFFFF',
                         'text-primary': '#334155',
                         'text-secondary': '#64748B',
@@ -33,13 +33,12 @@
                         'heading': ['"Poppins"', 'sans-serif'],
                     },
                     boxShadow: {
-                        'soft': '0 20px 40px -15px rgba(13, 148, 136, 0.1)',
+                        'soft': '0 20px 40px -15px rgba(13, 148, 136, 0.15)',
                         'float': '0 10px 30px -10px rgba(0,0,0,0.08)',
-                        'inner-light': 'inset 0 2px 4px 0 rgba(255, 255, 255, 0.3)',
+                        'glow': '0 0 20px rgba(13, 148, 136, 0.3)',
                     },
                     animation: {
                         'fade-up': 'fadeUp 0.8s ease-out forwards',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     },
                     keyframes: {
                         fadeUp: {
@@ -53,76 +52,44 @@
     </script>
     
     <style>
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            color: #334155; 
-            background-color: #F8FAFC;
-            -webkit-font-smoothing: antialiased; 
-        }
-        
-        /* Glassmorphism Utilities */
-        .glass {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* Scrollbar aesthetics */
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: #334155; background-color: #F8FAFC; -webkit-font-smoothing: antialiased; }
+        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.3); }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
-
-        /* Animation Delays for Staggered Effect */
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        
-        .sticky-details { position: sticky; top: 120px; }
-        
-        /* Accordion transition */
-        .accordion-content {
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            max-height: 0;
-            overflow: hidden;
-        }
-
-        /* Image Hover Zoom */
+        .accordion-content { transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); max-height: 0; overflow: hidden; }
         .img-zoom-container { overflow: hidden; }
         .img-zoom { transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .img-zoom:hover { transform: scale(1.1); }
+        .sticky-details { position: sticky; top: 120px; }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="bg-brand-black text-white text-[11px] md:text-xs font-bold py-3 text-center tracking-widest uppercase transition-colors hover:bg-teal-900 cursor-default relative z-50">
+    <div class="bg-brand-black text-white text-[11px] md:text-xs font-bold py-3 text-center tracking-widest uppercase relative z-50">
         <span class="opacity-90 flex items-center justify-center gap-2">
-            <ion-icon name="sparkles" class="text-yellow-400"></ion-icon>
-            Free Express Shipping on Orders Above ₹599
-            <ion-icon name="sparkles" class="text-yellow-400"></ion-icon>
+            <ion-icon name="sparkles" class="text-yellow-400"></ion-icon> Free Express Shipping on Orders Above ₹599
         </span>
     </div>
 
-    <header class="glass sticky top-0 z-40 transition-all duration-300" id="main-header">
+    <header class="glass sticky top-0 z-40 transition-all duration-300">
         <nav class="container mx-auto px-6 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-2 group">
                 <img class="h-10 w-auto group-hover:scale-105 transition duration-300" src="logo.WEBP" alt="Nutriyanshu">
             </a>
-            
             <div class="hidden lg:flex items-center space-x-10 text-sm font-semibold text-brand-black tracking-wide">
-                <a href="#product-section" class="hover:text-brand-teal transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-teal after:transition-all hover:after:w-full">Shop</a>
-                <a href="#benefits" class="hover:text-brand-teal transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-teal after:transition-all hover:after:w-full">Benefits</a>
-                <a href="#how-to-use" class="hover:text-brand-teal transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-teal after:transition-all hover:after:w-full">How to Use</a>
-                <a href="#reviews" class="hover:text-brand-teal transition relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-teal after:transition-all hover:after:w-full">Reviews</a>
+                <a href="#product-section" class="hover:text-brand-teal transition">Shop</a>
+                <a href="#nutrition" class="hover:text-brand-teal transition">Nutrition</a>
+                <a href="#comparison" class="hover:text-brand-teal transition">Why Us?</a>
+                <a href="#recipes" class="hover:text-brand-teal transition">Recipes</a>
+                <a href="#reviews" class="hover:text-brand-teal transition">Reviews</a>
             </div>
-
             <div class="flex items-center gap-6">
                 <button id="open-cart-btn" class="relative group">
                     <div class="p-2 rounded-full hover:bg-gray-100 transition duration-300">
                         <ion-icon name="bag-handle-outline" class="text-2xl text-brand-black group-hover:text-brand-teal transition"></ion-icon>
                     </div>
-                    <span id="cart-item-count" class="hidden absolute top-0 right-0 h-5 w-5 bg-brand-teal text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-sm transform group-hover:scale-110 transition">0</span>
+                    <span id="cart-item-count" class="hidden absolute top-0 right-0 h-5 w-5 bg-brand-teal text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white shadow-sm">0</span>
                 </button>
             </div>
         </nav>
@@ -130,40 +97,27 @@
 
     <main id="product-section" class="container mx-auto px-4 lg:px-8 py-10 lg:py-16">
         <div class="lg:grid lg:grid-cols-12 lg:gap-20 items-start">
-            
             <div class="lg:col-span-7 space-y-6 opacity-0 animate-fade-up">
-                <div class="relative bg-white rounded-3xl overflow-hidden shadow-soft border border-gray-100 aspect-[4/4] group img-zoom-container">
+                <div class="relative bg-white rounded-3xl overflow-hidden shadow-soft border border-gray-100 aspect-square group img-zoom-container">
                     <img id="main-product-image" src="front.jpg" alt="Moringa Powder" class="w-full h-full object-center object-cover img-zoom">
-                    
                     <div class="absolute top-6 left-6 bg-white/90 backdrop-blur text-brand-black text-xs font-bold px-4 py-2 rounded-full shadow-lg border border-gray-100 flex items-center gap-1">
-                        <ion-icon name="flame" class="text-orange-500 text-sm"></ion-icon> High Demand
+                        <ion-icon name="flame" class="text-orange-500 text-sm"></ion-icon> Trending Now
                     </div>
                 </div>
-
                 <div class="grid grid-cols-5 gap-4">
-                    <button onclick="changeImage('front.jpg')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition focus:border-brand-teal focus:outline-none">
-                        <img src="front.jpg" class="w-full h-full object-cover hover:opacity-80 transition">
-                    </button>
-                    <button onclick="changeImage('back.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition focus:border-brand-teal focus:outline-none">
-                        <img src="back.png" class="w-full h-full object-cover hover:opacity-80 transition">
-                    </button>
-                    <button onclick="changeImage('Supplements Facts.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition focus:border-brand-teal focus:outline-none">
-                        <img src="Supplements Facts.png" class="w-full h-full object-cover hover:opacity-80 transition">
-                    </button>
-                    <button onclick="changeImage('Bowl.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition focus:border-brand-teal focus:outline-none">
-                        <img src="Bowl.png" class="w-full h-full object-cover hover:opacity-80 transition">
-                    </button>
-                    <button onclick="changeImage('mix.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition focus:border-brand-teal focus:outline-none">
-                        <img src="mix.png" class="w-full h-full object-cover hover:opacity-80 transition">
-                    </button>
+                    <button onclick="changeImage('front.jpg')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition"><img src="front.jpg" class="w-full h-full object-cover"></button>
+                    <button onclick="changeImage('back.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition"><img src="back.png" class="w-full h-full object-cover"></button>
+                    <button onclick="changeImage('Supplements Facts.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition"><img src="Supplements Facts.png" class="w-full h-full object-cover"></button>
+                    <button onclick="changeImage('Bowl.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition"><img src="Bowl.png" class="w-full h-full object-cover"></button>
+                    <button onclick="changeImage('mix.png')" class="aspect-square rounded-2xl overflow-hidden border-2 border-transparent hover:border-brand-teal transition"><img src="mix.png" class="w-full h-full object-cover"></button>
                 </div>
             </div>
 
-            <div class="lg:col-span-5 mt-10 lg:mt-0 sticky-details opacity-0 animate-fade-up delay-200">
+            <div class="lg:col-span-5 mt-10 lg:mt-0 sticky-details opacity-0 animate-fade-up" style="animation-delay: 200ms;">
                 <nav class="flex items-center gap-2 text-xs font-bold tracking-widest text-brand-teal uppercase mb-5">
                     <span class="bg-brand-teal/10 px-2 py-1 rounded">Superfoods</span>
                     <ion-icon name="chevron-forward" class="text-gray-300"></ion-icon>
-                    <span>Moringa</span>
+                    <span>Organic Series</span>
                 </nav>
                 
                 <h1 class="text-4xl lg:text-5xl font-heading font-bold text-brand-black leading-[1.1] mb-4">Organic Moringa <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-teal to-emerald-600">Leaf Powder</span></h1>
@@ -174,9 +128,9 @@
                 
                 <div class="flex items-center gap-4 mb-8 py-4 border-y border-dashed border-gray-200">
                     <div class="flex -space-x-2">
-                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=1" alt="User">
-                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=5" alt="User">
-                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=8" alt="User">
+                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="User">
+                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="User">
+                        <img class="w-8 h-8 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64" alt="User">
                         <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-500">+1k</div>
                     </div>
                     <div class="h-8 w-[1px] bg-gray-200"></div>
@@ -194,25 +148,17 @@
                         <span class="text-4xl font-bold text-brand-black tracking-tight">₹249</span>
                         <span class="text-lg text-gray-400 line-through mb-1.5 font-medium">₹450</span>
                     </div>
-                    <p class="text-xs font-medium text-emerald-600 flex items-center gap-1">
-                        <ion-icon name="trending-down"></ion-icon> Lowest price in 30 days
-                    </p>
+                    <p class="text-xs font-medium text-emerald-600 flex items-center gap-1"><ion-icon name="trending-down"></ion-icon> Lowest price in 30 days</p>
                 </div>
 
                 <div class="mb-8">
-                    <div class="flex justify-between items-center mb-3">
-                        <label class="text-sm font-bold text-brand-black">Select Pack</label>
-                        <span class="text-xs text-brand-teal font-semibold cursor-pointer hover:underline">Size Guide</span>
-                    </div>
-                    
-                    <button class="w-full flex items-center justify-between p-4 rounded-xl border-2 border-brand-black bg-brand-bg relative cursor-default transition shadow-md">
+                    <label class="text-sm font-bold text-brand-black mb-3 block">Select Pack</label>
+                    <button class="w-full flex items-center justify-between p-4 rounded-xl border-2 border-brand-black bg-brand-bg relative cursor-default shadow-md">
                         <div class="flex items-center gap-3">
-                            <div class="w-5 h-5 rounded-full bg-brand-black flex items-center justify-center">
-                                <div class="w-2 h-2 bg-white rounded-full"></div>
-                            </div>
+                            <div class="w-5 h-5 rounded-full bg-brand-black flex items-center justify-center"><div class="w-2 h-2 bg-white rounded-full"></div></div>
                             <div class="text-left">
                                 <span class="block font-bold text-brand-black">200g Standard Pack</span>
-                                <span class="block text-xs text-gray-500">Perfect for 1 month supply</span>
+                                <span class="block text-xs text-gray-500">Approx. 40 Servings</span>
                             </div>
                         </div>
                         <span class="font-bold text-brand-black">₹249</span>
@@ -226,7 +172,7 @@
                             <span id="qty-display" class="flex-1 text-center font-bold text-brand-black">1</span>
                             <button id="qty-increase" class="w-10 h-12 text-xl text-gray-400 hover:text-brand-black transition flex items-center justify-center">+</button>
                         </div>
-                        <button id="add-to-cart-btn" class="flex-1 bg-brand-black text-white font-bold rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2 group">
+                        <button id="add-to-cart-btn" class="flex-1 bg-brand-black text-white font-bold rounded-xl hover:bg-gray-800 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group">
                             <span>Add to Cart</span>
                             <ion-icon name="arrow-forward" class="group-hover:translate-x-1 transition"></ion-icon>
                         </button>
@@ -239,21 +185,15 @@
 
                 <div class="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-gray-100">
                     <div class="text-center group">
-                        <div class="w-10 h-10 mx-auto mb-2 bg-green-50 rounded-full flex items-center justify-center text-green-600 group-hover:scale-110 transition">
-                            <ion-icon name="leaf-outline" class="text-xl"></ion-icon>
-                        </div>
+                        <div class="w-10 h-10 mx-auto mb-2 bg-green-50 rounded-full flex items-center justify-center text-green-600 group-hover:scale-110 transition"><ion-icon name="leaf-outline" class="text-xl"></ion-icon></div>
                         <p class="text-[10px] font-bold uppercase tracking-wide text-gray-600">Organic</p>
                     </div>
                     <div class="text-center group">
-                        <div class="w-10 h-10 mx-auto mb-2 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 group-hover:scale-110 transition">
-                            <ion-icon name="shield-checkmark-outline" class="text-xl"></ion-icon>
-                        </div>
+                        <div class="w-10 h-10 mx-auto mb-2 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 group-hover:scale-110 transition"><ion-icon name="shield-checkmark-outline" class="text-xl"></ion-icon></div>
                         <p class="text-[10px] font-bold uppercase tracking-wide text-gray-600">Secure</p>
                     </div>
                     <div class="text-center group">
-                        <div class="w-10 h-10 mx-auto mb-2 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600 group-hover:scale-110 transition">
-                            <ion-icon name="rocket-outline" class="text-xl"></ion-icon>
-                        </div>
+                        <div class="w-10 h-10 mx-auto mb-2 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600 group-hover:scale-110 transition"><ion-icon name="rocket-outline" class="text-xl"></ion-icon></div>
                         <p class="text-[10px] font-bold uppercase tracking-wide text-gray-600">Fast Ship</p>
                     </div>
                 </div>
@@ -261,88 +201,116 @@
         </div>
     </main>
 
-    <section class="py-24 bg-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-teal-50 to-transparent opacity-50"></div>
-        
-        <div class="container mx-auto px-4 lg:px-8 relative z-10">
-            <div class="text-center max-w-2xl mx-auto mb-16 opacity-0 animate-fade-up">
-                <span class="text-brand-teal font-bold tracking-widest text-xs uppercase mb-3 block">The Nutriyanshu Standard</span>
-                <h2 class="text-3xl lg:text-5xl font-heading font-bold text-brand-black mb-6">Purity You Can Trust.<br>Potency You Can Feel.</h2>
-                <p class="text-lg text-text-secondary">We don't cut corners. From the soil to the spoon, every step is curated to ensure you get the world's finest Moringa.</p>
+    <section id="nutrition" class="py-24 bg-brand-black text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+            <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-brand-teal rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-emerald-600 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-brand-teal font-bold tracking-widest text-xs uppercase mb-3 block">Science Backed</span>
+                <h2 class="text-3xl lg:text-5xl font-heading font-bold mb-6">Nature's Multivitamin</h2>
+                <p class="text-gray-400 text-lg">Don't take supplements made in a lab. Moringa is nature's most potent superfood, packed with more nutrients than your average fruit bowl.</p>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-brand-bg p-8 rounded-3xl border border-transparent hover:border-brand-teal/30 hover:shadow-soft transition-all duration-300 group">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition text-2xl text-brand-teal">
-                        <ion-icon name="flask-outline"></ion-icon>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-300">
+                    <div class="text-4xl lg:text-5xl font-bold text-brand-teal mb-2 group-hover:scale-110 transition duration-300">7x</div>
+                    <p class="text-sm font-bold uppercase tracking-wide text-gray-300 mb-4">Vitamin C</p>
+                    <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                        <span>Than Oranges</span> <ion-icon name="nutrition-outline"></ion-icon>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-3">Lab Verified</h3>
-                    <p class="text-sm text-text-secondary leading-relaxed">Every batch is tested for heavy metals and purity. Safety is our non-negotiable.</p>
                 </div>
-                <div class="bg-brand-bg p-8 rounded-3xl border border-transparent hover:border-brand-teal/30 hover:shadow-soft transition-all duration-300 group">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition text-2xl text-brand-teal">
-                        <ion-icon name="earth-outline"></ion-icon>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-300">
+                    <div class="text-4xl lg:text-5xl font-bold text-brand-teal mb-2 group-hover:scale-110 transition duration-300">15x</div>
+                    <p class="text-sm font-bold uppercase tracking-wide text-gray-300 mb-4">Potassium</p>
+                    <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                        <span>Than Bananas</span> <ion-icon name="flash-outline"></ion-icon>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-3">100% Organic</h3>
-                    <p class="text-sm text-text-secondary leading-relaxed">Grown in nutrient-rich soil without synthetic pesticides or herbicides.</p>
                 </div>
-                <div class="bg-brand-bg p-8 rounded-3xl border border-transparent hover:border-brand-teal/30 hover:shadow-soft transition-all duration-300 group">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition text-2xl text-brand-teal">
-                        <ion-icon name="water-outline"></ion-icon>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-300">
+                    <div class="text-4xl lg:text-5xl font-bold text-brand-teal mb-2 group-hover:scale-110 transition duration-300">9x</div>
+                    <p class="text-sm font-bold uppercase tracking-wide text-gray-300 mb-4">Protein</p>
+                    <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                        <span>Than Yogurt</span> <ion-icon name="fitness-outline"></ion-icon>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-3">No Nasties</h3>
-                    <p class="text-sm text-text-secondary leading-relaxed">Absolutely zero fillers, binders, sugars, or preservatives. Just pure leaf.</p>
                 </div>
-                <div class="bg-brand-bg p-8 rounded-3xl border border-transparent hover:border-brand-teal/30 hover:shadow-soft transition-all duration-300 group">
-                    <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition text-2xl text-brand-teal">
-                        <ion-icon name="sunny-outline"></ion-icon>
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-3xl text-center group hover:bg-white/10 transition duration-300">
+                    <div class="text-4xl lg:text-5xl font-bold text-brand-teal mb-2 group-hover:scale-110 transition duration-300">25x</div>
+                    <p class="text-sm font-bold uppercase tracking-wide text-gray-300 mb-4">Iron</p>
+                    <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                        <span>Than Spinach</span> <ion-icon name="barbell-outline"></ion-icon>
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-3">Shade Dried</h3>
-                    <p class="text-sm text-text-secondary leading-relaxed">Slow-dried away from direct sun to lock in the vibrant color and nutrients.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="benefits" class="py-24 bg-brand-black text-white relative">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 gap-20 items-center">
-                <div class="relative mb-12 lg:mb-0">
-                    <div class="absolute inset-0 bg-brand-teal rounded-full blur-[100px] opacity-20"></div>
-                    <img src="Bowl.png" alt="Moringa Bowl" class="relative z-10 w-full rounded-3xl shadow-2xl border border-white/10 rotate-1 hover:rotate-0 transition duration-700">
+    <section id="comparison" class="py-24 bg-brand-bg">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-heading font-bold text-brand-black">Not All Moringa Is Created Equal</h2>
+                <p class="text-text-secondary mt-4">Why Nutriyanshu stands a class apart from generic market powders.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-float border border-gray-100 overflow-hidden">
+                <div class="grid grid-cols-3 bg-gray-50 p-6 border-b border-gray-100 font-bold text-sm md:text-base tracking-wide uppercase text-gray-600">
+                    <div class="text-left pl-4">Feature</div>
+                    <div class="text-center text-brand-teal">Nutriyanshu</div>
+                    <div class="text-center text-gray-400">Regular Brands</div>
                 </div>
                 
-                <div>
-                    <h2 class="text-3xl lg:text-5xl font-heading font-bold mb-8 leading-tight">Unlock Your Body's <br><span class="text-brand-teal">True Potential</span></h2>
-                    
+                <div class="grid grid-cols-3 p-6 border-b border-gray-100 items-center hover:bg-gray-50 transition">
+                    <div class="font-bold text-brand-black pl-4">Processing Method</div>
+                    <div class="text-center font-semibold text-brand-black">Shade Dried (Slow)</div>
+                    <div class="text-center text-gray-500">Sun/Oven Dried (Fast)</div>
+                </div>
+                <div class="grid grid-cols-3 p-6 border-b border-gray-100 items-center hover:bg-gray-50 transition">
+                    <div class="font-bold text-brand-black pl-4">Color</div>
+                    <div class="text-center font-semibold text-green-600 flex items-center justify-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-green-600"></div> Vibrant Green
+                    </div>
+                    <div class="text-center text-gray-500 flex items-center justify-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-yellow-700"></div> Dull Brown
+                    </div>
+                </div>
+                 <div class="grid grid-cols-3 p-6 border-b border-gray-100 items-center hover:bg-gray-50 transition">
+                    <div class="font-bold text-brand-black pl-4">Lab Tested</div>
+                    <div class="text-center text-2xl text-brand-teal"><ion-icon name="checkmark-circle"></ion-icon></div>
+                    <div class="text-center text-2xl text-gray-300"><ion-icon name="help-circle-outline"></ion-icon></div>
+                </div>
+                <div class="grid grid-cols-3 p-6 items-center hover:bg-gray-50 transition">
+                    <div class="font-bold text-brand-black pl-4">Additives</div>
+                    <div class="text-center font-bold text-brand-black">Zero</div>
+                    <div class="text-center text-gray-500">Fillers / Sugar</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="lg:grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <div class="absolute inset-0 bg-brand-teal/20 rounded-full blur-[100px]"></div>
+                    <img src="Bowl.png" alt="Bowl" class="relative z-10 w-full rounded-3xl shadow-2xl rotate-1 hover:rotate-0 transition duration-700">
+                </div>
+                <div class="order-1 lg:order-2 mb-12 lg:mb-0">
+                    <h2 class="text-3xl lg:text-5xl font-heading font-bold mb-8">Unlock Your Body's <br><span class="text-brand-teal">True Potential</span></h2>
                     <div class="space-y-8">
                         <div class="flex gap-6 group">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-brand-teal border border-white/5 group-hover:bg-brand-teal group-hover:text-white transition duration-300">
-                                <ion-icon name="battery-charging-outline" class="text-2xl"></ion-icon>
-                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center text-brand-teal group-hover:bg-brand-teal group-hover:text-white transition duration-300"><ion-icon name="battery-charging-outline" class="text-2xl"></ion-icon></div>
                             <div>
                                 <h4 class="text-xl font-bold mb-2">Sustainable Energy</h4>
-                                <p class="text-gray-400 leading-relaxed">Ditch the coffee jitters. Moringa provides a steady, caffeine-free energy lift that lasts all day.</p>
+                                <p class="text-gray-500">Ditch the coffee jitters. Moringa provides a steady, caffeine-free energy lift that lasts all day.</p>
                             </div>
                         </div>
-                        
                         <div class="flex gap-6 group">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-brand-teal border border-white/5 group-hover:bg-brand-teal group-hover:text-white transition duration-300">
-                                <ion-icon name="shield-checkmark-outline" class="text-2xl"></ion-icon>
-                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-teal-50 flex items-center justify-center text-brand-teal group-hover:bg-brand-teal group-hover:text-white transition duration-300"><ion-icon name="shield-checkmark-outline" class="text-2xl"></ion-icon></div>
                             <div>
                                 <h4 class="text-xl font-bold mb-2">Iron-Clad Immunity</h4>
-                                <p class="text-gray-400 leading-relaxed">With 7x more Vitamin C than oranges, it's your daily shield against seasonal bugs.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex gap-6 group">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-brand-teal border border-white/5 group-hover:bg-brand-teal group-hover:text-white transition duration-300">
-                                <ion-icon name="sparkles-outline" class="text-2xl"></ion-icon>
-                            </div>
-                            <div>
-                                <h4 class="text-xl font-bold mb-2">Glow From Within</h4>
-                                <p class="text-gray-400 leading-relaxed">Potent antioxidants fight oxidative stress, helping your skin look younger and more radiant.</p>
+                                <p class="text-gray-500">Packed with essential nutrients to be your daily shield against seasonal bugs.</p>
                             </div>
                         </div>
                     </div>
@@ -351,141 +319,135 @@
         </div>
     </section>
 
-    <section id="how-to-use" class="py-24 bg-brand-bg">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl lg:text-4xl font-heading font-bold text-brand-black mb-4">Effortless Nutrition</h2>
-                <p class="text-text-secondary">No complex recipes. Just 30 seconds to a healthier you.</p>
+    <section id="recipes" class="py-24 bg-brand-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-teal font-bold tracking-widest text-xs uppercase mb-3 block">Get Creative</span>
+                <h2 class="text-3xl lg:text-4xl font-heading font-bold text-brand-black">Whip Up Wellness</h2>
+                <p class="text-text-secondary mt-2">Moringa is versatile. Here are 3 delicious ways to use it.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-3xl shadow-sm text-center relative group hover:-translate-y-2 transition duration-300">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-brand-black text-white rounded-full flex items-center justify-center font-bold border-4 border-brand-bg z-10">1</div>
-                    <div class="mb-6 rounded-2xl overflow-hidden aspect-square">
-                        <img src="scoop.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-float group hover:-translate-y-2 transition duration-500">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1623855244697-5d8fbe9c7992?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Latte">
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-2">Scoop</h3>
-                    <p class="text-sm text-text-secondary">Take 1 teaspoon (approx 5g) of powder.</p>
+                    <div class="p-8">
+                        <div class="text-xs font-bold text-brand-teal uppercase tracking-wide mb-2">5 Minutes</div>
+                        <h3 class="text-xl font-bold text-brand-black mb-3">Moringa Moon Latte</h3>
+                        <p class="text-sm text-gray-500 mb-6">Warm almond milk, 1 tsp Moringa, honey, and a dash of cinnamon. Perfect for relaxing.</p>
+                        <button class="text-sm font-bold text-brand-black border-b-2 border-brand-teal pb-0.5">Read Recipe</button>
+                    </div>
                 </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm text-center relative group hover:-translate-y-2 transition duration-300">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-brand-black text-white rounded-full flex items-center justify-center font-bold border-4 border-brand-bg z-10">2</div>
-                    <div class="mb-6 rounded-2xl overflow-hidden aspect-square">
-                        <img src="mix.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-float group hover:-translate-y-2 transition duration-500">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Smoothie">
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-2">Mix</h3>
-                    <p class="text-sm text-text-secondary">Stir into water, juice, or your favorite smoothie.</p>
+                    <div class="p-8">
+                        <div class="text-xs font-bold text-brand-teal uppercase tracking-wide mb-2">2 Minutes</div>
+                        <h3 class="text-xl font-bold text-brand-black mb-3">Tropical Green Blast</h3>
+                        <p class="text-sm text-gray-500 mb-6">Blend with frozen pineapple, banana, and coconut water for a refreshing tropical hit.</p>
+                        <button class="text-sm font-bold text-brand-black border-b-2 border-brand-teal pb-0.5">Read Recipe</button>
+                    </div>
                 </div>
-                <div class="bg-white p-8 rounded-3xl shadow-sm text-center relative group hover:-translate-y-2 transition duration-300">
-                    <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-brand-black text-white rounded-full flex items-center justify-center font-bold border-4 border-brand-bg z-10">3</div>
-                    <div class="mb-6 rounded-2xl overflow-hidden aspect-square">
-                        <img src="enjoy.png" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                <div class="bg-white rounded-3xl overflow-hidden shadow-float group hover:-translate-y-2 transition duration-500">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="Salad">
                     </div>
-                    <h3 class="text-xl font-bold text-brand-black mb-2">Thrive</h3>
-                    <p class="text-sm text-text-secondary">Enjoy daily and feel the surge of vitality.</p>
+                    <div class="p-8">
+                        <div class="text-xs font-bold text-brand-teal uppercase tracking-wide mb-2">Instant</div>
+                        <h3 class="text-xl font-bold text-brand-black mb-3">Superfood Sprinkle</h3>
+                        <p class="text-sm text-gray-500 mb-6">Just sprinkle 1 tsp over your avocado toast, salad, or soup for an instant nutrient upgrade.</p>
+                        <button class="text-sm font-bold text-brand-black border-b-2 border-brand-teal pb-0.5">Read Recipe</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="reviews" class="py-24 bg-white border-t border-gray-100">
-        <div class="container mx-auto px-4 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div class="max-w-xl">
-                    <h2 class="text-3xl lg:text-4xl font-heading font-bold text-brand-black mb-4">Loved by 1,000+ Wellness Enthusiasts</h2>
-                    <p class="text-text-secondary">Real results from real people who made the switch to organic.</p>
-                </div>
-                <div class="flex items-center gap-2 mt-4 md:mt-0">
-                    <div class="flex -space-x-3">
-                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=32" alt="User">
-                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=12" alt="User">
-                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://i.pravatar.cc/100?img=9" alt="User">
+    <section id="how-to-use" class="py-24 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-heading font-bold text-brand-black mb-16">3 Steps to Better Health</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                <div class="hidden md:block absolute top-24 left-[20%] right-[20%] h-0.5 bg-gray-100 -z-10 border-t-2 border-dashed border-gray-200"></div>
+
+                <div class="flex flex-col items-center group">
+                    <div class="w-48 h-48 rounded-full bg-brand-bg mb-6 p-4 flex items-center justify-center group-hover:scale-105 transition duration-500 shadow-soft">
+                        <img src="scoop.png" class="w-full h-full object-contain">
                     </div>
-                    <span class="text-sm font-bold text-brand-black ml-2">Join the community</span>
+                    <h3 class="text-xl font-bold mb-2">1. Scoop</h3>
+                    <p class="text-gray-500 text-sm">Take 1 tsp (5g) daily.</p>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="w-48 h-48 rounded-full bg-brand-bg mb-6 p-4 flex items-center justify-center group-hover:scale-105 transition duration-500 shadow-soft">
+                        <img src="mix.png" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">2. Mix</h3>
+                    <p class="text-gray-500 text-sm">Stir into water or smoothie.</p>
+                </div>
+                <div class="flex flex-col items-center group">
+                    <div class="w-48 h-48 rounded-full bg-brand-bg mb-6 p-4 flex items-center justify-center group-hover:scale-105 transition duration-500 shadow-soft">
+                        <img src="enjoy.png" class="w-full h-full object-contain">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">3. Enjoy</h3>
+                    <p class="text-gray-500 text-sm">Feel the natural energy.</p>
                 </div>
             </div>
-            
+        </div>
+    </section>
+
+    <section id="reviews" class="py-24 bg-brand-bg border-t border-gray-200">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl lg:text-4xl font-heading font-bold text-brand-black mb-12 text-center">Loved by the Community</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-brand-bg p-8 rounded-2xl border border-transparent hover:border-gray-200 transition">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="flex text-yellow-400 text-sm">
-                            <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
-                        </div>
-                        <span class="text-xs text-gray-400">2 days ago</span>
-                    </div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"I was skeptical at first, but the quality of Nutriyanshu is unmatched. The powder is vibrant green, dissolves well, and doesn't taste like dirt. My digestion has never been better."</p>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-gray-200 transition">
+                    <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"I was skeptical at first, but the quality of Nutriyanshu is unmatched. The powder is vibrant green and dissolves well."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">AS</div>
-                        <div>
-                            <p class="text-sm font-bold text-brand-black">Anjali Sharma</p>
-                            <p class="text-[10px] text-brand-teal flex items-center gap-1"><ion-icon name="checkmark-circle"></ion-icon> Verified Purchase</p>
-                        </div>
+                        <div><p class="text-sm font-bold">Anjali S.</p><p class="text-[10px] text-brand-teal">Verified Buyer</p></div>
                     </div>
                 </div>
-                 <div class="bg-brand-bg p-8 rounded-2xl border border-transparent hover:border-gray-200 transition">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="flex text-yellow-400 text-sm">
-                            <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
-                        </div>
-                        <span class="text-xs text-gray-400">1 week ago</span>
-                    </div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Finally an organic brand that delivers what it promises. The packaging is premium and the product is fresh. It's become a staple in my morning smoothies."</p>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-gray-200 transition">
+                    <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Finally an organic brand that delivers what it promises. The packaging is premium and the product is fresh."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">RK</div>
-                        <div>
-                            <p class="text-sm font-bold text-brand-black">Rahul K.</p>
-                            <p class="text-[10px] text-brand-teal flex items-center gap-1"><ion-icon name="checkmark-circle"></ion-icon> Verified Purchase</p>
-                        </div>
+                        <div><p class="text-sm font-bold">Rahul K.</p><p class="text-[10px] text-brand-teal">Verified Buyer</p></div>
                     </div>
                 </div>
-                 <div class="bg-brand-bg p-8 rounded-2xl border border-transparent hover:border-gray-200 transition">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="flex text-yellow-400 text-sm">
-                            <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon>
-                        </div>
-                        <span class="text-xs text-gray-400">3 weeks ago</span>
-                    </div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Great value for money. The 200g pack lasts quite a while. Shipping was super fast to Bangalore. Will definitely be ordering the subscription next."</p>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-transparent hover:border-gray-200 transition">
+                    <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Great value. The 200g pack lasts a long time. Shipping was super fast to Bangalore."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">NP</div>
-                        <div>
-                            <p class="text-sm font-bold text-brand-black">Neha Patel</p>
-                            <p class="text-[10px] text-brand-teal flex items-center gap-1"><ion-icon name="checkmark-circle"></ion-icon> Verified Purchase</p>
-                        </div>
+                        <div><p class="text-sm font-bold">Neha P.</p><p class="text-[10px] text-brand-teal">Verified Buyer</p></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-brand-bg border-t border-gray-200">
-        <div class="container mx-auto px-4 lg:px-8 max-w-3xl">
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-3xl">
             <h2 class="text-3xl font-bold text-center mb-10 text-brand-black">Common Questions</h2>
             <div class="space-y-4">
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="border border-gray-100 rounded-xl overflow-hidden">
                     <button class="accordion-header w-full px-6 py-5 flex justify-between items-center text-left hover:bg-gray-50 transition">
                         <span class="font-bold text-brand-black">Is this safe for daily consumption?</span>
-                        <ion-icon name="chevron-down" class="text-gray-400 transition-transform duration-300"></ion-icon>
+                        <ion-icon name="chevron-down" class="text-gray-400"></ion-icon>
                     </button>
-                    <div class="accordion-content bg-white">
-                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed border-t border-gray-100 pt-4">Yes! It is a 100% natural food product suitable for adults and children. However, pregnant or nursing women should consult a healthcare professional first.</p>
+                    <div class="accordion-content">
+                        <p class="px-6 pb-6 text-sm text-text-secondary">Yes! It is 100% natural. Consult your doctor if pregnant or nursing.</p>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="border border-gray-100 rounded-xl overflow-hidden">
                     <button class="accordion-header w-full px-6 py-5 flex justify-between items-center text-left hover:bg-gray-50 transition">
                         <span class="font-bold text-brand-black">How does it taste?</span>
-                        <ion-icon name="chevron-down" class="text-gray-400 transition-transform duration-300"></ion-icon>
+                        <ion-icon name="chevron-down" class="text-gray-400"></ion-icon>
                     </button>
-                    <div class="accordion-content bg-white">
-                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed border-t border-gray-100 pt-4">Moringa has an earthy, green taste similar to spinach or matcha. It blends seamlessly into smoothies or savory dishes.</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                    <button class="accordion-header w-full px-6 py-5 flex justify-between items-center text-left hover:bg-gray-50 transition">
-                        <span class="font-bold text-brand-black">What is the shelf life?</span>
-                        <ion-icon name="chevron-down" class="text-gray-400 transition-transform duration-300"></ion-icon>
-                    </button>
-                    <div class="accordion-content bg-white">
-                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed border-t border-gray-100 pt-4">Our Moringa powder has a shelf life of 18 months when stored in a cool, dry place away from direct sunlight.</p>
+                    <div class="accordion-content">
+                        <p class="px-6 pb-6 text-sm text-text-secondary">Earthy, similar to spinach or matcha. Best mixed with smoothies or juices.</p>
                     </div>
                 </div>
             </div>
@@ -496,103 +458,71 @@
         <div class="container mx-auto px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16 border-b border-gray-800 pb-12">
                 <div class="md:col-span-5">
-                    <a href="#" class="inline-block mb-6">
-                        <img src="logo.WEBP" class="h-10 brightness-0 invert opacity-90" alt="Nutriyanshu">
-                    </a>
-                    <p class="text-gray-400 leading-relaxed mb-8 max-w-sm">
-                        Elevating global wellness through the power of Indian superfoods. Science-backed, organically grown, and delivered with care.
-                    </p>
+                    <img src="logo.WEBP" class="h-10 mb-6 brightness-0 invert opacity-90" alt="Nutriyanshu">
+                    <p class="text-gray-400 leading-relaxed mb-8 max-w-sm">Elevating global wellness through the power of Indian superfoods.</p>
                     <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-teal transition text-white">
-                            <ion-icon name="logo-instagram"></ion-icon>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-teal transition text-white">
-                            <ion-icon name="logo-facebook"></ion-icon>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-teal transition text-white">
-                            <ion-icon name="mail"></ion-icon>
-                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-teal transition"><ion-icon name="logo-instagram"></ion-icon></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-teal transition"><ion-icon name="logo-facebook"></ion-icon></a>
                     </div>
                 </div>
                 <div class="md:col-span-2">
                     <h4 class="font-bold mb-6 text-sm uppercase tracking-widest text-brand-teal">Shop</h4>
-                    <ul class="space-y-4 text-sm text-gray-400 font-medium">
-                        <li><a href="#" class="hover:text-white transition">All Products</a></li>
-                        <li><a href="#" class="hover:text-white transition">Best Sellers</a></li>
-                        <li><a href="#" class="hover:text-white transition">Combos</a></li>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">All Products</a></li>
+                        <li><a href="#" class="hover:text-white">Combos</a></li>
                     </ul>
                 </div>
                 <div class="md:col-span-2">
                     <h4 class="font-bold mb-6 text-sm uppercase tracking-widest text-brand-teal">Support</h4>
-                    <ul class="space-y-4 text-sm text-gray-400 font-medium">
-                        <li><a href="contact.html" class="hover:text-white transition">Contact Us</a></li>
-                        <li><a href="shipping-policy.html" class="hover:text-white transition">Shipping</a></li>
-                        <li><a href="returns-refunds.html" class="hover:text-white transition">Returns</a></li>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                        <li><a href="shipping-policy.html" class="hover:text-white">Shipping</a></li>
+                        <li><a href="returns-refunds.html" class="hover:text-white">Returns</a></li>
                     </ul>
                 </div>
                 <div class="md:col-span-3">
-                    <h4 class="font-bold mb-6 text-sm uppercase tracking-widest text-brand-teal">Stay in the Loop</h4>
-                    <p class="text-sm text-gray-400 mb-4">Join 10,000+ subscribers for health tips & exclusive offers.</p>
+                    <h4 class="font-bold mb-6 text-sm uppercase tracking-widest text-brand-teal">Newsletter</h4>
                     <form class="flex">
-                        <input type="email" placeholder="Enter email" class="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-l-lg focus:outline-none focus:border-brand-teal text-sm text-white transition">
-                        <button class="bg-brand-teal text-white px-6 font-bold text-sm rounded-r-lg hover:bg-teal-600 transition">Join</button>
+                        <input type="email" placeholder="Enter email" class="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-l-lg text-sm text-white focus:outline-none">
+                        <button class="bg-brand-teal px-6 font-bold text-sm rounded-r-lg hover:bg-teal-600">Join</button>
                     </form>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 font-medium">
-                <p>&copy; 2025 Nutriyanshu Wellness Pvt Ltd. All rights reserved.</p>
-                <div class="flex gap-6 mt-4 md:mt-0">
-                    <a href="#" class="hover:text-gray-400 transition">Privacy Policy</a>
-                    <a href="#" class="hover:text-gray-400 transition">Terms of Service</a>
-                </div>
-            </div>
+            <p class="text-center text-xs text-gray-600">&copy; 2025 Nutriyanshu. All rights reserved.</p>
         </div>
     </footer>
 
-    <div id="sticky-cta-bar" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-50 lg:hidden shadow-[0_-5px_20px_rgba(0,0,0,0.1)] translate-y-full transition-transform duration-300 ease-in-out">
+    <div id="sticky-cta-bar" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 z-50 lg:hidden shadow-[0_-5px_20px_rgba(0,0,0,0.1)] translate-y-full transition-transform duration-300">
         <div class="flex items-center gap-4">
             <img src="front.jpg" class="h-12 w-12 rounded-lg border border-gray-200 object-cover">
             <div class="flex-1">
                 <p class="text-xs text-gray-500 font-medium">Organic Moringa</p>
                 <p class="text-base font-bold text-brand-black">₹249</p>
             </div>
-            <button id="sticky-add-btn" class="bg-brand-black text-white px-8 py-3 rounded-xl font-bold text-sm shadow-lg active:scale-95 transition w-auto">
-                Add to Cart
-            </button>
+            <button id="sticky-add-btn" class="bg-brand-black text-white px-8 py-3 rounded-xl font-bold text-sm shadow-lg w-auto">Add to Cart</button>
         </div>
     </div>
 
-    <div id="cart-overlay" class="fixed inset-0 bg-brand-black/40 backdrop-blur-sm z-50 hidden transition-opacity duration-300"></div>
-    <div id="cart-modal" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white z-50 transform translate-x-full transition-transform duration-500 cubic-bezier(0.25, 1, 0.5, 1) shadow-2xl flex flex-col">
+    <div id="cart-overlay" class="fixed inset-0 bg-brand-black/40 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+    <div id="cart-modal" class="fixed top-0 right-0 h-full w-full sm:w-[450px] bg-white z-50 transform translate-x-full transition-transform duration-500 shadow-2xl flex flex-col">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-white/80 backdrop-blur">
-            <h2 class="text-xl font-bold text-brand-black flex items-center gap-2 font-heading">
-                Your Cart <span class="text-sm font-normal text-gray-400 ml-2" id="cart-count-header">(0 items)</span>
-            </h2>
+            <h2 class="text-xl font-bold text-brand-black flex items-center gap-2 font-heading">Your Cart</h2>
             <button id="close-cart-btn" class="w-8 h-8 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center text-gray-500 transition"><ion-icon name="close"></ion-icon></button>
         </div>
-        
         <div id="cart-body" class="flex-1 overflow-y-auto p-6 space-y-6">
-            <div id="empty-cart-message" class="text-center py-32 flex flex-col items-center animate-fade-up">
-                <div class="w-20 h-20 bg-brand-bg rounded-full flex items-center justify-center mb-6 text-gray-300">
-                    <ion-icon name="bag-handle-outline" class="text-4xl"></ion-icon>
-                </div>
-                <h3 class="text-lg font-bold text-brand-black mb-2">Your cart is empty</h3>
-                <p class="text-sm text-gray-500 mb-8 max-w-xs mx-auto">Looks like you haven't added any superfoods yet.</p>
-                <button onclick="document.getElementById('close-cart-btn').click()" class="text-brand-teal font-bold text-sm border-b-2 border-brand-teal pb-0.5 hover:text-teal-700 transition">Continue Shopping</button>
+            <div id="empty-cart-message" class="text-center py-32 flex flex-col items-center">
+                <div class="w-20 h-20 bg-brand-bg rounded-full flex items-center justify-center mb-6 text-gray-300"><ion-icon name="bag-handle-outline" class="text-4xl"></ion-icon></div>
+                <h3 class="text-lg font-bold text-brand-black mb-2">Cart is empty</h3>
+                <button onclick="document.getElementById('close-cart-btn').click()" class="text-brand-teal font-bold text-sm border-b-2 border-brand-teal pb-0.5">Start Shopping</button>
             </div>
         </div>
-        
         <div id="cart-footer" class="p-6 border-t border-gray-100 bg-brand-bg hidden">
-            <div class="space-y-3 mb-6">
-                <div class="flex justify-between items-center text-sm text-gray-500">
-                    <span>Subtotal</span>
-                    <span id="cart-subtotal" class="font-bold text-brand-black text-lg">₹0</span>
-                </div>
-                <p class="text-xs text-gray-400 text-center">Tax included. Shipping calculated at checkout.</p>
+            <div class="flex justify-between items-center mb-6 text-sm text-gray-500">
+                <span>Subtotal</span>
+                <span id="cart-subtotal" class="font-bold text-brand-black text-lg">₹0</span>
             </div>
-            <button class="w-full bg-brand-black text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:bg-gray-900 transition active:scale-[0.99] flex justify-center items-center gap-2 group">
-                Proceed to Checkout 
-                <ion-icon name="arrow-forward" class="group-hover:translate-x-1 transition"></ion-icon>
+            <button class="w-full bg-brand-black text-white py-4 rounded-xl font-bold shadow-lg flex justify-center items-center gap-2 group">
+                Checkout <ion-icon name="arrow-forward" class="group-hover:translate-x-1 transition"></ion-icon>
             </button>
         </div>
     </div>
@@ -602,10 +532,7 @@
         function changeImage(src) {
             const mainImg = document.getElementById('main-product-image');
             mainImg.style.opacity = '0';
-            setTimeout(() => {
-                mainImg.src = src;
-                mainImg.style.opacity = '1';
-            }, 200);
+            setTimeout(() => { mainImg.src = src; mainImg.style.opacity = '1'; }, 200);
         }
     </script>
 </body>
