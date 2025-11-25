@@ -3,11 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- STATE ---
     let cart = JSON.parse(localStorage.getItem('nutriyanshuCart')) || [];
     let quantity = 1;
-    let selectedVariant = '200g'; // Default variant
+    let selectedVariant = '200g'; 
 
+    // ONLY 200g Data available now
     const productData = {
-        '100g': { id: 'moringa-100g', name: 'Organic Moringa Leaf Powder (100g)', price: 149, image: 'front.jpg' },
-        '200g': { id: 'moringa-200g', name: 'Organic Moringa Leaf Powder (200g)', price: 249, image: 'front.jpg' }
+        '200g': { 
+            id: 'moringa-200g', 
+            name: 'Organic Moringa Leaf Powder (200g)', 
+            price: 249, 
+            image: 'front.jpg' 
+        }
     };
 
     // --- DOM ELEMENTS ---
@@ -17,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const addToCartBtn = document.getElementById('add-to-cart-btn');
     const stickyAddBtn = document.getElementById('sticky-add-btn');
     const buyItNowBtn = document.getElementById('buy-it-now-btn');
-    const variantButtons = document.querySelectorAll('.variant-btn');
     const pincodeCheckBtn = document.getElementById('pincode-check-btn');
     const pincodeInput = document.getElementById('pincode-input');
     const pincodeMessage = document.getElementById('pincode-message');
@@ -100,13 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
         renderCart();
         cartModal.classList.remove('translate-x-full');
         cartOverlay.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling
+        document.body.style.overflow = 'hidden'; 
     }
 
     function closeCart() {
         cartModal.classList.add('translate-x-full');
         cartOverlay.classList.add('hidden');
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = ''; 
     }
 
     function addToCart() {
@@ -154,18 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Variant Selection
-    variantButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            variantButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const text = btn.innerText;
-            if (text.includes('100g')) selectedVariant = '100g';
-            if (text.includes('200g')) selectedVariant = '200g';
-        });
-    });
-
     // Pincode Checker
     if (pincodeCheckBtn) {
         pincodeCheckBtn.addEventListener('click', () => {
@@ -190,7 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.style.maxHeight = null;
                 icon.style.transform = 'rotate(0deg)';
             } else {
-                // Close others
                 document.querySelectorAll('.accordion-content').forEach(c => c.style.maxHeight = null);
                 document.querySelectorAll('.accordion-header ion-icon').forEach(i => i.style.transform = 'rotate(0deg)');
                 
