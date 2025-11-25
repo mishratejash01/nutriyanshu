@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load cart from localStorage
     let cart = JSON.parse(localStorage.getItem('nutriyanshuCart')) || [];
 
-    // *** FIX: CLEAN CART ON LOAD ***
+    // Clean cart on load (remove invalid items)
     const cleanCart = cart.filter(item => item.id && item.price);
     if (cleanCart.length !== cart.length) {
         cart = cleanCart;
@@ -244,57 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         reviewForm.classList.toggle('open');
     }
 
-    // =============================================
-    // === STICKY CTA BAR LOGIC ===
-    // =============================================
-    const stickyCtaBar = document.getElementById('sticky-cta-bar');
-    // We observe the main "Add to Cart" button, not "Buy Now"
-    const mainCartButton = document.getElementById('add-to-cart-btn'); 
-    const mainBuyButton = document.getElementById('buy-it-now-btn');
-
-    const stickyBuyButton = document.getElementById('sticky-buy-now-btn');
-    const stickyCartButton = document.getElementById('sticky-add-to-cart-btn');
-
-    // Check if we are on the product page (where these elements exist)
-    if (mainCartButton && stickyCtaBar) {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                const entry = entries[0];
-                // When the main "Add to Cart" button is NOT on the screen...
-                if (!entry.isIntersecting) {
-                    // SHOW the sticky bar
-                    stickyCtaBar.classList.add('show');
-                } else {
-                    // Otherwise, HIDE it
-                    stickyCtaBar.classList.remove('show');
-                }
-            },
-            {
-                root: null, 
-                threshold: 0, // Triggers as soon as it's 0% visible
-                rootMargin: "0px 0px -100px 0px" // Triggers 100px from the bottom edge
-            }
-        );
-
-        // Start observing the main "Add to Cart" button
-        observer.observe(mainCartButton);
-
-        // --- Make sticky buttons trigger the real buttons ---
-        if (stickyBuyButton) {
-            stickyBuyButton.addEventListener('click', () => {
-                mainBuyButton.click(); // Clicks the original "Buy It Now"
-            });
-        }
-        if (stickyCartButton) {
-            stickyCartButton.addEventListener('click', () => {
-                mainCartButton.click(); // Clicks the original "Add to Cart"
-            });
-        }
-    }
-    // =============================================
-    // === END OF STICKY CTA BAR LOGIC ===
-    // =============================================
-
 
     // --- EVENT LISTENERS ---
     
@@ -392,6 +341,118 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // =============================================
+    // === RAZORPAY INTEGRATION START ===
+    // =============================================
+    
+    // Select the "Proceed to Checkout" button inside the cart footer
+    // Note: In your HTML, the button is inside the #cart-footer div
+    const checkoutBtn = cartFooter ? cartFooter.querySelector('button') : null;
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // 1. Calculate Total Amount from Cart in Rupees
+            const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            if (totalAmount === 0) {
+                showToast("Your cart is empty!");
+                return;
+            }
+
+            // 2. Configure Razorpay Options
+            var options = {
+                "key": "rzp_live_RjfRcw0Yo8a8jN", // YOUR API KEY
+                "amount": totalAmount * 100, // Amount is in paise (e.g. 10000 paise = ₹100)
+                "currency": "INR",
+                "name": "Nutriyanshu",
+                "description": "Organic Supplements Purchase",
+                "image": "logo.WEBP", // Using your logo file
+                "handler": function (response){
+                    // 3. Handle Success
+                    console.log(response);
+                    showToast("Payment Successful! ID: " + response.razorpay_payment_id);
+                    
+                    // Clear the cart after successful payment
+                    cart = [];
+                    saveCart();
+                    renderCart();
+                    closeCart();
+                },
+                "prefill": {
+                    // You can pre-fill these if you have user input forms, 
+                    // otherwise Razorpay will ask the user.
+                    "name": "", 
+                    "email": "",
+                    "contact": ""
+                },
+                "theme": {
+                    "color": "#225723" // Your theme green color
+                }
+            };
+
+            // 3. Open Razorpay
+            var rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response){
+                showToast("Payment Failed. Please try again.");
+                console.error(response.error);
+            });
+            rzp1.open();
+        });
+    }
+    // =============================================
+    // === RAZORPAY INTEGRATION END ===
+    // =============================================
+
+
+    // =============================================
+    // === STICKY CTA BAR LOGIC ===
+    // =============================================
+    const stickyCtaBar = document.getElementById('sticky-cta-bar');
+    // We observe the main "Add to Cart" button, not "Buy Now"
+    const mainCartButton = document.getElementById('add-to-cart-btn'); 
+    const mainBuyButton = document.getElementById('buy-it-now-btn');
+
+    const stickyBuyButton = document.getElementById('sticky-buy-now-btn');
+    const stickyCartButton = document.getElementById('sticky-add-to-cart-btn');
+
+    // Check if we are on the product page (where these elements exist)
+    if (mainCartButton && stickyCtaBar) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const entry = entries[0];
+                // When the main "Add to Cart" button is NOT on the screen...
+                if (!entry.isIntersecting) {
+                    // SHOW the sticky bar
+                    stickyCtaBar.classList.add('show');
+                } else {
+                    // Otherwise, HIDE it
+                    stickyCtaBar.classList.remove('show');
+                }
+            },
+            {
+                root: null, 
+                threshold: 0, // Triggers as soon as it's 0% visible
+                rootMargin: "0px 0px -100px 0px" // Triggers 100px from the bottom edge
+            }
+        );
+
+        // Start observing the main "Add to Cart" button
+        observer.observe(mainCartButton);
+
+        // --- Make sticky buttons trigger the real buttons ---
+        if (stickyBuyButton) {
+            stickyBuyButton.addEventListener('click', () => {
+                mainBuyButton.click(); // Clicks the original "Buy It Now"
+            });
+        }
+        if (stickyCartButton) {
+            stickyCartButton.addEventListener('click', () => {
+                mainCartButton.click(); // Clicks the original "Add to Cart"
+            });
+        }
+    }
     
     // --- INITIALIZATION ---
     updateCartIcon(); 
