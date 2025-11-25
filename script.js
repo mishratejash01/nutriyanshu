@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- STATE ---
     let cart = JSON.parse(localStorage.getItem('nutriyanshuCart')) || [];
     let quantity = 1;
-    // Forced 200g selection as requested
     let selectedVariant = '200g'; 
 
     const productData = {
@@ -23,6 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const stickyAddBtn = document.getElementById('sticky-add-btn');
     const buyItNowBtn = document.getElementById('buy-it-now-btn');
     
+    // Pincode
+    const pincodeCheckBtn = document.getElementById('pincode-check-btn');
+    const pincodeInput = document.getElementById('pincode-input');
+    const pincodeMessage = document.getElementById('pincode-message');
+
     // Cart Elements
     const openCartBtn = document.getElementById('open-cart-btn');
     const closeCartBtn = document.getElementById('close-cart-btn');
@@ -145,6 +149,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openCartBtn) openCartBtn.addEventListener('click', openCart);
     if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
     if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+
+    // Pincode Checker
+    if (pincodeCheckBtn) {
+        pincodeCheckBtn.addEventListener('click', () => {
+            const val = pincodeInput.value;
+            pincodeMessage.classList.remove('hidden', 'text-red-500', 'text-brand-teal');
+            if (val.length === 6 && !isNaN(val)) {
+                pincodeMessage.classList.add('text-brand-teal');
+                pincodeMessage.textContent = `Delivery available by ${new Date(Date.now() + 3*86400000).toDateString().slice(0,10)}`;
+            } else {
+                pincodeMessage.classList.add('text-red-500');
+                pincodeMessage.textContent = 'Please enter a valid 6-digit pincode';
+            }
+            pincodeMessage.classList.remove('hidden');
+        });
+    }
 
     // Cart Actions
     if (cartBody) {
