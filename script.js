@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- STATE ---
     let cart = JSON.parse(localStorage.getItem('nutriyanshuCart')) || [];
     let quantity = 1;
+    // Forced 200g selection as requested
     let selectedVariant = '200g'; 
 
-    // ONLY 200g Data available now
     const productData = {
         '200g': { 
             id: 'moringa-200g', 
@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- FUNCTIONS ---
 
-    // 1. Cart Logic
     function saveCart() {
         localStorage.setItem('nutriyanshuCart', JSON.stringify(cart));
         updateCartIcon();
@@ -51,8 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateCartIcon() {
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        
-        // Update bubble count
         if (cartItemCount) {
             cartItemCount.textContent = totalItems;
             if (totalItems > 0) {
@@ -63,8 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartItemCount.classList.remove('flex');
             }
         }
-
-        // Update Header in Drawer
         if (cartCountHeader) {
             cartCountHeader.textContent = `(${totalItems} items)`;
         }
@@ -73,21 +68,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCart() {
         if (!cartBody) return;
         
-        // Clear current items (but keep empty message container)
-        // We will toggle visibility of empty message vs items
-        const itemsHtml = [];
-        let subtotal = 0;
-
+        cartBody.innerHTML = ''; 
+        
         if (cart.length === 0) {
+            cartBody.appendChild(emptyCartMessage);
             emptyCartMessage.style.display = 'flex';
             cartFooter.classList.add('hidden');
-            cartBody.innerHTML = ''; 
-            cartBody.appendChild(emptyCartMessage);
         } else {
             emptyCartMessage.style.display = 'none';
             cartFooter.classList.remove('hidden');
-            cartBody.innerHTML = '';
             
+            let subtotal = 0;
             cart.forEach(item => {
                 subtotal += item.price * item.quantity;
                 const html = `
@@ -149,13 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (addToCartBtn) addToCartBtn.addEventListener('click', addToCart);
     if (stickyAddBtn) stickyAddBtn.addEventListener('click', addToCart);
-    if (buyItNowBtn) buyItNowBtn.addEventListener('click', () => { addToCart(); /* Add Checkout Logic Here */ });
+    if (buyItNowBtn) buyItNowBtn.addEventListener('click', () => { addToCart(); /* Placeholder for direct checkout */ });
 
     if (openCartBtn) openCartBtn.addEventListener('click', openCart);
     if (closeCartBtn) closeCartBtn.addEventListener('click', closeCart);
     if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
 
-    // Cart Actions (Delegation)
+    // Cart Actions
     if (cartBody) {
         cartBody.addEventListener('click', (e) => {
             const itemEl = e.target.closest('.cart-item');
@@ -195,10 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Sticky CTA Bar Logic
+    // Mobile Sticky Bar Observer
     if (addToCartBtn && stickyCtaBar) {
         const observer = new IntersectionObserver((entries) => {
-            // Mobile only sticky bar triggers when main button scrolls out of view
             if (!entries[0].isIntersecting && window.scrollY > 400) {
                 stickyCtaBar.classList.remove('translate-y-full');
             } else {
