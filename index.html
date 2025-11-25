@@ -145,21 +145,26 @@
                 
                 <h1 class="text-4xl lg:text-6xl font-serif font-medium text-brand-black leading-[1.1] mb-4 tracking-tight">Organic Moringa <br><span class="italic text-brand-teal">Leaf Powder</span></h1>
                 
-                <p class="text-lg text-text-secondary mb-8 leading-relaxed font-medium">
-                    The daily green supercharge your body craves. Ethically sourced from India's finest farms, shade-dried to preserve nutrients, and packed with potent antioxidants to fuel your immunity.
+                <p class="text-lg text-text-secondary mb-6 leading-relaxed font-medium">
+                    The daily green supercharge your body craves. Ethically sourced from India's finest farms, shade-dried to preserve nutrients, and packed with potent antioxidants.
                 </p>
                 
-                <div class="flex items-center gap-4 mb-10 py-4 border-y border-dashed border-gray-200">
-                    <div class="flex -space-x-3">
-                        <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-200"></div>
-                        <div class="w-10 h-10 rounded-full border-2 border-white bg-gray-300"></div>
-                        <div class="w-10 h-10 rounded-full border-2 border-white bg-brand-black text-white flex items-center justify-center text-xs font-bold">+1k</div>
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="flex text-yellow-400 text-lg">
+                        <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
                     </div>
-                    <div>
-                        <div class="flex text-yellow-400 text-sm">
-                            <ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon>
-                        </div>
-                        <span class="text-xs font-bold text-brand-black">4.9/5 Rating (1,200+ Reviews)</span>
+                    <span class="text-sm font-bold text-brand-black underline decoration-gray-300 underline-offset-4">4.9/5 Rating</span>
+                    <span class="text-sm text-text-secondary">(1,240 Reviews)</span>
+                </div>
+
+                <div class="flex flex-col gap-3 mb-8">
+                    <div class="flex items-center gap-2 p-3 bg-orange-50 border border-orange-100 rounded-xl text-orange-800 text-sm font-medium">
+                        <ion-icon name="flame" class="text-orange-500 text-lg"></ion-icon>
+                        Recently in <strong class="text-brand-black">1,662</strong> carts in the last 24 hours.
+                    </div>
+                    <div class="flex items-center gap-2 p-3 bg-green-50 border border-green-100 rounded-xl text-green-800 text-sm font-medium">
+                        <ion-icon name="bicycle" class="text-green-600 text-lg"></ion-icon>
+                        Order now to get it by <strong class="text-brand-black">Nov 28</strong>
                     </div>
                 </div>
 
@@ -179,7 +184,6 @@
                         <label class="text-xs font-bold text-brand-black uppercase tracking-wide">Pack Size</label>
                         <span class="text-xs text-brand-teal font-bold cursor-pointer hover:underline">40 Servings</span>
                     </div>
-                    
                     <button class="w-full flex items-center justify-between p-4 rounded-xl border-2 border-brand-black bg-gray-50 relative cursor-default">
                         <div class="flex items-center gap-3">
                             <div class="w-5 h-5 rounded-full bg-brand-black flex items-center justify-center text-white text-xs"><ion-icon name="checkmark"></ion-icon></div>
@@ -207,18 +211,37 @@
                     </button>
                 </div>
 
-                <div class="grid grid-cols-3 gap-4 mt-10 pt-8 border-t border-gray-100">
+                <div class="mt-8 p-4 bg-brand-surface rounded-xl border border-dashed border-brand-teal/30">
+                    <h4 class="text-sm font-bold text-brand-black mb-3 flex items-center gap-2">
+                        <ion-icon name="pricetag" class="text-brand-teal"></ion-icon> Available Offers
+                    </h4>
+                    <div class="flex items-center gap-3 text-sm text-text-secondary">
+                        <ion-icon name="wallet-outline" class="text-lg"></ion-icon>
+                        <span>Get <strong class="text-brand-black">₹20 OFF</strong> on prepaid orders. Auto-applied.</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-gray-100">
+                    <p class="text-xs font-bold text-brand-black uppercase tracking-wide mb-2">Check Delivery</p>
+                    <div class="flex gap-2 relative">
+                        <input id="pincode-input" type="text" placeholder="Enter 6-digit Pincode" class="w-full text-sm p-3 bg-brand-surface border border-gray-200 rounded-xl focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition">
+                        <button id="pincode-check-btn" class="absolute right-1.5 top-1.5 bottom-1.5 px-4 text-xs font-bold bg-brand-black text-white rounded-lg hover:bg-gray-800 transition">CHECK</button>
+                    </div>
+                    <p id="pincode-message" class="text-xs mt-2 font-medium text-brand-teal hidden"></p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4 mt-8 pt-8 border-t border-gray-100">
                     <div class="flex flex-col items-center gap-2 text-center group">
-                        <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center text-green-600 text-xl group-hover:scale-110 transition duration-300"><ion-icon name="leaf-outline"></ion-icon></div>
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-600 text-lg group-hover:scale-110 transition"><ion-icon name="leaf-outline"></ion-icon></div>
                         <span class="text-[10px] font-bold uppercase text-gray-500">100% Organic</span>
                     </div>
                     <div class="flex flex-col items-center gap-2 text-center group">
-                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-xl group-hover:scale-110 transition duration-300"><ion-icon name="shield-checkmark-outline"></ion-icon></div>
+                        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 text-lg group-hover:scale-110 transition"><ion-icon name="shield-checkmark-outline"></ion-icon></div>
                         <span class="text-[10px] font-bold uppercase text-gray-500">Lab Tested</span>
                     </div>
                     <div class="flex flex-col items-center gap-2 text-center group">
-                        <div class="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600 text-xl group-hover:scale-110 transition duration-300"><ion-icon name="rocket-outline"></ion-icon></div>
-                        <span class="text-[10px] font-bold uppercase text-gray-500">Fast Delivery</span>
+                        <div class="w-10 h-10 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600 text-lg group-hover:scale-110 transition"><ion-icon name="rocket-outline"></ion-icon></div>
+                        <span class="text-[10px] font-bold uppercase text-gray-500">Fast Ship</span>
                     </div>
                 </div>
             </div>
@@ -281,7 +304,6 @@
                     <div class="text-center text-brand-teal">Nutriyanshu</div>
                     <div class="text-center text-gray-400">Regular Brands</div>
                 </div>
-                
                 <div class="grid grid-cols-3 p-6 border-b border-gray-100 items-center hover:bg-gray-50 transition duration-300">
                     <div class="font-bold text-brand-black pl-4">Drying Method</div>
                     <div class="text-center font-bold text-brand-black">Shade Dried (Slow)</div>
@@ -319,7 +341,7 @@
                     </div>
                     <div class="px-2">
                         <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Moringa Moon Latte</h3>
-                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Warm almond milk, 1 tsp Moringa, honey, and a dash of cinnamon. The perfect evening ritual to unwind and de-stress.</p>
+                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Warm almond milk, 1 tsp Moringa, honey, and a dash of cinnamon. The perfect evening ritual.</p>
                     </div>
                 </div>
                 <div class="group cursor-pointer">
@@ -329,7 +351,7 @@
                     </div>
                     <div class="px-2">
                         <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Tropical Green Blast</h3>
-                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Blend with frozen pineapple, banana, and coconut water. A refreshing nutrient hit that tastes like a vacation.</p>
+                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Blend with frozen pineapple, banana, and coconut water. A refreshing nutrient hit.</p>
                     </div>
                 </div>
                 <div class="group cursor-pointer">
@@ -339,7 +361,7 @@
                     </div>
                     <div class="px-2">
                         <h3 class="text-xl font-bold text-brand-black mb-2 group-hover:text-brand-teal transition">Superfood Sprinkle</h3>
-                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Just sprinkle 1 tsp over your avocado toast, salad, or soup. An instant, undetectable nutrient upgrade for any meal.</p>
+                        <p class="text-sm text-text-secondary line-clamp-2 leading-relaxed">Just sprinkle 1 tsp over your avocado toast, salad, or soup for an instant upgrade.</p>
                     </div>
                 </div>
             </div>
@@ -352,7 +374,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-white p-8 rounded-2xl shadow-glass border border-transparent hover:border-teal-100 transition duration-300">
                     <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"I was skeptical at first, but the quality of Nutriyanshu is unmatched. The powder is vibrant green and dissolves well. Digestion has improved significantly."</p>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"I was skeptical at first, but the quality of Nutriyanshu is unmatched. The powder is vibrant green and dissolves well."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">AS</div>
                         <div><p class="text-sm font-bold">Anjali S.</p><p class="text-[10px] text-brand-teal font-bold uppercase tracking-wider">Verified Buyer</p></div>
@@ -360,7 +382,7 @@
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-glass border border-transparent hover:border-teal-100 transition duration-300">
                     <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon></div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Finally an organic brand that delivers what it promises. The packaging is premium and the product is fresh. It's become a staple in my morning routine."</p>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Finally an organic brand that delivers what it promises. The packaging is premium and the product is fresh."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">RK</div>
                         <div><p class="text-sm font-bold">Rahul K.</p><p class="text-[10px] text-brand-teal font-bold uppercase tracking-wider">Verified Buyer</p></div>
@@ -368,7 +390,7 @@
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-glass border border-transparent hover:border-teal-100 transition duration-300">
                     <div class="flex text-yellow-400 text-sm mb-4"><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon></div>
-                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Great value. The 200g pack lasts a long time. Shipping was super fast to Bangalore. Highly recommend for anyone looking for a natural energy boost."</p>
+                    <p class="text-brand-black font-medium leading-relaxed mb-6">"Great value. The 200g pack lasts a long time. Shipping was super fast to Bangalore. Highly recommend."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-brand-black text-white rounded-full flex items-center justify-center font-bold text-sm">NP</div>
                         <div><p class="text-sm font-bold">Neha P.</p><p class="text-[10px] text-brand-teal font-bold uppercase tracking-wider">Verified Buyer</p></div>
@@ -388,7 +410,7 @@
                         <ion-icon name="chevron-down" class="text-gray-400"></ion-icon>
                     </button>
                     <div class="accordion-content bg-white">
-                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed">Yes! It is 100% natural food product suitable for adults and children. However, pregnant or nursing women should consult a healthcare professional first.</p>
+                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed">Yes! It is 100% natural food product suitable for adults and children.</p>
                     </div>
                 </div>
                 <div class="border border-gray-100 rounded-xl overflow-hidden">
@@ -397,7 +419,7 @@
                         <ion-icon name="chevron-down" class="text-gray-400"></ion-icon>
                     </button>
                     <div class="accordion-content bg-white">
-                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed">Moringa has an earthy, green taste similar to spinach or matcha. It blends seamlessly into smoothies or savory dishes.</p>
+                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed">Moringa has an earthy, green taste similar to spinach or matcha.</p>
                     </div>
                 </div>
                 <div class="border border-gray-100 rounded-xl overflow-hidden">
@@ -406,7 +428,7 @@
                         <ion-icon name="chevron-down" class="text-gray-400"></ion-icon>
                     </button>
                     <div class="accordion-content bg-white">
-                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed">Our Moringa powder has a shelf life of 18 months when stored in a cool, dry place away from direct sunlight.</p>
+                        <p class="px-6 pb-6 text-sm text-text-secondary leading-relaxed">Our Moringa powder has a shelf life of 18 months.</p>
                     </div>
                 </div>
             </div>
@@ -432,7 +454,6 @@
                     <ul class="space-y-4 text-sm text-gray-400 font-medium">
                         <li><a href="#" class="hover:text-white transition">All Products</a></li>
                         <li><a href="#" class="hover:text-white transition">Best Sellers</a></li>
-                        <li><a href="#" class="hover:text-white transition">Combos</a></li>
                     </ul>
                 </div>
                 <div class="md:col-span-2">
