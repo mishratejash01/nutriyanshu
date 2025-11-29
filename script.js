@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '200g': { 
             id: 'moringa-200g', 
             name: 'Organic Moringa Leaf Powder (200g)', 
-            price: 249, 
+            price: 499, 
             image: 'front.jpg' 
         }
     };
